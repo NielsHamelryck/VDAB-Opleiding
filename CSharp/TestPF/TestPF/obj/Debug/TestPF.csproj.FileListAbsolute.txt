@@ -4,3 +4,9 @@ H:\CSharp\TestPF\TestPF\bin\Debug\TestPF.exe
 H:\CSharp\TestPF\TestPF\bin\Debug\TestPF.pdb
 H:\CSharp\TestPF\TestPF\obj\Debug\TestPF.exe
 H:\CSharp\TestPF\TestPF\obj\Debug\TestPF.pdb
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\bin\Debug\TestPF.exe.config
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\bin\Debug\TestPF.exe
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\bin\Debug\TestPF.pdb
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\obj\Debug\TestPF.csprojResolveAssemblyReference.cache
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\obj\Debug\TestPF.exe
+C:\Users\joeri.pardon\Documents\VDAB-Opleiding\CSharp\TestPF\TestPF\obj\Debug\TestPF.pdb

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apple.cs" />
     <Compile Include="IKosten.cs" />
     <Compile Include="Infrastructuur.cs" />
     <Compile Include="Instructeur.cs" />
