@@ -1,0 +1,5 @@
+select bieren.naam,brouwers.brnaam,soorten.soort
+from soorten
+inner join( brouwers inner join bieren on
+brouwers.brouwernr = bieren.brouwernr) on
+soorten.soortnr = bieren.soortnr 

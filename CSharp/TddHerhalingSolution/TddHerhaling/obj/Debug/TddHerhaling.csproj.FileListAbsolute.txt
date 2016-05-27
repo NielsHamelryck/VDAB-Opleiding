@@ -1,0 +1,7 @@
+H:\CSharp\TddHerhalingSolution\TddHerhaling\bin\Debug\TddHerhaling.dll
+H:\CSharp\TddHerhalingSolution\TddHerhaling\bin\Debug\TddHerhaling.pdb
+H:\CSharp\TddHerhalingSolution\TddHerhaling\obj\Debug\TddHerhaling.csprojResolveAssemblyReference.cache
+H:\CSharp\TddHerhalingSolution\TddHerhaling\obj\Debug\TddHerhaling.dll
+H:\CSharp\TddHerhalingSolution\TddHerhaling\obj\Debug\TddHerhaling.pdb
+H:\CSharp\TddHerhalingSolution\TddHerhaling\bin\Debug\Moq.dll
+H:\CSharp\TddHerhalingSolution\TddHerhaling\bin\Debug\Moq.xml

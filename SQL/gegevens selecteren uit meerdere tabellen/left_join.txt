@@ -1,0 +1,3 @@
+select naam , soort 
+from soorten left join bieren
+on soorten.soortnr = bieren.soortnr

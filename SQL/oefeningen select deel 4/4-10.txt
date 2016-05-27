@@ -1,0 +1,3 @@
+select e.lev_code as eerstelev , e.art_code as eerstecode , t.lev_code as tweedelev , t.art_code as tweedecode
+from offertes e inner join offertes t on
+ e.art_code=t.art_lev

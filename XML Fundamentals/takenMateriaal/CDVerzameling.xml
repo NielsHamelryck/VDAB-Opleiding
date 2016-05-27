@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cdverzameling>
+  <!--oefening 1.3-->
+  <cd>
+    <titel>Edyy wally goes classic</titel>
+    <artiest>Edyy Wally</artiest>
+    <jaar>1998</jaar>
+  </cd>
+  <cd>
+    <titel>Frank sinatra best of</titel>
+    <artiest>Frank Sinatra</artiest>
+    <jaar>1990</jaar>
+  </cd>
+  <cd>
+    <titel>Get rich or die trying</titel>
+    <artiest>Halve Euro</artiest>
+    <jaar>2003</jaar>
+  </cd>
+  <!--oefening 1.4-->
+  <cd titel="Eddy Wally goes classic" artiest="Eddy Wally" jaar="1998"/>
+  <cd titel="Live in a dive" artiest="No us for a name" jaar="2002"/>
+  <cd titel="Marshalm mathers LP" artiest="EMINEM" jaar="2000"/>
+</cdverzameling>

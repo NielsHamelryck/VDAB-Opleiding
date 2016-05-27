@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vdab="http://www.vdab.be/punt"
+	targetNamespace="http://www.vdab.be/punt">
+	<complexType name="TweeDimensioneelPunt">
+		<attribute name="x" type="integer" use="required">
+			<!--<annotation>
+				<documentation>De X coördinaat van het punt</documentation>
+			</annotation>-->
+		</attribute>
+		<attribute name="y" type="integer" use="required" />
+	</complexType>
+	<complexType name="DrieDimensioneelPunt">
+		<complexContent>
+			<extension base="vdab:TweeDimensioneelPunt">
+				<attribute name="z" type="integer" use="required" />
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="punt" type="vdab:DrieDimensioneelPunt" />
+</schema>

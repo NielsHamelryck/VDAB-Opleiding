@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Cirkel()
+comment0.text=\r\n\ Maak\ een\ nieuwe\ Cirkel\ met\ een\ default\ positie\ en\ kleur\r\n
+comment1.params=newDiameter
+comment1.target=void\ veranderGrootte(int)
+comment1.text=\r\n\ Verander\ de\ grootte\ van\ de\ cirkel\r\n
+comment2.params=
+comment2.target=void\ teken()
+comment2.text=\r\n\ Teken\ de\ cirkel\ met\ de\ huidige\ instellingen\ op\ het\ scherm.\r\n
+numComments=3

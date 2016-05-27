@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bestellingen>
+    <bestelling>
+        <product naam="friet" prijs="2"/>
+        <product naam="saus" prijs="0.5"/>
+    </bestelling>
+    <bestelling>
+        <product naam="friet" prijs="3"/>
+    </bestelling>
+</bestellingen>

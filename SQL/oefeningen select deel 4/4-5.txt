@@ -1,0 +1,4 @@
+select bestel.bestelnr, bestreg.art_lev , round((best_pr-off_prijs),2) as verschil
+from offertes inner join( bestel inner join bestreg on
+bestel.bestelnr = bestreg.bestelnr) on
+offertes.art_lev = bestreg.art_lev and offertes.lev_code=bestel.lev_code

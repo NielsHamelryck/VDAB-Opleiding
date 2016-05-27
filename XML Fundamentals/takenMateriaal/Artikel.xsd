@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:vdab="http://www.vdab.be/artikels"
+        targetNamespace="http://www.vdab.be/artikels"
+        elementFormDefault="qualified">
+  <simpleType name="Afmeting">
+    <restriction base="decimal">
+      <minExclusive value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="Productiedatum">
+    <restriction base="date">
+      <minInclusive value="2000-01-01"/>
+    </restriction>
+  </simpleType>
+  <simpleType name ="PrijsControle">
+    <restriction base="decimal">
+      <minExclusive value="0"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <complexType name="artikel">
+    <all>
+    <element name="productieDatum" type="vdab:Productiedatum" />
+    <element name="prijs"  type="vdab:PrijsControle" />
+    <element name="lengte" minOccurs="0" type="vdab:Afmeting"/>
+    <element name="breedte" minOccurs="0" type="vdab:Afmeting"/>
+    <element name ="hoogte" minOccurs="0" type="vdab:Afmeting"/>
+    </all>
+  </complexType>
+  <element name="artikel" type="vdab:artikel"/>
+</schema>

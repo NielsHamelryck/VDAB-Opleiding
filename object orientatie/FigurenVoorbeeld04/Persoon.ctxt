@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Persoon()
+comment0.text=\r\n\ Maak\ een\ nieuw\ persoon\ met\ default\ specificaties\r\n
+comment1.params=hoogte\ breedte
+comment1.target=void\ veranderGrootte(int,\ int)
+comment1.text=\r\n\ verander\ de\ grootte\ adhv\ gegeven\ hoogte\ en\ breedte\r\n
+comment2.params=
+comment2.target=void\ teken()
+comment2.text=\r\n\ Draw\ the\ person\ with\ current\ specifications\ on\ screen.\r\n
+numComments=3

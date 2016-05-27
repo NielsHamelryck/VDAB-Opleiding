@@ -1,0 +1,6 @@
+H:\CSharp\CSharpPF\oefeningen2_1\bin\Debug\oefeningen2_1.exe.config
+H:\CSharp\CSharpPF\oefeningen2_1\bin\Debug\oefeningen2_1.exe
+H:\CSharp\CSharpPF\oefeningen2_1\bin\Debug\oefeningen2_1.pdb
+H:\CSharp\CSharpPF\oefeningen2_1\obj\Debug\oefeningen2_1.csprojResolveAssemblyReference.cache
+H:\CSharp\CSharpPF\oefeningen2_1\obj\Debug\oefeningen2_1.exe
+H:\CSharp\CSharpPF\oefeningen2_1\obj\Debug\oefeningen2_1.pdb

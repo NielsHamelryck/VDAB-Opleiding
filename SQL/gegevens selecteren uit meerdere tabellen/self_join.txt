@@ -1,0 +1,3 @@
+select b1.brnaam, b2.brnaam
+from brouwers as b1 inner join brouwers as b2
+on b1.gemeente=b2.gemeente and b1.brouwernr<b2.brouwernr

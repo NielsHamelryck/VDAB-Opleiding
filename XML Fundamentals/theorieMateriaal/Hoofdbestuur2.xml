@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locatie xmlns="http://www.vdab.be/locaties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.vdab.be/locaties Locatie.xsd">
+	<adres>
+		<straat>Keizerslaan</straat>
+		<huisnummer>11</huisnummer>
+		<postcode>1000</postcode>
+		<gemeente>Brussel</gemeente>
+	</adres>
+</locatie>
+

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<personen xmlns="http://www.vdab.be/personen"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation ="http://www.vdab.be/personen personenschema.xsd">
+  <persoon persoonnr="1">
+    <voornaam>Joe</voornaam>
+    <Familienaam>Dalton</Familienaam>
+    <email>joe@daltons.org</email>
+    <geboorteDatum>1966-08-01</geboorteDatum>
+    <traject>Java</traject>
+  </persoon>
+  <persoon persoonnr="2">
+    <voornaam>Jack</voornaam>
+    <Familienaam>Dalton</Familienaam>
+    <email>jack@daltons.org</email>
+    <geboorteDatum>1964-08-28</geboorteDatum>
+    <traject>C#</traject>
+  </persoon>
+  <persoon persoonnr="3">
+    <voornaam>Lucky</voornaam>
+    <Familienaam>Luke</Familienaam>
+    <email>Lucky.Luke@goodones.org</email>
+    <geboorteDatum>1965-01-31</geboorteDatum>
+    <traject>PHP</traject>
+  </persoon>
+</personen>

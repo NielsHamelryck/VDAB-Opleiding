@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<naamVoornamen xmlns="http://www.vdab.be/naamVoornamenGeboorte"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.vdab.be/naamVoornamenGeboorte NaamVoornamenGeboorte.xsd">
+	<naam>van de Wetering</naam>
+	<voornamen>
+		<voornaam>Jan Willem</voornaam>
+		<voornaam>Lincoln</voornaam>
+	</voornamen>
+</naamVoornamen>

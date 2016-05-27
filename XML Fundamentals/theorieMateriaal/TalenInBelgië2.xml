@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<land>
+  <naam>België</naam>
+  <talen>
+    <taal>Nederlands</taal>
+    <taal>Frans</taal>
+    <taal>Duits</taal>
+  </talen>
+</land>

@@ -1,0 +1,3 @@
+select bestelnr , lev_naam, L_datum, bedrag 
+from bestel inner join leveran
+on bestel.lev_code = leveran.lev_code

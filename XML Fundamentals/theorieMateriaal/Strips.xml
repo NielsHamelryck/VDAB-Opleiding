@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strips xmlns="http://www.vdab.be/strips" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.vdab.be/strips Strips.xsd">
+	<strip titel="Dick Diggers goudmijn" isbn="9789031401642" />
+	<strip titel="Dr. Doxey's Elixir" isbn="9789031401703" />
+	<strip titel="Phil IJzerdraad" isbn="9789031401710" />
+	<strip titel="De Daltons op vrije voeten" isbn="9789031401864" />
+	<strip titel="Calamity Jane" isbn="9789031401932" />
+</strips>

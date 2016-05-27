@@ -1,0 +1,5 @@
+select bestelnr , l_datum, bedrag , 'Te laat' as bericht from bestel 
+where l_datum<#1999-4-1#
+union
+select bestelnr , l_datum, bedrag , '_______' as bericht from bestel 
+where l_datum>=#1999-4-1#

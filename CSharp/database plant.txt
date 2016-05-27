@@ -1,0 +1,16 @@
+List<Plant> plantenlijst = new List<Plant>();
+                plantenlijst.Add(new Plant(1,"Tulp","rood",0.50m,"bol"));
+                plantenlijst.Add(new Plant(2, "Krokus", "wit", 0.20m, "bol"));
+                plantenlijst.Add(new Plant(3, "Narcis", "geel", 0.30m, "bol"));
+                plantenlijst.Add(new Plant(4, "blauw druifje", "blauw", 0.20m, "bol"));
+                plantenlijst.Add(new Plant(5, "Azalea", "rood", 3.00m, "heester"));
+                plantenlijst.Add(new Plant(6, "Forsythia", "geel", 2.00m, "heester"));
+                plantenlijst.Add(new Plant(7, "Magnolia", "wit", 4.00m, "heester"));
+                plantenlijst.Add(new Plant(8, "Waterlelie", "wit", 2.00m, "water"));
+                plantenlijst.Add(new Plant(9, "Lisdodde", "geel", 3.00m, "water"));
+                plantenlijst.Add(new Plant(10, "Kalmoes", "geel", 2.50m, "water"));
+                plantenlijst.Add(new Plant(11, "Bieslook", "paars", 1.50m, "Kruid"));
+                plantenlijst.Add(new Plant(12, "Rozemarijn", "blauw", 1.25m, "Kruid"));
+                plantenlijst.Add(new Plant(13, "Munt", "wit", 1.10m, "Kruid"));
+                plantenlijst.Add(new Plant(14, "Dragon", "wit", 1.30m, "Kruid"));
+                plantenlijst.Add(new Plant(15, "Basilicum", "wit", 1.50m, "Kruid"));

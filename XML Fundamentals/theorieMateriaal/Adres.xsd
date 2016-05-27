@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vdab="http://www.vdab.be/adressen"
+	targetNamespace="http://www.vdab.be/adressen" elementFormDefault="qualified">
+	<simpleType name="Postcode">
+		<restriction base="int">
+			<minInclusive value="1000" />
+                        <maxInclusive value="9999" />
+		</restriction>
+	</simpleType>
+	<complexType name="Adres">
+            <sequence>
+                <element name="straat"/>
+                <element name="huisnummer"/>
+                <element name="postcode" type="vdab:Postcode"/>
+                <element name="gemeente"/>                    
+            </sequence>
+	</complexType>
+	<element name="adres" type="vdab:Adres" />
+</schema>

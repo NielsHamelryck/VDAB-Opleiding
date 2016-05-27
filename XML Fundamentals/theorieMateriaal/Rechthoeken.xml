@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rechthoeken>
+	<rechthoek lengte="5" breedte="2" />
+	<rechthoek lengte="4" breedte="2" />
+	<rechthoek lengte="6" breedte="3" />
+</rechthoeken>

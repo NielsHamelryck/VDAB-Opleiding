@@ -1,0 +1,5 @@
+H:\CSharp\CSharpPF\oefening3_2_priem\bin\Debug\oefening3_2_priem.exe.config
+H:\CSharp\CSharpPF\oefening3_2_priem\bin\Debug\oefening3_2_priem.exe
+H:\CSharp\CSharpPF\oefening3_2_priem\bin\Debug\oefening3_2_priem.pdb
+H:\CSharp\CSharpPF\oefening3_2_priem\obj\Debug\oefening3_2_priem.exe
+H:\CSharp\CSharpPF\oefening3_2_priem\obj\Debug\oefening3_2_priem.pdb

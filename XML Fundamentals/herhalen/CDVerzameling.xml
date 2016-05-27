@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CDVerzameling>
+  <cd titel="titel1" artist="artiest1" jaar="1998"/>
+  <cd titel="titel2" artist="artiest2" jaar="1999"/>
+  <cd titel="titel1" artist="artiest1" jaar="2000"/>
+</CDVerzameling>

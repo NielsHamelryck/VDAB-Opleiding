@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Driehoek()
+comment0.text=\r\n\ Maak\ een\ driehoek\ met\ default\ positie,\ hoogte,\ breedte\ en\ kleur\r\n
+comment1.params=hoogte\ breedte
+comment1.target=void\ veranderGrootte(int,\ int)
+comment1.text=\r\n\ Verander\ de\ grootte\ adhv\ het\ gegeven\ hoogte\ en\ breedte\ in\ pixels\r\n
+comment2.params=
+comment2.target=void\ teken()
+comment2.text=\r\n\ Teken\ het\ driehoek\ met\ de\ huidige\ specificaties\ op\ het\ scherm\r\n
+numComments=3

@@ -1,0 +1,11 @@
+select planten.art_code, plantennm , art_lev, 'aalsmeer' as plaats
+from planten inner join ( offertes inner join leveran on
+offertes.lev_code=leveran.lev_code) on
+planten.art_code=offertes.art_code
+where soort='boom' and woonpl='aalsmeer'
+union
+select planten.art_code, plantennm , art_lev, 'buiten aalsmeer' as plaats
+from planten inner join ( offertes inner join leveran on
+offertes.lev_code=leveran.lev_code) on
+planten.art_code=offertes.art_code
+where soort='boom' and woonpl<>'aalsmeer'

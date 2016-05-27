@@ -1,0 +1,4 @@
+select planten.art_code , plantennm, min(off_prijs) as minimum
+from planten inner join offertes on
+planten.art_code = offertes.art_code
+group by plantennm, planten.art_code order by 2

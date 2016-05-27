@@ -1,0 +1,5 @@
+H:\CSharp\CSharpPF\Oefening1_2\bin\Debug\Oefening1_2.exe.config
+H:\CSharp\CSharpPF\Oefening1_2\bin\Debug\Oefening1_2.exe
+H:\CSharp\CSharpPF\Oefening1_2\bin\Debug\Oefening1_2.pdb
+H:\CSharp\CSharpPF\Oefening1_2\obj\Debug\Oefening1_2.exe
+H:\CSharp\CSharpPF\Oefening1_2\obj\Debug\Oefening1_2.pdb

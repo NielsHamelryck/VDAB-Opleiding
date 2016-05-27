@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<landen>
+	<land naam="België">
+		<hoofdstad>Brussel</hoofdstad>
+		<oppervlakte>30528</oppervlakte>
+	</land>
+	<land naam="Nederland">
+		<hoofdstad>Amsterdam</hoofdstad>
+		<oppervlakte>41543</oppervlakte>
+	</land>
+</landen>

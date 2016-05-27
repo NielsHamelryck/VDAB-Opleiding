@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pacman>
+  <spelverloop>
+    De speler bestuurt en geel "happertje" genaamd Pac-man, waarmee hij zich 
+    een weg moet banen door een speelveld gevuld met muntjes.
+    Doel is om alle muntjes in het speelveld op te eten.
+    Het speelveld wordt echter onveilig gemaakt door vier spoken.
+    Indien Pac-man door een spook gepakt wordt, is hij er geweest.
+    Als Pac-man echter een witte pil pakt, 
+    worden de rollen tijdelijk omgedraaid en kan hij de spoken uitschakelen.
+  </spelverloop>
+  <producent>Namco</producent>
+</pacman>

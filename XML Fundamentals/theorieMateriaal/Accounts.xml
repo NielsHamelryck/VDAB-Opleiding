@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accounts xmlns:bank="http://www.bestebank.be/sparen"
+          xmlns:pc="http://www.computers.org/accounts">
+	<bank:account id="GR16011012500000000123006" firstname="Larry" lastname="Ellison" />
+	<bank:account id="KU0000000000001234560101" firsname="Bill" lastname="Gates" />
+	<pc:account id="JB007007007007007007" firstname="James" lastname="Bond" />
+</accounts>
+ 

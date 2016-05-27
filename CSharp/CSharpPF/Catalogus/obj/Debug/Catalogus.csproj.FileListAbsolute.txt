@@ -1,0 +1,1 @@
+H:\CSharp\CSharpPF\Catalogus\bin\Debug\Catalogus.exe.config

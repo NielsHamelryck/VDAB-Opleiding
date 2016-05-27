@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vdab="http://www.vdab.be/personen" targetNamespace="http://www.vdab.be/personen">
+    <complexType name="Persoon">
+        <attribute name="voornaam" use="required"/>
+        <attribute name="familienaam" use="required" />
+        <attribute name="aantalKinderen"/>
+        <attribute name="geboorteDatum"/>
+        <attribute name="wedde"/>
+        <attribute name="gehuwd"/>            
+    </complexType>
+    <element name="persoon" type="vdab:Persoon"/>
+</schema>

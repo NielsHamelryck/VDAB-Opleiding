@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vdab="http://www.vdab.be/naamVoornamenGeboorte"
+	targetNamespace="http://www.vdab.be/naamVoornamenGeboorte"
+	elementFormDefault="qualified">
+	<complexType name="Voornamen">
+		<sequence>
+			<element name="voornaam" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="NaamVoornamen">
+		<sequence>
+			<element name="naam" />
+			<element name="voornamen" type="vdab:Voornamen" />
+			<element name="geboorte" type="date" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<element name="naamVoornamen" type="vdab:NaamVoornamen" />
+</schema>

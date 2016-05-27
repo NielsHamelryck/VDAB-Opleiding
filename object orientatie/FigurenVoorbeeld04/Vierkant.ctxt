@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Vierkant()
+comment0.text=\r\n\ Maak\ een\ nieuwe\ vierkant\ met\ default\ positie,\ grootte\ en\ kleur\r\n
+comment1.params=grootte
+comment1.target=void\ veranderGrootte(int)
+comment1.text=\r\n\ Verander\ de\ grootte\ naar\ de\ gegeven\ grootte\r\n
+comment2.params=
+comment2.target=void\ teken()
+comment2.text=\r\n\ Teken\ de\ vierkant\ met\ de\ huidige\ specificaties\ op\ het\ scherm\r\n
+numComments=3

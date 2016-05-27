@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<land>
+  <naam>België</naam>
+  <hoofdstad>
+    <naam>Brussel</naam>
+    <oppervlakte>32.61</oppervlakte>
+  </hoofdstad>
+  <oppervlakte>30528</oppervlakte>
+</land>

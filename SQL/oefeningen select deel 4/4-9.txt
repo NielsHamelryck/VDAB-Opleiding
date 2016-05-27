@@ -1,0 +1,3 @@
+select b1.bestelnr as eerstenr , b1.b_datum as eerstedatum, b2.bestelnr as tweedenr , b2.b_datum as tweededatum
+from bestel b1 inner join bestel b2 on
+b1.b_datum=b2.l_datum and b1.bestelnr<>b2.bestelnr

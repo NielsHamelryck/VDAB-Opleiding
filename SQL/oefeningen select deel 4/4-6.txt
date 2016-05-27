@@ -1,0 +1,5 @@
+select distinct woonpl
+from leveran inner join (offertes inner join planten on
+offertes.art_code = planten.art_code) on
+leveran.lev_code = offertes.lev_code
+where soort ='vast'

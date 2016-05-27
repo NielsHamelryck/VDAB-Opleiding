@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vdab="http://www.vdab.be/luckyluke"
+	targetNamespace="http://www.vdab.be/luckyluke" elementFormDefault="qualified">
+	<simpleType name="ISBN">
+		<restriction base="integer">
+			<pattern value="978\d{10}" />
+		</restriction>
+	</simpleType>
+	<complexType name="Medewerker">
+		<attribute name="id" use="required" type="positiveInteger" />
+		<attribute name="naam" use="required" />
+	</complexType>
+	<complexType name="Strip">
+		<attribute name="titel" use="required" />
+		<attribute name="isbn" use="required" type="vdab:ISBN" />
+		<attribute name="tekenaarId" use="required" type="positiveInteger" />
+		<attribute name="schrijverId" use="required" type="positiveInteger" />
+	</complexType>
+	<complexType name="Medewerkers">
+		<sequence>
+			<element name="medewerker" type="vdab:Medewerker" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="Strips">
+		<sequence>
+			<element name="strip" type="vdab:Strip" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="LuckyLuke">
+		<sequence>
+			<element name="medewerkers" type="vdab:Medewerkers" />
+			<element name="strips" type="vdab:Strips" />
+		</sequence>
+	</complexType>
+	<element name="luckyluke" type="vdab:LuckyLuke">
+		<key name="idKey">
+			<selector xpath="vdab:medewerkers/vdab:medewerker" />
+			<field xpath="@id" />
+		</key>
+		<key name="isbnKey">
+			<selector xpath="vdab:strips/vdab:strip" />
+			<field xpath="@isbn" />
+		</key>
+		<keyref name="tekenaarKeyRef" refer="vdab:idKey">
+			<selector xpath="vdab:strips/vdab:strip" />
+			<field xpath="@tekenaarId" />
+		</keyref>
+		<keyref name="schrijverIdKeyRef" refer="vdab:idKey">
+			<selector xpath="vdab:strips/vdab:strip" />
+			<field xpath="@schrijverId" />
+		</keyref>
+	</element>
+</schema>

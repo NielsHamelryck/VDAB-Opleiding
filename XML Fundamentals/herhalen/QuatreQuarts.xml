@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quatreQuartz>
+  
+  <ingredienten>
+    <product name="suiker" hoeveelheid="200" eenheid="gram"/>
+    <product name="boter" hoeveelheid="200" eenheid="gram"/>
+    <product name="bloem" hoeveelheid="200" eenheid="gram"/>
+    <product name="ei" hoeveelheid="4" eenheid="stuk"/>
+  </ingredienten>
+  <bereiding>
+    <stap name="stap1" beschrijving="Meng eerst de suiker met de boter. Voeg vervolgens het zout en twee eieren toe en daarna
+de helft van de bloem. Voeg het laatste ei of de laatste eieren en de resterende bloem toe.
+U moet een homogeen en luchtig deeg krijgen."/>
+    <stap name="stap2" beschrijving="Meng het deeg goed met een elektrische klopper en blijf lang genoeg mengen telkens
+wanneer u een ingrediënt toevoegt."/>
+    <stap name="stap3" beschrijving="Giet het deeg in een met boter ingevette springvorm waarvan de bodem is bedekt met
+bakpapier. Laat 30 minuten bakken in een op 150 °C voorverwarmde oven (T° 5).
+Neem de cake na 5 minuten uit de vorm en laat afkoelen op een rooster.
+(ongeveer 45 minuten baktijd voor een cakevorm)."/>
+    <stap name="stap4" beschrijving="U kunt uw quatre-quarts cake op verschillende manieren een persoonlijke noot geven:
+met sinaasappel- of citroenschil, stukjes chocolade of pure cacao, stukjes appel of peer
+(met kaneel), stukjes abrikoos of perzik, gekonfijt fruit, rozijnen, enzovoort."/>
+  </bereiding>
+</quatreQuartz>

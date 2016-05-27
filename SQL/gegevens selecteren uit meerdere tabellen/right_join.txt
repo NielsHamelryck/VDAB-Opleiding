@@ -1,0 +1,4 @@
+select brnaam ,naam
+from bieren
+right join brouwers
+on brouwers.brouwernr = bieren.brouwernr

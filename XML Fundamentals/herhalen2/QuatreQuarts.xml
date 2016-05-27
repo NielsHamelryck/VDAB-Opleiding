@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuatreQuarts>
+  <ingredienten>
+    <ingredient naam="suiker" hoeveelheid="200" eenheid="gram"/>
+    <ingredient naam="boter" hoeveelheid="200" eenheid="gram"/>
+    <ingredient naam="bloem" hoeveelheid="200" eenheid="gram"/>
+    <ingredient naam="ei" hoeveelheid="4" eenheid="stuk"/>
+  </ingredienten>
+  <bereiding>
+    <stap>stap1</stap>
+    <stap>stap2</stap>
+    <stap>stap3</stap>
+    <stap>stap4</stap>
+  </bereiding>
+</QuatreQuarts>

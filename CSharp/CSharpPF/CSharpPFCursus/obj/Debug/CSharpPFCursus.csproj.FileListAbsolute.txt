@@ -1,0 +1,6 @@
+H:\CSharp\CSharpPF\CSharpPFCursus\bin\Debug\CSharpPFCursus.exe.config
+H:\CSharp\CSharpPF\CSharpPFCursus\bin\Debug\CSharpPFCursus.exe
+H:\CSharp\CSharpPF\CSharpPFCursus\bin\Debug\CSharpPFCursus.pdb
+H:\CSharp\CSharpPF\CSharpPFCursus\obj\Debug\CSharpPFCursus.csprojResolveAssemblyReference.cache
+H:\CSharp\CSharpPF\CSharpPFCursus\obj\Debug\CSharpPFCursus.exe
+H:\CSharp\CSharpPF\CSharpPFCursus\obj\Debug\CSharpPFCursus.pdb

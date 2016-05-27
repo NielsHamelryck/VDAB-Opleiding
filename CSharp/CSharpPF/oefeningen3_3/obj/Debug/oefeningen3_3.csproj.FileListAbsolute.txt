@@ -1,0 +1,5 @@
+H:\CSharp\CSharpPF\oefeningen3_3\bin\Debug\oefeningen3_3.exe.config
+H:\CSharp\CSharpPF\oefeningen3_3\bin\Debug\oefeningen3_3.exe
+H:\CSharp\CSharpPF\oefeningen3_3\bin\Debug\oefeningen3_3.pdb
+H:\CSharp\CSharpPF\oefeningen3_3\obj\Debug\oefeningen3_3.exe
+H:\CSharp\CSharpPF\oefeningen3_3\obj\Debug\oefeningen3_3.pdb

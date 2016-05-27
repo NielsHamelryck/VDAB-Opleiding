@@ -1,0 +1,7 @@
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\bin\Debug\TDDCursusLibraryTest.dll
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\bin\Debug\TDDCursusLibraryTest.pdb
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\bin\Debug\TDDCursusLibrary.dll
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\bin\Debug\TDDCursusLibrary.pdb
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\obj\Debug\TDDCursusLibraryTest.csprojResolveAssemblyReference.cache
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\obj\Debug\TDDCursusLibraryTest.dll
+H:\CSharp\TDDCursusSolution\TDDCursusLibraryTest\obj\Debug\TDDCursusLibraryTest.pdb

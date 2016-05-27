@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cdverzameling>
+  <!--oefening 1.3-->
+  <cd>
+    <titel>get rich or die trying</titel>
+    <artiest>halve dollar</artiest>
+    <jaar>2003</jaar>
+  </cd>
+  <cd>
+    <titel>live in a dive</titel>
+    <artiest>No us for a name</artiest>
+    <jaar>2002</jaar>
+  </cd>
+  <cd>
+    <titel>best of tom jones</titel>
+    <artiest>Tom jones</artiest>
+    <jaar>1990</jaar>
+  </cd>
+
+  <!--oefening 1.4-->
+  <cd titel="get rich or die trying" artiest="halve dollar" jaar="2003"/>
+  <cd titel="live in a dive" artiest="no use for a name"  jaar="2002"/>
+  <cd titel="best of tom jones" artiest="Tom jones" jaar="1990"/>
+      
+</cdverzameling>

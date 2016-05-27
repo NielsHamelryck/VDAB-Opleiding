@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+xmlns:vdab="http://www.vdab.be/personen"
+targetNamespace="http://www.vdab.be/personen" elementFormDefault="qualified">
+  <!--
+  
+  lijst van attributen
+    persoonnr  positiveInteger
+  
+  lijst van elementen
+    voornaam vdab:NamenControle
+    familienaam vdab:NamenControle
+    email   vdab:EmailControle
+    geboorteDatum vdab:GeboortedatumControle
+    traject vdab:TrajectControle
+    
+  -->
+
+  <simpleType name ="NamenControle">
+    <restriction base ="string">
+      <pattern value ="^[^\s]+.{0,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="EmailControle">
+    <restriction base="string">
+      <pattern value="^.+@.+\.[a-z]+$"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="GeboortedatumControle">
+    <restriction base ="date">
+      <minInclusive value="1950-01-01"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TrajectControle">
+    <restriction base="string">
+      <pattern value ="^(Java|C#|PHP)$"/>
+    </restriction>
+  </simpleType>
+  <complexType name="Persoon">
+    <sequence>
+      <element name="voornaam" type="vdab:NamenControle"/>
+      <element name="Familienaam" type="vdab:NamenControle"/>
+      <element name="email" type="vdab:EmailControle"/>
+      <element name="geboorteDatum" type="vdab:GeboortedatumControle"/>
+      <element name="traject" type="vdab:TrajectControle"/>
+    </sequence>
+    <attribute name ="persoonnr"  use="required" type="positiveInteger"/>
+  </complexType>
+  <complexType name="Personen">
+    <sequence>
+      <element name="persoon" minOccurs ="0" maxOccurs="unbounded" type="vdab:Persoon"/>
+    </sequence>
+  </complexType>
+  <element name ="personen" type="vdab:Personen">
+    <key name ="persoonKey">
+      <selector xpath ="vdab:persoon"/>
+      <field xpath ="@persoonnr"/>
+    </key>
+    <key name ="emailKey">
+      <selector xpath ="vdab:persoon"/>
+      <field xpath ="vdab:email"/>
+    </key>
+  </element>
+</schema>
+

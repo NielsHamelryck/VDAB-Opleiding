@@ -1,0 +1,4 @@
+select offertes.art_code , art_lev , plantennm , lev_tijd
+from offertes inner join planten 
+on offertes.art_code = planten.art_code
+where lev_tijd<=10

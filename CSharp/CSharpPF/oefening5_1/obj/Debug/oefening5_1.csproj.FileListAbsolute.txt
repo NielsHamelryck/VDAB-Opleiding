@@ -1,0 +1,6 @@
+H:\CSharp\CSharpPF\oefening5_1\bin\Debug\oefening5_1.exe.config
+H:\CSharp\CSharpPF\oefening5_1\bin\Debug\oefening5_1.exe
+H:\CSharp\CSharpPF\oefening5_1\bin\Debug\oefening5_1.pdb
+H:\CSharp\CSharpPF\oefening5_1\obj\Debug\oefening5_1.csprojResolveAssemblyReference.cache
+H:\CSharp\CSharpPF\oefening5_1\obj\Debug\oefening5_1.exe
+H:\CSharp\CSharpPF\oefening5_1\obj\Debug\oefening5_1.pdb

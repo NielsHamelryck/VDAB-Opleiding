@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<artikel
+    xmlns="http://www.vdab.be/artikels"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vdab.be/artikels Artikel.xsd"
+    
+    >
+  <productieDatum>2001-05-04</productieDatum>
+  <prijs>40.33</prijs>
+</artikel>
+

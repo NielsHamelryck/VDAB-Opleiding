@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accounts xmlns="http://www.bestebank.be/sparen">
+	<account id="GR16011012500000000123006" firstname="Larry" lastname="Ellison" />
+	<account id="KU0000000000001234560101" firsname="Bill" lastname="Gates" />
+</accounts> 

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:vdab="http://www.vdab.be/boek"
+        targetNamespace="http://www.vdab.be/boek"
+        elementFormDefault="qualified"
+>
+  <simpleType name="BeroepenCode">
+    <restriction base="nonNegativeInteger">
+      <pattern value="\d{6}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="AlleenLetters">
+    <restriction base="string">
+      <pattern value="^([A-Za-z]|\s)+$"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ValidISBN">
+    <restriction base="nonNegativeInteger">
+      <pattern value="^978[0-9]{10}$"/>
+    </restriction>
+  </simpleType>
+  <complexType name="curriculum">
+    <sequence>
+      <element name="naam" minOccurs="0" type="string"/>
+      <element name="beroepencode" minOccurs="0" type="vdab:BeroepenCode"/>
+    </sequence>
+    <attribute name="nr" use ="required" type ="nonNegativeInteger"/>
+  </complexType>
+  <complexType name="Boek">
+    <all>
+      <element name="titel" minOccurs="0" type="string"/>
+      <element name="schrijver" minOccurs="0" type="vdab:AlleenLetters"/>
+      <element name="uitgever" minOccurs="0" type="vdab:AlleenLetters"/>
+      <element name ="curriculum" minOccurs="0" type ="vdab:curriculum"/>
+    </all>
+    <attribute name="boeknr" use="required" type="nonNegativeInteger"/>
+    <attribute name="isbnnr" use="required" type="vdab:ValidISBN"/>
+  </complexType>
+  <element name="boek" type="vdab:Boek"/>
+  
+  
+</schema>

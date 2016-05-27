@@ -1,0 +1,6 @@
+H:\CSharp\CSharpPF\CSharpPFOefenmap\bin\Debug\CSharpPFOefenmap.exe.config
+H:\CSharp\CSharpPF\CSharpPFOefenmap\bin\Debug\CSharpPFOefenmap.exe
+H:\CSharp\CSharpPF\CSharpPFOefenmap\bin\Debug\CSharpPFOefenmap.pdb
+H:\CSharp\CSharpPF\CSharpPFOefenmap\obj\Debug\CSharpPFOefenmap.exe
+H:\CSharp\CSharpPF\CSharpPFOefenmap\obj\Debug\CSharpPFOefenmap.pdb
+H:\CSharp\CSharpPF\CSharpPFOefenmap\obj\Debug\CSharpPFOefenmap.csprojResolveAssemblyReference.cache

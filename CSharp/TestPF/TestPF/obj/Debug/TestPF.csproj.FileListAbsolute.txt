@@ -1,0 +1,6 @@
+H:\CSharp\TestPF\TestPF\bin\Debug\TestPF.exe.config
+H:\CSharp\TestPF\TestPF\obj\Debug\TestPF.csprojResolveAssemblyReference.cache
+H:\CSharp\TestPF\TestPF\bin\Debug\TestPF.exe
+H:\CSharp\TestPF\TestPF\bin\Debug\TestPF.pdb
+H:\CSharp\TestPF\TestPF\obj\Debug\TestPF.exe
+H:\CSharp\TestPF\TestPF\obj\Debug\TestPF.pdb

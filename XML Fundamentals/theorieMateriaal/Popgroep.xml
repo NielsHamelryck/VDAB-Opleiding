@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<popgroep naam="ABBA">
+	<lid geslacht="V" voornaam="Agnetha" familienaam="Fältskog">
+		<geboortejaar>1950</geboortejaar>
+		<taken>
+			<taak>zang</taak>
+		</taken>
+	</lid>
+	<lid geslacht="M" voornaam="Björn" familienaam="Ulvaeus">
+		<geboortejaar>1945</geboortejaar>
+		<taken>
+			<taak>instrumentalist</taak>
+			<taak>componist</taak>
+		</taken>
+
+	</lid>
+	<lid geslacht="M" voornaam="Benny" familienaam="Andersson">
+		<geboortejaar>1946</geboortejaar>
+		<taken>
+			<taak>instrumentalist</taak>
+			<taak>componist</taak>
+		</taken>
+
+	</lid>
+	<lid geslacht="V" voornaam="Anni-Frid" familienaam="Lyngstad">
+		<geboortejaar>1945</geboortejaar>
+		<taken>
+			<taak>zang</taak>
+		</taken>
+	</lid>
+</popgroep>

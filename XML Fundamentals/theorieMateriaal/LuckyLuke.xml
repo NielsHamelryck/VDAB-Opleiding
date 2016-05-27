@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<luckyluke xmlns="http://www.vdab.be/luckyluke" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.vdab.be/luckyluke LuckyLuke.xsd">
+    <medewerkers>
+        <medewerker id="1" naam="Morris"/>
+        <medewerker id="2" naam="René Goscinny"/>
+    </medewerkers>
+    <strips>
+	<strip titel="Dick Diggers goudmijn" tekenaarId="1" isbn="9789031401642"  schrijverId="1"/>
+	<strip titel="De Daltons op vrije voeten" isbn="9789031401864" tekenaarId="1" schrijverId="2"/>
+	<strip titel="Calamity Jane" isbn="9789031401932" tekenaarId="1" schrijverId="2"/>
+    </strips>
+</luckyluke>
