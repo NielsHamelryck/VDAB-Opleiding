@@ -1,0 +1,39 @@
+﻿<Window x:Class="PizzaWindow.PizzaBestellen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PizzaWindow" Height="350" Width="525">
+    <StackPanel ><Label HorizontalAlignment="Center" FontSize="25" Content="Pizza bestellen"/>
+        <StackPanel Orientation="Horizontal">
+            
+            <Canvas Height="50" Width="250" HorizontalAlignment="Left">
+
+                <RadioButton  GroupName="_pizzaSize" Name="RadioButtonSmall" Canvas.Left="20"  Content="small"  />
+
+                <RadioButton  GroupName="_pizzaSize" Name="RadioButtonMedium" Canvas.Left="20" Canvas.Top="15" Content="medium" />
+                <RadioButton  GroupName="_pizzaSize" Name="RadioButtonLarge" IsChecked="True" Canvas.Left="20" Canvas.Top="30" Content="large" />
+            </Canvas>
+            <StackPanel Orientation="Vertical">
+            <ToggleButton Name="ExtraDikkeKorstToevoegen" Margin="35 0 10 0" Height="20" Width="200" Content="extra dikke korst"/>
+            <ToggleButton Name="ExtraKaasToevoegen" Margin="35 10 10 10" Height="20" Width="200" Content="extra kaas"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Rectangle Width="275" Fill="Black" Height="1" />
+            <Label >hoeveelheid:</Label>
+            <Label>0</Label>
+            <StackPanel Orientation="Vertical">
+                <RepeatButton Width="10" Height="auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8">
+                    +</RepeatButton>
+                <RepeatButton Width="10" Height="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" >
+                    -</RepeatButton>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+
+</Window>
+
+
+
+
+

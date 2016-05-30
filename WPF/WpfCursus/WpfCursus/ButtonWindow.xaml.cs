@@ -33,6 +33,12 @@ namespace WpfCursus
             this.Background = kleur;
         }
 
-        
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+            textBlockAanmelding.TextWrapping =TextWrapping.Wrap;
+            textBlockAanmelding.Text = "Je probeerde aan te melden met:" +
+                                       TextboxGebruikersnaam.Text + " en paswoord: " + PsdBox.Password;
+        }
     }
 }

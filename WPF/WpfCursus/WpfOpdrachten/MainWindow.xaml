@@ -3,11 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Verkeerslicht" Height="350" Width="525">
     <Grid>
-       <Canvas  Width="125" Background="Yellow"  Margin="10,0,193,0"  >
-
-            <Ellipse Name="RoodLicht" Fill="Red" Height="90" Width="90" Margin="17.5" Opacity="1" ></Ellipse>
-            <Ellipse Name="OranjeLicht" Fill="Orange" Height="90" Width="90" Margin="17.5" Opacity="1" ></Ellipse>
+        <Canvas  Width="125" Background="Yellow"  Margin="10,0,193,0"   >
+            <StackPanel Canvas.Top="20" Canvas.Left="27.5" Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Ellipse Name="RoodLicht" Fill="Red" Height="70" Width="70" Margin="0,10" />
+                <Ellipse Name="OranjeLicht" Fill="Orange" Height="70" Width="70" Margin="0,10" />
+                <Ellipse x:Name="GroenLicht" Fill="Green" Height="70" Width="70" Margin="0,10"  />
+            </StackPanel>
+            
+            </Canvas>
+        <Canvas Height="180" Width="120" Margin="120,0,0,0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button Name="GoButton" Height="30" Width="80" Content="Go" Margin="20" Click="ButtonKleur_OnClick" Tag="Green" Background="Green"></Button>
+                <Button Name="OpgeletButton" Height="30" Width="80" Content="Opgelet!" Click="ButtonKleur_OnClick"  Tag="Orange" Background="Orange"></Button>
+                <Button Name="StopButton" Height="30" Width="80" Content="Stop" Margin="20" Click="ButtonKleur_OnClick" Tag="Red" Background="Red"></Button>
+            </StackPanel>
         </Canvas>
-
     </Grid>
 </Window>
