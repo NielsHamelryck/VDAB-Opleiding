@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PizzaWindow" Height="350" Width="525">
     <StackPanel ><Label HorizontalAlignment="Center" FontSize="25" Content="Pizza bestellen"/>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Name="StackPanelpizzaSize" Orientation="Horizontal">
             
             <Canvas Height="50" Width="250" HorizontalAlignment="Left">
 
@@ -20,13 +20,30 @@
         <StackPanel Orientation="Horizontal">
             <Rectangle Width="275" Fill="Black" Height="1" />
             <Label >hoeveelheid:</Label>
-            <Label>0</Label>
+            <TextBlock Name="TekstBlockHoeveelheid" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <StackPanel Orientation="Vertical">
-                <RepeatButton Width="10" Height="auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8">
+                <RepeatButton Name="RepeatButtonAdd" Delay="1000" Interval="100" Width="10" Height="auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Click="RepeatButtonAdd_OnClick">
                     +</RepeatButton>
-                <RepeatButton Width="10" Height="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" >
+                <RepeatButton Name="RepeatButtonDecrease" Delay="1000" Interval="100" Width="10" Height="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Click="RepeatButtonDecrease_OnClick">
                     -</RepeatButton>
             </StackPanel>
+           
+            </StackPanel> 
+        <StackPanel Orientation="Horizontal">
+                <StackPanel Name="StackPanelToppings"  Orientation="Vertical" Margin="0 20">
+                    <CheckBox Name="CheckBoxTomaat" IsChecked="true" IsEnabled="False" Margin="20 0 0 5" Content="tomaat"/>
+                    <CheckBox Name="CheckBoxKaas" IsChecked="true" IsEnabled="False" Margin="20 0 0 5" Content="kaas"/>
+                    <CheckBox Name="CheckBoxHam" IsChecked="false" IsEnabled="true" Margin="20 0 0 5" Content="ham"/>
+                    <CheckBox Name="CheckBoxAnanas" IsChecked="false" IsEnabled="true" Margin="20 0 0 5" Content="ananas"/>
+                    <CheckBox Name="CheckBoxSalami" IsChecked="false" IsEnabled="true" Margin="20 0" Content="salami"/>
+            </StackPanel>
+            <Button Name="ButtonPizzaBestellen" Width="100" Margin="250 10" Click="ButtonPizzaBestellen_OnClick"><StackPanel Orientation="Vertical"><Image Source="Images/pizza.jpg"></Image><Label HorizontalAlignment="Center">Bestellen</Label></StackPanel>
+                </Button>
+            
+        </StackPanel>
+        <StackPanel Margin="10 0 150 0" Height="auto" >
+            <TextBlock Name="TextBlockBestelling" TextWrapping="Wrap" Height="auto" FontSize="10" >uw bestelling komt hier te staan!</TextBlock>
+            
         </StackPanel>
     </StackPanel>
 
