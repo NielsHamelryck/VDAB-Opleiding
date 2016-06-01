@@ -84,6 +84,40 @@ namespace HobbyLijst
             }
         }
 
+        private void ButtonSamenvatting_Click(object sender, RoutedEventArgs e)
+        {
+            if (
+                MessageBox.Show("Wil je de gekozen hobby's op een rijtje?", "Samenvatting", MessageBoxButton.YesNo,
+                    MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            {
+
+                string mijnTekst = "Mijn hobby's zijn: ";
+                string cat = string.Empty;
+                foreach (object item in ListBoxGekozen.Items)
+                {
+                    Hobby mijnHobby = (Hobby) item;
+                    if (cat != mijnHobby.Categorie)
+                    {
+                        cat = mijnHobby.Categorie;
+                        mijnTekst += "\n" + mijnHobby.Categorie + " : " + mijnHobby.Activiteit;
+
+                    }
+                    else
+                    {
+                        mijnTekst += ", " + mijnHobby.Activiteit;
+                    }
+                }
+
+                if (ListBoxGekozen.Items.Count == 0)
+                {
+                    MessageBox.Show("Ik heb geen Hobby's", "ButtonSamenvatting", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                }
+                else MessageBox.Show(mijnTekst, "Samenvatting", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
         
     }
 }
