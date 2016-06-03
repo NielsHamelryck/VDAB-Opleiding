@@ -7,8 +7,8 @@
         <CommandBinding Command="New" Executed="NieuweBon_OnClick"></CommandBinding>
         <CommandBinding Command="Open" Executed="OpenBon_OnClick"></CommandBinding>
         <CommandBinding Command="Save" Executed="OpslaanBon_OnClick"></CommandBinding>
-        <!--<CommandBinding Command="PrintPreview" --><!--Executed="Preview_OnClick"--><!--></CommandBinding>
-        <CommandBinding Command="Close" --><!--Executed="Close_OnClick"--><!--></CommandBinding>-->
+        <CommandBinding Command="PrintPreview" Executed="Preview_OnClick"></CommandBinding>
+        <CommandBinding Command="Close" Executed="Close_OnClick" ></CommandBinding>
     </Window.CommandBindings>
     <StackPanel>
         <DockPanel>
@@ -19,7 +19,7 @@
                     <MenuItem Name="BonOpslaan" Header="Bon opslaan" Command="Save"></MenuItem>
                     <MenuItem Name="BonAfdrukken" Header="Bon afdrukken" Command="PrintPreview"></MenuItem>
                     <Separator></Separator>
-                    <MenuItem Name="Afsluiten" Header="Afsluiten"></MenuItem>
+                    <MenuItem Name="Afsluiten" Header="Afsluiten" Command="Close"></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBarTray Height="70" DockPanel.Dock="Top">
