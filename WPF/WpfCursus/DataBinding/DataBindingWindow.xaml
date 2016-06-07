@@ -1,6 +1,8 @@
 ﻿<Window x:Class="DataBinding.DataBindingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
+        xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
         Title="DataBindingWindow" Height="350" Width="556">
     <Window.Resources>
         <Style x:Key="baseControlStijl" TargetType="{x:Type Control}">
@@ -28,8 +30,8 @@
         <TextBox Name="veranderTextBox" Width="100" Height="30" Margin="10" Text="{Binding Path=Naam}"></TextBox>
         <Button Name="veranderButton" Content="verander" Margin="10" Click="VeranderButton_OnClick"></Button>
         <Button Name="toonNaamButton" Content="toon naam" Margin="10" Click="ToonNaamButton_OnClick"></Button>
-        <TextBox Name="WeddeTextBox" Margin="10" Width="75" Text="{Binding Path=Wedde,StringFormat=C}"></TextBox>
-        <TextBox Name="InDisntTextBox" Margin="10" Width="130" Text="{Binding Path=InDienst ,StringFormat=d}"></TextBox>
+        <TextBox Name="WeddeTextBox" Margin="10" Width="75" Text="{Binding Path=Wedde,StringFormat=C,ConverterCulture={x:Static globalization:CultureInfo.CurrentCulture}}"></TextBox>
+        <TextBox Name="InDisntTextBox" Margin="10" Width="130" Text="{Binding Path=InDienst ,StringFormat=d, ConverterCulture={x:Static global:CultureInfo.CurrentCulture}}"></TextBox>
     </StackPanel>
     </StackPanel>
 </Window>
