@@ -33,6 +33,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchuifSpelWindow", "SchuifS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowMetRibbonControl", "WindowMetRibbonControl\WindowMetRibbonControl.csproj", "{FBF0104D-3F4E-4EF4-B6F4-64ADD8453CF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMVoorbeeld", "MVVMVoorbeeld\MVVMVoorbeeld.csproj", "{24C3449A-00F7-4BFA-8025-8332C5DD33B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMHobby", "MVVMHobby\MVVMHobby.csproj", "{71457A26-0814-4329-AA87-48F0D24483B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingBonMVVM", "ParkingBonMVVM\ParkingBonMVVM.csproj", "{36ACF5B9-887D-4865-A14D-55D9BE256A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmzettenKleurInCirkel", "OmzettenKleurInCirkel\OmzettenKleurInCirkel.csproj", "{45CF5BBF-9000-476D-80DA-84737A361FE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +107,22 @@ Global
 		{FBF0104D-3F4E-4EF4-B6F4-64ADD8453CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF0104D-3F4E-4EF4-B6F4-64ADD8453CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF0104D-3F4E-4EF4-B6F4-64ADD8453CF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C3449A-00F7-4BFA-8025-8332C5DD33B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C3449A-00F7-4BFA-8025-8332C5DD33B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C3449A-00F7-4BFA-8025-8332C5DD33B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C3449A-00F7-4BFA-8025-8332C5DD33B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71457A26-0814-4329-AA87-48F0D24483B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71457A26-0814-4329-AA87-48F0D24483B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71457A26-0814-4329-AA87-48F0D24483B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71457A26-0814-4329-AA87-48F0D24483B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36ACF5B9-887D-4865-A14D-55D9BE256A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36ACF5B9-887D-4865-A14D-55D9BE256A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36ACF5B9-887D-4865-A14D-55D9BE256A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36ACF5B9-887D-4865-A14D-55D9BE256A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45CF5BBF-9000-476D-80DA-84737A361FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CF5BBF-9000-476D-80DA-84737A361FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CF5BBF-9000-476D-80DA-84737A361FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CF5BBF-9000-476D-80DA-84737A361FE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,10 +26,12 @@
                               ToolTipDescription="Opent het helpscherm"
                               ToolTipFooterTitle="More Help"
                               ToolTipFooterDescription="Druk op F1"
-                              ToolTipFooterImageSource="images\Question16.png"                              ToolTipImageSource="images\Help64.png">
+                              ToolTipFooterImageSource="images\Question16.png"
+                              ToolTipImageSource="images\Help64.png">
                     
                 </RibbonButton>
-            </Ribbon.HelpPaneContent>
+            </Ribbon.HelpPaneContent>
+
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar Height="24" Name="Qat">
                     <RibbonSplitButton SmallImageSource="Images\refresh16.png">
@@ -43,7 +45,8 @@
                     <RibbonToggleButton Name="ButtonSchuin" SmallImageSource="Images\italic.png">
                     </RibbonToggleButton>
                 </RibbonQuickAccessToolBar>
-            </Ribbon.QuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu SmallImageSource="images\bestand64.png" KeyTip="A">
                     <RibbonApplicationMenuItem Header="New" Command="New" ImageSource="images/New16.png"></RibbonApplicationMenuItem>
@@ -114,7 +117,8 @@ Tag="#FF0000FF" Click="Radio_click"></RibbonRadioButton>
             <Ribbon.ContextualTabGroups>
                 <RibbonContextualTabGroup Header="TabNieuw" Visibility="{Binding ElementName=TextBoxVoorbeeld, Path=IsReadOnly, Converter={StaticResource LogischNaarVisueel}}" Background="Green"></RibbonContextualTabGroup>
             </Ribbon.ContextualTabGroups>
-        </Ribbon>
+        </Ribbon>
+
         <TextBox  Name="TextBoxVoorbeeld" Text="Dit is voorbeeldtekst" 
            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
            FontSize="24" TextWrapping="Wrap" MaxWidth="600" MaxHeight="900" IsReadOnly="{Binding ElementName=CheckBoxAlleenLezen,Path=IsChecked}" FontWeight="{Binding ElementName=ButtonVet,Path=IsChecked, Converter={StaticResource LogischNaarFontDikte}}"
