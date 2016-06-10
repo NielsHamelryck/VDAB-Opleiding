@@ -1,0 +1,23 @@
+﻿<Window x:Class="VerkeerslichtHerhaling.Verkeerslicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           Title="VerkeersLicht" Height="300" Width="400">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Width="150">
+            <Canvas Name="VerkeerslichtCanvas" Width="80" Height="275"  Margin="70,0" Background="Yellow" >
+                <StackPanel Orientation="Vertical">
+                    <Ellipse Name="Roodlicht" Width="60" Height="60" Fill="Red" Margin="10"  ></Ellipse>
+                    <Ellipse Name="OranjeLicht" Width="60" Height="60" Fill="Orange" Margin="10"  ></Ellipse>
+                    <Ellipse Name="GroenLicht" Width="60" Height="60" Fill="Green" Margin="10"   ></Ellipse>
+                </StackPanel>
+            </Canvas>
+
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Margin="30"></StackPanel>
+            <Button Name="GoButton" Width="70" Height="20" Margin="40,10" Content="Go" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green" Click="VeranderKleur_OnClick" ></Button>
+            <Button Name="OpgeletButton" Width="70" Height="20" Margin="40,10" Content="Opgelet" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orange" Click="VeranderKleur_OnClick" ></Button>
+            <Button Name="StopButton" Width="70" Height="20" Margin="40,10" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" Click="VeranderKleur_OnClick" ></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
