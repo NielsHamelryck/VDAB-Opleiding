@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Brush = System.Windows.Media.Brush;
 using Point = System.Drawing.Point;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace OmzettenKleurInCirkel
 {
@@ -96,45 +97,98 @@ namespace OmzettenKleurInCirkel
             if (e.Data.GetDataPresent("SleepCirkel"))
             {
                 Random random = new Random();
-                
+                Canvas canvas = (Canvas) sender;
+                System.Windows.Point p = e.GetPosition(canvas);
                 Ellipse GesleepteCirkel = (Ellipse) e.Data.GetData("SleepCirkel");
-                GesleepteCirkel.Margin = new Thickness(random.Next(30, 230), random.Next(30, 220), random.Next(30, 230), random.Next(30, 220));
+                //GesleepteCirkel.Margin = new Thickness(random.Next(30, 230), random.Next(30, 220), random.Next(30, 230), random.Next(30, 220));
+                Canvas.SetLeft(GesleepteCirkel,p.X);
+                Canvas.SetTop(GesleepteCirkel,p.Y);
+                //linken mousemove event 
+                GesleepteCirkel.MouseMove += GemaaktObject_MouseMove;
+                GesleepteCirkel.MouseLeftButtonDown += shape_MouseLeftButtonDown;
                 Dropzone.Children.Add(GesleepteCirkel);
                 
-                
 
+            }
+            if (e.Data.GetDataPresent("gemaakt"))
+            {
+                Canvas Dropzone = (Canvas)sender;
+                System.Windows.Point p = e.GetPosition(Dropzone);
+                Ellipse GesleepteCirkel = (Ellipse)e.Data.GetData("gemaakt");
+                Canvas.SetLeft(GesleepteCirkel, p.X);
+                Canvas.SetTop(GesleepteCirkel, p.Y);
+                Dropzone.Children.Remove(sleepEllipse);
+                Dropzone.Children.Add(GesleepteCirkel);
+            }
+        }
+        //NIEUWE aanpassingen
+        private void GemaaktObject_MouseMove(object sender, MouseEventArgs e)
+        {
+            mousePos = e.GetPosition(null);
+            diff = startPoint - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumHorizontalDragDistance))
+            {
+                sleepEllipse = (Ellipse)sender;
+
+                DataObject sleepshape = new DataObject("gemaakt", sleepEllipse);
+                DragDrop.DoDragDrop(sleepEllipse, sleepshape, DragDropEffects.Move);
             }
         }
 
-        private bool ddIsMouseDown;
-        private bool ddIsBeingDragged;
-        private Ellipse ddOrgineleCirkel;
-        private Ellipse ddOverlayEllipse;
-        private System.Windows.Point ddStartPoint;
+        private Ellipse sleepEllipse;
+        
+        private System.Windows.Point startPoint;
+        private System.Windows.Point mousePos;
+        private Vector diff;
+        private void shape_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+
+            startPoint = e.GetPosition(null);
+        }
+
+        //private bool ddIsMouseDown;
+        //private bool ddIsBeingDragged;
+        //private Ellipse ddOrgineleCirkel;
+        //private Ellipse ddOverlayEllipse;
+        //private System.Windows.Point ddStartPoint;
         
 
-        private void DropZone_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.Source == Dropzone)
-            {
-                return;
-            }
-            ddIsMouseDown = true;
-                ddStartPoint = e.GetPosition(Dropzone);
-                ddOrgineleCirkel = (Ellipse) e.Source;
-                Dropzone.CaptureMouse();
-                e.Handled = true;
+        //private void DropZone_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (e.Source == Dropzone)
+        //    {
+        //        return;
+        //    }
+        //    ddIsMouseDown = true;
+        //        ddStartPoint = e.GetPosition(Dropzone);
+        //        ddOrgineleCirkel = (Ellipse) e.Source;
+        //        Dropzone.CaptureMouse();
+        //        e.Handled = true;
             
-            }
+        //    }
 
-        private void Dropzone_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (ddIsMouseDown)
-            {
-                if (!ddIsBeingDragged)
-                {
+        //private void Dropzone_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        //{
+        //    if (ddIsMouseDown)
+        //    {
+        //        if (!ddIsBeingDragged)
+        //        {
                     
-                }
+        //        }
+        //    }
+        //}
+        private void RemoveCirkel_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("gemaakt"))
+            {
+                Dropzone.Children.Remove(sleepEllipse);
+                //Belangrijk tegen event bubbeling
+                e.Handled = true;
             }
         }
     }

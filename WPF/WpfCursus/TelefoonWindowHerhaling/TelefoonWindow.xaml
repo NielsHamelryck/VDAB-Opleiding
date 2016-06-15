@@ -1,0 +1,28 @@
+﻿<Window x:Class="TelefoonWindowHerhaling.TelefoonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TelefoonWindow" Height="300" Width="500" Loaded="Window_Loaded">
+    <StackPanel>
+        <StackPanel>
+            <StackPanel >
+                <ComboBox Name="CategorieenComboBox" Width="250" HorizontalAlignment="Left" Margin="20" SelectionChanged="CategorieenComboBox_SelectionChanged" ></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="ListBoxPersonen" Height="150" Width="270" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal" Width="150" Height="50">
+                                    <Image Source="{Binding Path=Foto}" Width="50" Height="50" HorizontalAlignment="Left"></Image>
+                                    <TextBlock VerticalAlignment="Top" Text="{Binding Path=Naam}" ></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Name="ButtonBellen" Margin="40"  Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonBellen_OnClick" ><Image Source="bestanden/telefoon2.jpg"></Image></Button>
+                
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

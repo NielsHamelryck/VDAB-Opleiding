@@ -15,9 +15,9 @@
         </StackPanel>
         <StackPanel>
             <StackPanel Margin="30"></StackPanel>
-            <Button Name="GoButton" Width="70" Height="20" Margin="40,10" Content="Go" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green" Click="VeranderKleur_OnClick" ></Button>
-            <Button Name="OpgeletButton" Width="70" Height="20" Margin="40,10" Content="Opgelet" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orange" Click="VeranderKleur_OnClick" ></Button>
-            <Button Name="StopButton" Width="70" Height="20" Margin="40,10" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" Click="VeranderKleur_OnClick" ></Button>
+            <Button Name="GoButton" Width="70" Height="30" Margin="40,10" Content="Go" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green" Click="VeranderKleur_OnClick" ></Button>
+            <Button Name="OpgeletButton" Width="70" Height="30" Margin="40,10" Content="Opgelet" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orange" Click="VeranderKleur_OnClick" ></Button>
+            <Button Name="StopButton" Width="70" Height="30" Margin="40,10" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" Click="VeranderKleur_OnClick" ></Button>
         </StackPanel>
     </StackPanel>
 </Window>

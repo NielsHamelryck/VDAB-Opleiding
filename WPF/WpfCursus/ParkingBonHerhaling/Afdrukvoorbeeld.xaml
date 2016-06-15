@@ -1,0 +1,6 @@
+﻿<Window x:Class="ParkingBonHerhaling.Afdrukvoorbeeld"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Afdrukvoorbeeld" Height="320" Width="640">
+    <DocumentViewer Name="printpreview"></DocumentViewer>
+</Window>

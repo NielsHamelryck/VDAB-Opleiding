@@ -1,0 +1,51 @@
+﻿<Window x:Class="PizzaBestellenHerhalen.PizzaBestellenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PizzaBestellenWindow" Height="370" Width="500">
+   <StackPanel>
+       <Label Name="Titel" HorizontalAlignment="Center" FontSize="20" >Pizza Bestellen</Label>
+       <StackPanel Orientation="Horizontal">
+           
+           <StackPanel Name="RadioButtons" Orientation="Vertical" Width="250">
+               <RadioButton Name="SmallPizza" Content="small" Margin="20,5" Checked="SmallPizza_OnChecked"></RadioButton>
+               <RadioButton Name="MediumPizza" Content="medium" Margin="20,0" Checked="MediumPizza_OnChecked"></RadioButton>
+                <RadioButton Name="LargePizza" Content="large" IsChecked="True" Checked="LargePizza_OnChecked" Margin="20,5"></RadioButton>
+            </StackPanel>
+           <StackPanel Orientation="Vertical">
+               <ToggleButton Name="ExtraDikkeKorst" Content="extra dikke korst" Width="180" Margin="20,0"></ToggleButton>
+                <ToggleButton Name="ExtraKaas" Content="extra kaas" Width="180" Margin="20,10"></ToggleButton>
+            </StackPanel>
+           
+       </StackPanel>
+       <StackPanel Orientation="Horizontal">
+           <Rectangle Width="230" Height="1" Fill="Black" Margin="20,20"></Rectangle>
+           <TextBlock Name="HoeveelHeid" >
+               <Label Name="TitelHoeveelheid" Content="Hoeveelheid:" ></Label>
+               <Label Name="HoeveelheidLabel" Height="30" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">1</Label>
+           </TextBlock>
+           <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0">
+               <RepeatButton Name="Vermeerderen" Content="+" FontSize="8" Delay="1000" Interval="100" Click="Vermeerderen_OnClick" ></RepeatButton>
+                <RepeatButton Name="Verminderen" Content="-" FontSize="8" Delay="1000" Interval="100" Click="Verminderen_OnClick"></RepeatButton>
+            </StackPanel>
+       </StackPanel>
+       <StackPanel Orientation="Horizontal">
+           <StackPanel Orientation="Vertical" Width="300" Name="Ingredienten">
+               <CheckBox Name="TomaatCheckbox" Content="tomaat" IsChecked="True" IsEnabled="False" Margin="20,0,0,5"></CheckBox>
+                <CheckBox Name="KaasCheckbox" Content="kaas" IsChecked="True" IsEnabled="False" Margin="20,0,0,5"></CheckBox>
+                <CheckBox Name="HamCheckbox" Content="ham"  Margin="20,0,0,5"></CheckBox>
+                <CheckBox Name="AnanasCheckbox" Content="ananas"  Margin="20,0,0,5"></CheckBox>
+                <CheckBox Name="SalamiCheckbox" Content="salami"  Margin="20,0,0,5"></CheckBox>
+            </StackPanel>
+           <StackPanel >
+                <Button Name="PizzaBestellen" Click="PizzaBestellen_OnClick">
+                    <StackPanel>
+                        <Image Source="Images/pizza.jpg" Width="100" Height="100"></Image>
+                        <Label Name="BestellenLabel" HorizontalAlignment="Center">BESTELLEN</Label>
+                    </StackPanel>
+               </Button>
+           </StackPanel>
+       </StackPanel>
+       <Label Name="BestellingLabel" ></Label>
+   </StackPanel>
+</Window>
+
