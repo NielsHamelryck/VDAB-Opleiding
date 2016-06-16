@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Ribbon;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,14 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace VerkeerslichtMVVM.View
+namespace pizzaBestellenMVVM.View
 {
     /// <summary>
-    /// Interaction logic for VerkeersLichtView.xaml
+    /// Interaction logic for pizzaBestellenWindowView.xaml
     /// </summary>
-    public partial class VerkeersLichtView : Window
+    public partial class PizzaBestellenWindowView : RibbonWindow
     {
-        public VerkeersLichtView()
+        public PizzaBestellenWindowView()
         {
             InitializeComponent();
         }

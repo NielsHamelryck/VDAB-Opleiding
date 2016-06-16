@@ -1,0 +1,80 @@
+﻿<RibbonWindow x:Class="pizzaBestellenMVVM.View.PizzaBestellenWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Title="pizzaBestellenWindowView" Height="480" Width="525" >
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowLoaded}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel LastChildFill="True">
+        <Ribbon DockPanel.Dock="Top">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu SmallImageSource="images/Bestand.png">
+                    <RibbonApplicationMenuItem ImageSource="images/new.jpg" Header="Nieuw" Command="{Binding NieuwCommand}"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem ImageSource="images/save.jpg" Header="Bestelling opslaan" Command="{Binding OpslaanCommand}"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem ImageSource="images/open.jpg" Header="Bestelling openen" Command="{Binding OpenenCommand}"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem ImageSource="images/print.jpg" Header="Bestelling afprinten"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenu.FooterPaneContent>
+                        <RibbonButton HorizontalAlignment="Right" SmallImageSource="images/close.jpg" Label="Afsluiten"></RibbonButton>
+                    </RibbonApplicationMenu.FooterPaneContent>
+                </RibbonApplicationMenu>
+                
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Bestand">
+                <RibbonGroup Header="Bestand Opties">
+
+                    <RibbonButton Name="RibbonButtonNieuw" LargeImageSource="images/new.jpg" Label="Nieuw" Command="{Binding NieuwCommand}" ></RibbonButton>
+                    
+                    <RibbonButton Name="RibbonButtonSave"  LargeImageSource="images/save.jpg" Label="Opslaan" Command="{Binding OpslaanCommand}"></RibbonButton>
+                    <RibbonButton Name="RibbonButtonOpen"  LargeImageSource="images/open.jpg" Label="Openen" Command="{Binding OpenenCommand}"  ></RibbonButton>
+                    <RibbonButton Name="RibbonButtonPrint" LargeImageSource="images/print.jpg" Label="Ticket Drukken" Command="{Binding TicketDrukkenCommand}"></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <StackPanel>
+            <Label Name="titel" Content="Pizza bestellen" HorizontalAlignment="Center" FontSize="20"></Label>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="300" Height="300">
+                    <StackPanel Margin="20">
+                        <RadioButton Name="RadioButtonSmall" Content="small" Margin="3" IsChecked="{Binding SmallPizza}"></RadioButton>
+                        <RadioButton Name="RadioButtonMedium" Content="medium" Margin="3" IsChecked="{Binding MediumPizza}"></RadioButton>
+                        <RadioButton Name="RadioButtonLarge" Content="large" Margin="3" IsChecked="{Binding LargePizza}"></RadioButton>
+                        <Rectangle Width="300" Height="1" Fill="Black" Margin="0,10"></Rectangle>
+                        <StackPanel Name="StackPanelToppings" Orientation="Vertical" Margin="0,10">
+                            <CheckBox Name="CheckBoxTomaat" Content="tomaat" IsChecked="True" IsEnabled="False" Margin="0,5" Command="{Binding Tomaat}"></CheckBox>
+                            <CheckBox Name="CheckBoxKaas" Content="kaas" IsChecked="True" IsEnabled="False" Margin="0,5" Command="{Binding Kaas}"></CheckBox>
+                            <CheckBox Name="CheckBoxHam" Content="ham" Margin="0,5" IsChecked="{Binding Ham}"></CheckBox>
+                            <CheckBox Name="CheckBoxAnanas" Content="ananas" Margin="0,5" IsChecked="{Binding Ananas}"></CheckBox>
+                            <CheckBox Name="CheckBoxSalami" Content="Salami" Margin="0,5" IsChecked="{Binding Salami}"></CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </StackPanel>
+                <StackPanel>
+                    <ToggleButton Margin="10" Name="ToggleButtonKorst" Content="extra dikke korst" Width="180" IsChecked="{Binding DikkeKorst}"></ToggleButton>
+                    <ToggleButton Margin="10,0" Name="ToggleButton" Content="extra kaas" Width="180" IsChecked="{Binding ExtraKaas}"></ToggleButton>
+                    <StackPanel Orientation="Horizontal" Margin="0,10">
+                        
+                        <TextBlock Margin="0,10" Name="TextBlockAantal" Text="hoeveelheid:"></TextBlock>
+                        <Label Margin="20,5" Name="LabelHoeveelheid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Content="{Binding AantalPizzas}" Width="30"></Label>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RepeatButton Name="RepeatButtonVerhoog" Content="+" FontSize="8" Command="{Binding MeerPizzasCommand}" Delay="1000" Interval="100"></RepeatButton>
+                            <RepeatButton Name="RepeatButtonVerlaag" Content="-" FontSize="8" Command="{Binding MinderPizzasCommand}" Delay="1000" Interval="100"></RepeatButton>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <Button Name="ButtonBestellen" Height="120" Width="100" Command="{Binding BestellenCommand}">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="images/pizza.jpg"></Image>
+                            <Label Name="LabelBestellen" Content="BESTELLEN" HorizontalAlignment="Center"></Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+   
+</RibbonWindow>
