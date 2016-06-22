@@ -72,13 +72,22 @@ namespace OmzettenKleurInCirkel
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+               
                 Label kleurLabel = (Label) sender;
                 string kleur = kleurLabel.Content.ToString();
+                
                 BrushConverter bc = new BrushConverter();
                 SolidColorBrush deKleur = (SolidColorBrush)bc.ConvertFromString(kleur);
-               
+                foreach (Kleur kleurtje in Kleuren.Items)
+                {
+                    if (kleurtje.Naam == kleur)
+                    {
+                        Kleuren.SelectedItem = kleurtje;
+                    }
+                }
 
-                    SolidColorBrush randKleur = (SolidColorBrush)bc.ConvertFromString("Black");
+
+                SolidColorBrush randKleur = (SolidColorBrush)bc.ConvertFromString("Black");
                     Ellipse cirkel = new Ellipse();
                     cirkel.Fill = deKleur;
                     cirkel.Stroke = randKleur;
@@ -96,13 +105,28 @@ namespace OmzettenKleurInCirkel
         {
             if (e.Data.GetDataPresent("SleepCirkel"))
             {
-                Random random = new Random();
+                
                 Canvas canvas = (Canvas) sender;
                 System.Windows.Point p = e.GetPosition(canvas);
                 Ellipse GesleepteCirkel = (Ellipse) e.Data.GetData("SleepCirkel");
-                //GesleepteCirkel.Margin = new Thickness(random.Next(30, 230), random.Next(30, 220), random.Next(30, 230), random.Next(30, 220));
-                Canvas.SetLeft(GesleepteCirkel,p.X);
-                Canvas.SetTop(GesleepteCirkel,p.Y);
+                
+                if (Dropzone.Width - 30 <= p.X)
+                {
+                    Canvas.SetLeft(GesleepteCirkel, p.X - 30);
+                }
+                else Canvas.SetLeft(GesleepteCirkel, p.X);
+                if (Dropzone.Height - 30 <= p.Y)
+                {
+                    Canvas.SetTop(GesleepteCirkel, p.Y- 30);
+                }
+                else Canvas.SetTop(GesleepteCirkel, p.Y);
+
+
+
+
+
+               
+
                 //linken mousemove event 
                 GesleepteCirkel.MouseMove += GemaaktObject_MouseMove;
                 GesleepteCirkel.MouseLeftButtonDown += shape_MouseLeftButtonDown;
@@ -115,8 +139,16 @@ namespace OmzettenKleurInCirkel
                 Canvas Dropzone = (Canvas)sender;
                 System.Windows.Point p = e.GetPosition(Dropzone);
                 Ellipse GesleepteCirkel = (Ellipse)e.Data.GetData("gemaakt");
-                Canvas.SetLeft(GesleepteCirkel, p.X);
-                Canvas.SetTop(GesleepteCirkel, p.Y);
+                if (Dropzone.Width - 30 <= p.X)
+                {
+                    Canvas.SetLeft(GesleepteCirkel, p.X - 30);
+                }
+                else Canvas.SetLeft(GesleepteCirkel, p.X);
+                if (Dropzone.Height - 30 <= p.Y)
+                {
+                    Canvas.SetTop(GesleepteCirkel, p.Y - 30);
+                }
+                else Canvas.SetTop(GesleepteCirkel, p.Y);
                 Dropzone.Children.Remove(sleepEllipse);
                 Dropzone.Children.Add(GesleepteCirkel);
             }
@@ -189,6 +221,39 @@ namespace OmzettenKleurInCirkel
                 Dropzone.Children.Remove(sleepEllipse);
                 //Belangrijk tegen event bubbeling
                 e.Handled = true;
+            }
+        }
+
+        private void ClearCanvas_OnClick(object sender, RoutedEventArgs e)
+        {
+            Dropzone.Children.Clear();
+        }
+
+        private void Foto1_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                Dropzone.Background =
+                    new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "images/kerstboom.jpg")));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("kan de image niet laden\n" + ex.Message);
+            }
+        }
+
+        private void Foto2_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                Dropzone.Background =
+                    new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "images/CrashBandicoot.jpg")));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("kan de image niet laden\n" + ex.Message);
             }
         }
     }

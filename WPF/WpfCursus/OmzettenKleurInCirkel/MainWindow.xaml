@@ -2,32 +2,47 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel Orientation="Horizontal">
-        <StackPanel Width="300">
-            <Canvas Name="Dropzone"  Width="260" Height="250" Margin="20" Background="Azure" AllowDrop="True" Drop="DropComboBox_drop"></Canvas>
-        </StackPanel>
-        <StackPanel Width="218">
-            <StackPanel Orientation="Vertical">
-                <StackPanel>
-                    <Label Name="titel" Content="Kleuren" HorizontalAlignment="Center"> </Label>
-                </StackPanel>
-                <StackPanel>
-                    <ComboBox Name="Kleuren" Width="120" >
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" >
-                                
-                                <Label Content="{Binding Path=Naam}" Foreground="Black" MouseMove="DragComboBox_MouseMove"></Label>
-                            </StackPanel></DataTemplate>
-                            
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    
-                </StackPanel>
-                <StackPanel>
-                    <Rectangle Name="removeCirkel" Width="60" Height="60" Fill="Black" Margin="0,80" AllowDrop="True" Drop="RemoveCirkel_OnDrop" ></Rectangle>
+    <DockPanel>
+        <Menu Height="24" DockPanel.Dock="Top" Name="MenuBalk">
+            <MenuItem Header="Menu">
+                <MenuItem Header="foto1" Click="Foto1_OnClick"></MenuItem>
+                <MenuItem Header="foto2" Click="Foto2_OnClick"></MenuItem>
+
+            </MenuItem>
+
+
+        </Menu>
+        <ToolBarTray Height="24" DockPanel.Dock="Top"></ToolBarTray>
+        <StatusBar Name="StatusBar" Height="24" DockPanel.Dock="Bottom"></StatusBar>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="300">
+                <Canvas Name="Dropzone"  Width="260" Height="250" Margin="20" Background="Azure" AllowDrop="True" Drop="DropComboBox_drop"></Canvas>
+            </StackPanel>
+            <StackPanel Width="218">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel>
+                        <Label Name="titel" Content="Kleuren" HorizontalAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel>
+                        <ComboBox Name="Kleuren" Width="120" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Ellipse Stroke="Black" Fill="{Binding Path=Naam}" StrokeThickness="2" Height="20" Width="20"></Ellipse>
+                                        <Label Name="LabelComboBox" Content="{Binding Path=Naam}" Foreground="Black" MouseMove="DragComboBox_MouseMove"></Label>
+                                    </StackPanel>
+                                </DataTemplate>
+
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </StackPanel>
+                    <StackPanel>
+                        <Button Name="removeCirkel" Width="60" Height="60" Content="Bin" Margin="0,80" AllowDrop="True" Drop="RemoveCirkel_OnDrop" Click="ClearCanvas_OnClick"></Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-    </StackPanel>
+        
+    </DockPanel>
 </Window>
