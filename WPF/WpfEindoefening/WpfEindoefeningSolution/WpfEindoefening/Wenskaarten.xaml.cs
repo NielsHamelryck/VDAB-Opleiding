@@ -36,9 +36,10 @@ namespace WpfEindoefening
         {
             StatusBarItem.Content = "nieuw";
             WindowOpacity.Opacity = 0;
-            //MenuItemSave.IsEnabled = false;
+            MenuItemSave.IsEnabled = false;
             Dropzone_Canvas.Children.Clear();
             Dropzone_Canvas.Background=Brushes.White;
+            TextBox_Wens.FontSize=20;
             TextBox_Wens.Text=string.Empty;
             GebruikteImage = string.Empty;
             AantalBallen = 0;
@@ -72,6 +73,7 @@ namespace WpfEindoefening
             try
             {
                 Nieuw();
+                MenuItemSave.IsEnabled = true;
                 WindowOpacity.Opacity = 1;
                 GebruikteImage ="images/kerstkaart.jpg";
                     Dropzone_Canvas.Background = 
@@ -88,6 +90,7 @@ namespace WpfEindoefening
             try
             {
                 Nieuw();
+                MenuItemSave.IsEnabled = true;
                 WindowOpacity.Opacity = 1;
                 GebruikteImage = "images/geboortekaart.jpg";
                 Dropzone_Canvas.Background =
@@ -189,7 +192,7 @@ namespace WpfEindoefening
                 else Canvas.SetTop(GesleepteCirkel, p.Y-20);
                 Dropzone.Children.Remove(sleepEllipse);
                 Dropzone.Children.Add(GesleepteCirkel);
-                AantalBallen++;
+                
             }
         }
 
@@ -265,8 +268,9 @@ namespace WpfEindoefening
                         bestand.WriteLine(TextBox_Wens.FontFamily.ToString());
                         bestand.WriteLine(TextBox_Wens.FontSize.ToString());
                     }
+                    StatusBarItem.Content = dlg.FileName;
                 }
-                StatusBarItem.Content = dlg.FileName;
+                
             }
             catch (Exception ex)
             {
@@ -302,9 +306,9 @@ namespace WpfEindoefening
                 {
                     using (StreamReader bestand = new StreamReader(dlg.FileName))
                     {
+                        Nieuw();
                         WindowOpacity.Opacity = 1;
-                        Dropzone_Canvas.Children.Clear();
-                        AantalBallen = 0;
+                        
                         Dropzone_Canvas.Background =
                    new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this),bestand.ReadLine())));
                         AantalBallen = decimal.Parse(bestand.ReadLine());
@@ -331,8 +335,9 @@ namespace WpfEindoefening
                        
                        
                     }
+                    StatusBarItem.Content = dlg.FileName;
                 }
-                StatusBarItem.Content = dlg.FileName;
+              
             }
             catch (Exception ex)
             {
