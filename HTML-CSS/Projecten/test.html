@@ -1,0 +1,33 @@
+<!DOCKTYPE HTML>
+<html>
+<form method="post" action="http://www.ict.teno.be/formtest.php">
+<input name="e-mailadres"  type="email" required placeholder="you@example.com" /><br>
+<label for="passwoord" >Passwoord:</label>
+<input name="password" id="passwoord" type="password" autocomplete=off required  pattern="\S{6,}"/><br>
+<input name="webadres" type="url" placeholder="http://mijnwebsite.com"/><br>
+<input name="aantal" type="range"  /><br>
+<label for="zoekbalk">search:</label>
+<input name="zoekterm" type="search" id="zoekbalk">
+<br>
+<input type="checkbox" name="nieuws" id="nb1" value="nb1" checked="checked"/>
+<label for="nb1">Ja, ik wil Nieuwsbrief 1 ontvangen!</label><br>
+<input type="checkbox" name="nieuws" id="nb2" value="nb2" checked="checked"/>
+<label for="nb2">Ja, ik wil Nieuwsbrief 2 ontvangen!</label><br>
+<input type="checkbox" name="nieuws" id="rml" value="roml" checked="checked"/>
+<label for="rml">Ja, ik wil nog andere rommel ontvangen</label><br>
+<textarea rows="10" cols="20">
+At W3Schools you will find all the Web-building tutorials you need, from basic HTML to
+advanced XML, SQL, ASP, and PHP.
+</textarea><br>
+
+<input name="gemeente" list="gemeentelijst" type="text">
+<datalist id="gemeentelijst">
+ <option value="Genk">
+ <option value="Gent">
+ <option value="Geraardsbergen">
+ <option value="Tongeren">
+ <option value="Terneuzen">
+</datalist>
+<input type="submit" value="versturen"/><br>
+
+</html>

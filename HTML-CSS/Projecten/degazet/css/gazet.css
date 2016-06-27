@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document voor DeGazet */
+
+body {
+	font-family:Georgia,"Times New Roman",Times, serif;
+	color:#333;
+}
+
+h1,h2,h3,h4,h5{
+	color:#005689;
+}

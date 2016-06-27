@@ -35,7 +35,7 @@ namespace WpfEindoefening
         private void Nieuw()
         {
             StatusBarItem.Content = "nieuw";
-            WindowOpacity.Opacity = 0;
+            WindowOpacity.Visibility = Visibility.Hidden;
             MenuItemSave.IsEnabled = false;
             Dropzone_Canvas.Children.Clear();
             Dropzone_Canvas.Background=Brushes.White;
@@ -74,7 +74,7 @@ namespace WpfEindoefening
             {
                 Nieuw();
                 MenuItemSave.IsEnabled = true;
-                WindowOpacity.Opacity = 1;
+                WindowOpacity.Visibility=Visibility.Visible;
                 GebruikteImage ="images/kerstkaart.jpg";
                     Dropzone_Canvas.Background = 
                     new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), GebruikteImage)));
@@ -91,7 +91,7 @@ namespace WpfEindoefening
             {
                 Nieuw();
                 MenuItemSave.IsEnabled = true;
-                WindowOpacity.Opacity = 1;
+                WindowOpacity.Visibility = Visibility.Visible;
                 GebruikteImage = "images/geboortekaart.jpg";
                 Dropzone_Canvas.Background =
                     new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), GebruikteImage)));
@@ -307,7 +307,7 @@ namespace WpfEindoefening
                     using (StreamReader bestand = new StreamReader(dlg.FileName))
                     {
                         Nieuw();
-                        WindowOpacity.Opacity = 1;
+                        WindowOpacity.Visibility = Visibility.Visible;
                         
                         Dropzone_Canvas.Background =
                    new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this),bestand.ReadLine())));
