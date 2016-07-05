@@ -1,0 +1,176 @@
+@charset "utf-8";
+body{
+	margin:0;
+	padding:0;
+	color:#005689;
+}
+div{
+	margin:0;
+	padding:0;
+}
+
+img{
+	position:relative;
+}
+footer{
+	margin:0 10px;
+	padding:0;
+}
+.wrapper{
+	width:60%;
+	margin:0 auto;
+}
+
+
+
+#username:focus{
+	background-color:lightyellow;
+	border:2px dotted red;
+}
+
+
+
+
+#pw:focus{
+	background-color:lightgreen;
+	
+}
+
+#email:focus{
+	background-color:pink;
+}
+
+.banner{
+		background-color:#005689;
+		color:white;
+}
+
+
+#interesse{
+	margin: 0.6em 0 0 0;
+	padding:0.6em 0 0 0;
+}
+
+#hoofdmenu ul{
+	list-style-type:none;
+	margin:			3%;
+	padding:		0;
+	float:			left;
+}
+
+#hoofdmenu ul li{
+	float:			left;
+}
+
+#hoofdmenu ul li a{
+	display: 		block;
+	padding: 		0.375em 0.5em;
+	border-right:	1px solid #b1b1b1;
+	text-decoration:none;
+	letter-spacing: 0.1em;
+	color:white;
+	font-style:normal;
+	font-weight:normal;
+}
+
+#hoofdmenu li:last-child a{
+	
+	border-right:	none;
+	
+}
+
+#hoofdmenu ul li a:hover,
+#hoofdmenu ul li a:active,
+#hoofdmenu ul li a.actief{
+	background:#FF0000;
+	color:white;
+}
+
+#cursistenTitel{
+	
+	font-size:26px;
+	font-style:oblique;
+	
+	
+}
+a{
+	text-decoration:none;
+	color:inherit;
+	font-style:italic;
+	font-weight:bold;
+}
+
+a:hover,
+a:active {
+	color:red;
+}
+.titel{
+	
+	
+	border-bottom:2px dotted #FF0000;
+	width:200px;
+}
+#cursisten {
+	
+	margin:0 33.33% 0 33.33%;
+	text-align:center;
+	
+}
+
+#cursisten ul li {
+	display: 		block;
+	text-decoration:none;
+	color: 			#005689;
+}
+
+
+#cursisten ul li a{
+	display: 		block;
+	text-decoration:none;
+	color: 			#005689;
+}
+#cursisten a:hover{
+	background-color:red;
+	color:white;
+}
+
+.links {
+	border-right:1px solid black;
+	padding:1em 2.4%;
+	width: 30%;
+	float:left;
+}
+
+.rechts{
+	
+	
+	padding:1em 2.4%;
+	width: 60%;
+	float:left;
+}
+#onderscheid{
+	margin:0 2%;
+	padding:0;
+	border-top:2px solid lightgray;
+	text-align:center;
+	
+}
+
+#onderscheid p{
+	letter-spacing:0.1em;
+}
+
+.clearFix:before, .clearFix:after {
+content: " ";
+display: table;
+}
+.midden{
+	background: 	#ededed;
+}
+.clearFix:after {
+clear: both;
+}
+/* enkel voor IE6/7 */
+.clearFix {
+*zoom: 1;
+}
