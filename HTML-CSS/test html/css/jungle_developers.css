@@ -1,0 +1,313 @@
+@charset "utf-8";
+
+
+
+
+/* KLEURENSCHEMAS */
+body {
+background:white;
+color:#665950;
+}
+.paars{
+	color:#9A3098;
+	letter-spacing:3px;
+	font-size:1.2em;
+}
+
+#banner{
+	background-color:#D64708;
+	margin:0 auto;
+	padding:0;
+	
+}
+
+
+footer{
+	background:#303F43;
+	color:white;
+	padding:3em 2em;
+	
+}
+
+footer a{
+	color:#00735D;
+}
+
+footer a:hover{
+	color:#9A3098;
+	text-decoration:underline;
+}
+
+#bovenstrook a{
+	
+	
+	color:white;
+	
+}
+#topbanner{
+	background:#D64708;
+	width:100%;
+	text-align:center;
+	
+	
+}
+h1{
+	color:#00735D;
+}
+
+h3{
+	color:orange;
+}
+/***typographie***/
+
+body {
+ font-family:Georgia,"Times New Roman","Palatino", Times, serif;
+ font-size:100%;
+ margin:0;
+ padding:0;
+ 
+}
+a, a:visited {
+text-decoration:none;
+color:#665950;
+}
+a:hover, a:active {
+text-decoration:none;
+color:white;
+}
+
+h2{
+	font-style:italic;
+}
+
+
+
+/**** STRUCTUUR EN LAY-OUT ****/
+
+/* deze oef gaat door een aantal stadia:
+	1. FLUID LAY-OUT: 1200px container
+*/
+#tarzan{
+	width:200px;
+	height:150px;
+	top:1em;
+	left:60%;
+	text-align:right;
+	position:absolute;
+}
+
+header{
+	margin:0;
+	padding:0;
+}
+
+
+.wikkel{
+	width: 1200px;
+	
+}
+.wrapper{
+	width:60%;
+	min-width:600px;
+	margin:0 auto;
+	padding:0;
+}
+
+
+.button{
+	background-color:#D64708;
+	border-radius:20px;
+	color:white;
+	padding:0 1em;
+	
+}
+#joblijst .button:hover{
+background-color:#B61600;
+}
+#bovenstrook,#middenstrook{
+	border-bottom:1px solid lightgray;
+}
+
+/**** MENU BOVENAAN ****/
+
+
+
+
+#hoofdmenu ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+float: left;
+position:relative;
+}
+#hoofdmenu ul li {
+float: left;
+}
+#hoofdmenu ul li a {
+display: block;
+padding: 0.375em 0.5em; /*6px 8px*/
+border-left: 1px solid white;
+text-decoration: none;
+letter-spacing: 0.1em;
+color: white;
+}
+#hoofdmenu ul li a:hover,
+#hoofdmenu ul li a:active,
+#hoofdmenu ul li a.actief {
+text-decoration:none;
+background:#B61600;
+color:white;
+}
+#hoofdmenu ul li:last-child{
+border-right: 1px solid white;
+}
+
+/**** lijst met jobs ****/
+
+#joblijst{
+	
+}
+#joblijst ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	
+}
+#joblijst li{
+	background-color:#64708;
+}
+
+#joblijst ul li{
+	
+	padding:auto;
+	
+}
+#joblijst ul li a{
+	display:block;
+	border-radius:20px;
+	margin:1em auto;
+	margin-left:2em;
+	padding:0 auto;
+	
+	width:300px;
+	border:1px solid black;
+}
+
+#joblijst ul li a:hover,
+#joblijst ul li a:active{
+	background-color:#00735D;
+}
+/*** middenstrook layout ****/
+#middenstrook{
+	margin:0 auto;
+	padding:0;
+	
+}
+
+#col1{
+	display:block;
+	padding:1em 1.5%;
+	
+	width:25%;
+	float:left;
+	clear:left;
+	
+}
+#col1 span{
+	clear:left;
+}
+#col2{
+	
+	height:500px;
+	max-width:800px;
+	padding:1em 1.5%;
+	float:left;
+	width:40%;
+	background:transparent url("../img/drupal-8.png") no-repeat right;
+	background-size: 350px 350px;
+	background-position:relative;
+}
+#col3{
+	padding:1em 1.5%;
+	float:left;
+	width:25%;
+}
+
+
+
+span{
+	clear:right;
+}
+
+#col1 img{
+	display:block;
+	height:150px;
+	width:150px;
+	float:left;
+	clear:right;
+	
+}
+
+
+
+#col3 img{
+	display:block;
+	height:150px;
+	width:150px;
+	float:left;
+	
+	clear:right;
+}
+#col1 p a#git{
+	color:#665950;
+}
+
+#col1 p a#git:hover{
+	text-decoration:underline;
+}
+#col1 p, #col3 p{
+	clear:left;
+}
+/* layout verwachtingsstrook*/
+.sectie {
+	
+	padding:1em;
+	margin:0;
+}
+
+
+
+#home img,#female img ,#pink img{
+	float:left;
+	
+}
+.block{
+	padding:0 auto;
+	margin:0 ;
+	clear:none;
+}
+
+p#datum{
+	background-color:white;
+	color:#303F43;
+	width:5em;
+	float:right;
+	margin:0;
+}
+
+/*
+clearfix hack
+http://nicolasgallagher.com/micro-clearfix-hack/
+*/
+.clearFix:before, .clearFix:after {
+content: " ";
+display: table;
+}
+.clearFix:after {
+clear: both;
+}
+/* enkel voor IE6/7 */
+.clearFix {
+*zoom: 1;
+}
+

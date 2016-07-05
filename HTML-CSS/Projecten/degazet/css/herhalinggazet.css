@@ -1,0 +1,278 @@
+@charset "utf-8";
+
+/* CSS Document voor herhaling de gazet*/
+
+
+/* NORMALIZE */ 
+
+/* NORMALIZE */
+
+html, body, div, section, article, aside, nav {
+margin:0;
+padding:0;
+}
+img {
+border:none;
+float:left;
+margin: 0 1.25em 0.5em 0;
+}
+table{
+border-collapse:collapse;
+border-spacing: 0;
+empty-cells:hide;
+}
+tr,td {
+margin:0;
+padding:0;
+}
+
+
+/* TYPOGRAFIE */
+body {
+ font-family:Georgia, "Times New Roman", Times, serif;
+ font-size:100%
+}
+h1, h2, h3, h4, h5, h6 {
+font-weight:normal;
+}
+a, a:visited {
+text-decoration:none;
+}
+a:hover, a:active {
+text-decoration:underline;
+}
+/* KLEURENSCHEMAS */
+body {
+background:white;
+color:#333;
+}
+#topbanner, footer {
+background:#EDEDED;
+}
+.nieuws h1,.nieuws h2,.nieuws h3,.nieuws h4,.nieuws h5,.nieuws h6{
+color:#005689;
+}
+.nieuws a,.nieuws a:visited ,.nieuws a:hover,.nieuws a:active {
+color:#005689;
+}
+
+/**** STRUCTUUR EN LAY-OUT ****/
+
+/* deze oef gaat door een aantal stadia:
+	1. FIXED LAY-OUT: 980px container, basis 5 kol
+*/
+
+.wikkel{
+	width: 980px;
+	margin:0 auto;
+}
+
+header{
+	padding-top: 0.375em;    /* 6px */
+}
+
+article{
+	margin: 0 20px 0 0;		/*gutter*/
+	padding: 0.375em 0 1.25em; /* 6px 20px*/
+}
+article p{
+	margin:0;
+	padding: 0 0 0.75em 0;  /*12px*/
+}
+
+article h2{
+	margin: 0.375em 0;	/*6px*/
+}
+
+/****GRID****/
+.span1 {
+width:196px;
+float:left;
+}
+.span2 {
+width:392px;
+float:left;
+}
+.span3 {
+width:588px;
+float:left;
+}
+.span4 {
+width:784px;
+float:left;
+}
+.span5 {
+width:980px;
+float:left;
+}
+.span5>article {
+margin-right:0; /* geen gutter in span5*/
+}
+.span5>h2 {
+margin-right:0; /* geen gutter in span5*/
+}
+
+/*
+clearfix hack
+http://nicolasgallagher.com/micro-clearfix-hack/
+*/
+.clearFix:before, .clearFix:after {
+content: " ";
+display: table;
+}
+.clearFix:after {
+clear: both;
+}
+/* enkel voor IE6/7 */
+.clearFix {
+*zoom: 1;
+}
+
+/**** ARTICLE en SECTION OPMAAK ****/
+/* duidelijke grijze titel, rode bovenrand */
+.metTitel { padding-top:0; }
+.metTitel>h2 {
+background: #EDEDED;
+border-top: 3px solid #D61D00;
+margin: 0 20px 0.8em 0;
+padding: 0.8em 0 0.8em 0.4em;
+}
+/* verborgen titel, enkel voor outline */
+.zonderTitel>h2 { display:none; }
+
+article.toparticle>h2 {
+font-size: 1.5em; /*24px*/
+}
+#andernieuws article>h2 {
+font-size: 1.125em; /*18px*/
+margin: 0.125em 0; /*4px*/
+}
+/**** TOPMENU ****/
+#topmenu {text-align:right;}
+#topmenu ul {
+list-style-type:none;
+margin:0;
+padding:0;
+}
+#topmenu ul li {display: inline;
+}
+#topmenu ul li a {
+display: inline-block;
+width: 7em;
+padding: 0.2em;
+font-size: 0.8em;
+font-style: italic;
+color: #499BAB;
+text-decoration:none;
+
+}
+#topmenu ul li a:hover, #topmenu ul li a:active {
+color: #005689;
+text-decoration:none;
+
+}
+
+/****EXTRAMENU****/
+
+#extramenu{
+	text-align:left;
+	height:0.735em;
+}
+
+#extramenu ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #bebebe;
+	
+}
+#extramenu ul li{
+	display:inline;
+}
+
+#extramenu ul li a {
+display: inline-block;
+padding: 0.2em;
+font-size: 0.8em;
+color: #bebebe;
+text-decoration:none;
+
+}
+#extramenu ul li a:hover, #extramenu ul li a:active {
+color: #333;
+text-decoration:none;
+
+}
+/****HOOFDMENU****/
+
+#hoofdmenu{
+	background-color:#EDEDED;
+	
+	
+	
+}
+#hoofdmenu ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#hoofdmenu ul li{
+	display:inline;
+	float:left;
+}
+#hoofdmenu ul li a{
+	display:block;
+	text-decoration:none;
+	padding:0.375em 0.5em;
+	
+	border-right:1px solid gray;
+	letter-spacing:0.1em;
+}
+#hoofdmenu ul li a:hover,
+#hoofdmenu ul li a:active,
+#hoofdmenu ul li a.actief {
+text-decoration:none;
+background:#D61D00;
+color:white;
+}
+
+/****HEET van de naald***/
+
+#heet{
+	
+	
+	padding:6px 0;
+}
+#heetvandenaald{
+	font-weight:bold;
+	color:#D61D00;
+	padding-right:1em;
+}
+
+/**** LOGO in een image ****/
+
+#logo a {
+	display:block;
+	width: 346px;
+	height:77px;
+	margin: 14px 0 20px 0;
+padding: 0;
+	background:transparent url(../img/degazet.png) no-repeat;
+	text-indent:-999999px;
+	
+}
+
+#kalender{
+	display:block;
+	margin:0 1.2em;
+	padding:0 1.2em;
+}
+.volgendeMaand a{
+	color:lightgray;
+}
+/**** BORDERS ****/
+/* default kleur rood */
+.bt8 {border-top:8px solid #D61D00;}
+.bt3 {border-top:3px solid #D61D00;}
+.bb8 {border-bottom:8px solid #D61D00;}
+.bb3 {border-bottom:3px solid #D61D00;}
