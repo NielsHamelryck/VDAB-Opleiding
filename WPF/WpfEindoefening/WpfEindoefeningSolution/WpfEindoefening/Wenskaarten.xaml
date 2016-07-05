@@ -28,7 +28,7 @@
         <StatusBar DockPanel.Dock="Bottom" Height="24">
             <StatusBarItem Name="StatusBarItem" HorizontalContentAlignment="Left"></StatusBarItem>
         </StatusBar>
-        <StackPanel Name="WindowOpacity" Orientation="Horizontal" Opacity="0">
+        <StackPanel Name="WindowOpacity" Orientation="Horizontal" Visibility="Hidden">
             <StackPanel Orientation="Vertical">
                 <Canvas Name="Dropzone_Canvas" Width="500" Height="400" HorizontalAlignment="Left" AllowDrop="True" Drop="Canvas_drop"></Canvas>
                 <TextBox Name="TextBox_Wens" Margin="10" HorizontalAlignment="Center" FontFamily="{Binding ElementName=ComboBox_Lettertype, Path=SelectedItem}"></TextBox>
