@@ -1,27 +1,26 @@
 @charset "utf-8";
 
 
-
+/***css file voor jungle developers***/
 
 /* KLEURENSCHEMAS */
 body {
 background:white;
 color:#665950;
 }
+.paars{
+	color:#9A3098;
+	letter-spacing:3px;
+	font-size:1.2em;
+}
 
-
-#bovenstrook{
+#banner{
 	background-color:#D64708;
 	margin:0 auto;
 	padding:0;
 	
 }
 
-.lijn{
-	display:block;
-	border-bottom:1px solid lightgray;
-	width:100%;
-}
 
 footer{
 	background:#303F43;
@@ -30,11 +29,9 @@ footer{
 	
 }
 
-footer a{
-	color:#00735D;
-}
 
-footer a:hover{
+
+#voettext a:hover{
 	color:#9A3098;
 	text-decoration:underline;
 }
@@ -47,7 +44,8 @@ footer a:hover{
 }
 #topbanner{
 	background:#D64708;
-	
+	width:100%;
+	text-align:center;
 	
 	
 }
@@ -90,7 +88,7 @@ h2{
 #tarzan{
 	width:200px;
 	height:150px;
-	top:1em;
+	top:1.9em;
 	left:60%;
 	text-align:right;
 	position:absolute;
@@ -118,52 +116,48 @@ header{
 	background-color:#D64708;
 	border-radius:20px;
 	color:white;
+	padding:0 1em;
+	
 }
 
-
+#bovenstrook,#middenstrook{
+	border-bottom:1px solid lightgray;
+}
 
 /**** MENU BOVENAAN ****/
 
 
 
-#hoofdmenu {
-	width:100%;
-	
-}
 
 #hoofdmenu ul {
-list-style-type:none;
-	margin:0 auto;
-	
+list-style-type: none;
+margin: 0;
+padding: 0;
+float: left;
+position:relative;
+width:100%;
 }
-
-#hoofdmenu ul li{
-	display:inline-block;
-	padding:0 2em;
-	
-	border-left:1px solid white;
+#hoofdmenu ul li {
+float: left;
+width:calc(100%/6);
 }
-
-#hoofdmenu ul li a{
-	display:block;
-	color:white;
-	float:left;
-	
-	padding:0 auto;
+#hoofdmenu ul li a {
+display: block;
+padding: 0.375em 0.5em; /*6px 8px*/
+border-left: 1px solid white;
+text-decoration: none;
+letter-spacing: 0.1em;
+color: white;
 }
-
-#hoofdmenu ul li:hover,
-#hoofdmenu ul li:active,
-#hoofdmenu ul li.actief{
-	background-color:#B61600;
-	
-	
+#hoofdmenu ul li a:hover,
+#hoofdmenu ul li a:active,
+#hoofdmenu ul li a.actief {
+text-decoration:none;
+background:#B61600;
+color:white;
 }
-
-#hoofdmenu ul li:last-child a{
-	border-right:1px solid white;
-	padding-right:60%;
-	
+#hoofdmenu ul li:last-child{
+border-right: 1px solid white;
 }
 
 /**** lijst met jobs ****/
@@ -196,12 +190,10 @@ list-style-type:none;
 	width:300px;
 	border:1px solid black;
 }
-
-#joblijst ul li a:hover,
-#joblijst ul li a:active{
-	background-color:#00735D;
+#joblijst .button:hover{
+background-color:#00753D;
 }
-/*** midden layout ****/
+/*** middenstrook layout ****/
 #middenstrook{
 	margin:0 auto;
 	padding:0;
@@ -211,7 +203,7 @@ list-style-type:none;
 #col1{
 	display:block;
 	padding:1em 1.5%;
-	/*margin:0 15px;*/
+	
 	width:25%;
 	float:left;
 	clear:left;
@@ -222,14 +214,14 @@ list-style-type:none;
 }
 #col2{
 	
-	/*margin:0 15px;*/
-	
+	height:500px;
+	max-width:800px;
 	padding:1em 1.5%;
 	float:left;
 	width:40%;
 	background:transparent url("../img/drupal-8.png") no-repeat right;
 	background-size: 350px 350px;
-	
+	background-position:relative;
 }
 #col3{
 	padding:1em 1.5%;
@@ -237,11 +229,7 @@ list-style-type:none;
 	width:25%;
 }
 
-.paars{
-	color:#9A3098;
-	letter-spacing:1px;
-	font-size:1.2em;
-}
+
 
 span{
 	clear:right;
@@ -267,27 +255,27 @@ span{
 	clear:right;
 }
 #col1 p a#git{
-	color:#665950;
+	color:#00735D;
 }
 
 #col1 p a#git:hover{
+	
 	text-decoration:underline;
 }
 #col1 p, #col3 p{
 	clear:left;
 }
+/* layout verwachtingsstrook*/
 .sectie {
 	
 	padding:1em;
 	margin:0;
 }
 
-.verwachting{
-	display:block;
-	
-}
+
 
 #home img,#female img ,#pink img{
+	margin-right:80px;
 	float:left;
 	
 }
@@ -297,13 +285,18 @@ span{
 	clear:none;
 }
 
-
 p#datum{
 	background-color:white;
 	color:#303F43;
 	width:5em;
 	float:right;
 	margin:0;
+	padding:0 1em;
+	
+}
+
+#voettext a{
+	color:#00735D;
 }
 
 /*
