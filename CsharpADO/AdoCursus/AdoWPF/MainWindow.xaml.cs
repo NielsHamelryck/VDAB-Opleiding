@@ -62,5 +62,37 @@ namespace AdoWPF
                 LabelStatus.Content = ex.Message; 
             }
                     }
+
+        private void ButtonStorten_OnClick(object sender, RoutedEventArgs e)
+        {
+            Decimal teStorten;
+            if (decimal.TryParse(TextBoxTeStorten.Text, out teStorten))
+            {
+                try
+                {
+                    var manager = new RekeningenManager();
+                    if (manager.Storten(teStorten, TextBoxRekeningnr.Text))
+                    {
+                        LabelStatus.Content = "OK";
+                    }
+                    else
+                    {
+                        LabelStatus.Content = "Rekening nummer niet gevonden";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    LabelStatus.Content = ex.Message;
+                }
+            }
+            else
+            {
+
+                LabelStatus.Content = "Tik een getal bij het storten";
+
+            }
+            
+        }
     }
 }

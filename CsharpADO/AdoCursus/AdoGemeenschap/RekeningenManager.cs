@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Data.Common;
 
 namespace AdoGemeenschap
 {
@@ -12,7 +13,7 @@ namespace AdoGemeenschap
         public Int32 SaldoBonus()
         {
             var dbmanager = new BankDbManager();
-            using (var conBank = dbmanager.GeConnection())
+            using (var conBank = dbmanager.GetConnection())
             {
                 using (var comBonus = conBank.CreateCommand())
                 {
@@ -23,6 +24,34 @@ namespace AdoGemeenschap
                 }
             }
 
+        }
+
+        public Boolean Storten(Decimal teStorten, String rekeningnr)
+        {
+            var dbmanager = new BankDbManager();
+            using (var conBank = dbmanager.GetConnection())
+            {
+                using (var comStorten = conBank.CreateCommand())
+                {
+                    comStorten.CommandType = CommandType.StoredProcedure;
+                    comStorten.CommandText = "Storten";
+
+                    DbParameter parTeStorten = comStorten.CreateParameter();
+                    parTeStorten.ParameterName = "@teStorten";
+                    parTeStorten.Value = teStorten;
+                    parTeStorten.DbType = DbType.Currency;
+                    comStorten.Parameters.Add(parTeStorten);
+
+                    DbParameter parRekeningNr = comStorten.CreateParameter();
+                    parRekeningNr.ParameterName = "@rekeningnr";
+                    parRekeningNr.Value = rekeningnr;
+                    comStorten.Parameters.Add(parRekeningNr);
+                    conBank.Open();
+                    return comStorten.ExecuteNonQuery() != 0;
+                }
+            }
+            
+           
         }
     }
 }

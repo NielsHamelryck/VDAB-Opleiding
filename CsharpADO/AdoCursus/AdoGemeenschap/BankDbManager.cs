@@ -17,7 +17,7 @@ namespace AdoGemeenschap
         private static DbProviderFactory factory =
             DbProviderFactories.GetFactory(conBankSettings.ProviderName);
 
-        public DbConnection GeConnection()
+        public DbConnection GetConnection()
         {
             var conBank = factory.CreateConnection();
             conBank.ConnectionString = conBankSettings.ConnectionString;
