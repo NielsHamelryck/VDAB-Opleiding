@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AdoGemeenschap;
 
-namespace WPFOpgave3
+namespace WPFOpgave4
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -29,29 +28,29 @@ namespace WPFOpgave3
 
         private void ButtonToevoegen_OnClick(object sender, RoutedEventArgs e)
         {
-            
-            
-                try
-                {   
-                    
-                    var manager = new TuinManager();
-                    Leverancier eenLeverancier= new Leverancier();
-                    eenLeverancier.Naam = TextBoxNaam.Text;
-                    eenLeverancier.Adres = TextBoxAdres.Text;
-                    eenLeverancier.Postcode = TextBoxPostcode.Text;
-                    eenLeverancier.Woonplaats = TextBoxPlaats.Text;
-                    manager.LeveranciersToevoegen(eenLeverancier);
-                    LabelStatus.Content = "Leverancier Toegevoegd";
-                    
-                   
 
-                }
-                catch (Exception ex)
-                {
-                    LabelStatus.Content = ex.Message;
-                }
-            
-           
+
+            try
+            {
+                
+                var manager = new TuinManager();
+                Leverancier eenLeverancier = new Leverancier();
+                eenLeverancier.Naam = TextBoxNaam.Text;
+                eenLeverancier.Adres = TextBoxAdres.Text;
+                eenLeverancier.Postcode = TextBoxPostcode.Text;
+                eenLeverancier.Woonplaats = TextBoxPlaats.Text;
+                manager.LeveranciersToevoegen(eenLeverancier);
+                LabelStatus.Content = "Leverancier Toegevoegd";
+
+
+
+            }
+            catch (Exception ex)
+            {
+                LabelStatus.Content = ex.Message;
+            }
+
+
         }
 
         private void ButtonEindejaarKorting_OnClick(object sender, RoutedEventArgs e)
@@ -66,6 +65,21 @@ namespace WPFOpgave3
             catch (Exception ex)
             {
                 LabelStatus.Content = ex.Message;
+            }
+        }
+
+        private void ButtonVervangLeverancier_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var manager = new TuinManager();
+                manager.VervangLeverancier();
+                LabelStatus.Content = "Leverancier 2 is vervangen door leverancier 3";
+            }
+            catch (Exception ex)
+            {
+                
+                LabelStatus.Content=ex.Message;
             }
         }
     }

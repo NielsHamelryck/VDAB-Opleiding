@@ -1,0 +1,27 @@
+﻿<Window x:Class="AdoWPF.opstartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="opstartWindow" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Van Rekening Nr.:" Margin="40 40 0 0"></Label>
+                <TextBox Name="TextBoxVanRekNr" Margin="20 40 0 0" Width="110"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Naar Rekening Nr.:" Margin="40 10 0 0"></Label>
+                <TextBox Name="TextBoxNaarRekNr" Margin="15 10 0 0" Width="110"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Bedrag:" Margin="40 10 0 0"></Label>
+                <TextBox Name="TextBoxBedrag" Margin="75 10 0 0" Width="110"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Button Name="ButtonOverschrijven" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="40 10 16 0" Width="110" Content="Overschrijven" Click="ButtonOverschrijven_OnClick"></Button>
+            </StackPanel>
+            <StackPanel>
+                <Label Name="LabelStatus" Content="" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

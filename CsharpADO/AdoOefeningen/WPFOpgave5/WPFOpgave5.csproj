@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C38A2E82-12B9-483D-8374-FB99CE94829C}</ProjectGuid>
+    <ProjectGuid>{9B3A871A-A828-411F-8F09-805990311762}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdoWPF</RootNamespace>
-    <AssemblyName>AdoWPF</AssemblyName>
+    <RootNamespace>WPFOpgave5</RootNamespace>
+    <AssemblyName>WPFOpgave5</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,7 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,9 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SaldoRekeningRaadplegen.xaml.cs">
-      <DependentUpon>SaldoRekeningRaadplegen.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,19 +66,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="opstartWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SaldoRekeningRaadplegen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="opstartWindow.xaml.cs">
-      <DependentUpon>opstartWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdoGemeenschap\AdoGemeenschap.csproj">
-      <Project>{5670bdc6-1334-4852-acff-1104469bc367}</Project>
+      <Project>{77752ff4-4e03-4de1-bc94-46f7cd9ba16b}</Project>
       <Name>AdoGemeenschap</Name>
     </ProjectReference>
   </ItemGroup>
