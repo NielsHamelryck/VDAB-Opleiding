@@ -1,0 +1,21 @@
+﻿<Window x:Class="AdoWPF.rekeningInfoRaadplegenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RekeningInfoRaadplegenWindow" TextBlock.TextAlignment="Center" Height="300" Width="500">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Rekening Nr.:" Margin="50 50 0 0"></Label>
+                <TextBox Name="TextBoxRekeningNr" Text="" Margin="50 50 0 0" Width="200"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtonInfo" Content="info" Width="200" Margin="180 30 0 0" Click="ButtonInfo_OnClick"></Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Name="LabelSaldo" Content="" Margin="180 30 0 0"></Label>
+                <Label Name="LabelKlantNaam" Content="" Margin="180 10 0 0"></Label>
+                <Label Name="LabelStatus" Content="" Margin="180 10 0 0"></Label>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

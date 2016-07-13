@@ -40,8 +40,8 @@ namespace WPFOpgave3
                     eenLeverancier.Adres = TextBoxAdres.Text;
                     eenLeverancier.Postcode = TextBoxPostcode.Text;
                     eenLeverancier.Woonplaats = TextBoxPlaats.Text;
-                    manager.LeveranciersToevoegen(eenLeverancier);
-                    LabelStatus.Content = "Leverancier Toegevoegd";
+                   
+                    LabelStatus.Content =  manager.LeveranciersToevoegen(eenLeverancier).ToString();
                     
                    
 

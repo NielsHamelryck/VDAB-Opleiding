@@ -10,7 +10,7 @@ namespace AdoGemeenschap
 {
     public class TuinManager
     {
-        public void LeveranciersToevoegen(Leverancier eenLeverancier)
+        public Int64 LeveranciersToevoegen(Leverancier eenLeverancier)
         {
             
             var dbmanager= new TuincentrumDbManager();
@@ -41,7 +41,9 @@ namespace AdoGemeenschap
                     parPlaats.Value = eenLeverancier.Woonplaats;
                     comToevoegen.Parameters.Add(parPlaats);
                     conTuin.Open();
-                    comToevoegen.ExecuteNonQuery();
+                    
+                    Int64 LevNr = Convert.ToInt64(comToevoegen.ExecuteScalar());
+                    return LevNr;
                 }
             }
         }
@@ -123,5 +125,72 @@ namespace AdoGemeenschap
                 }
             }
         }
+
+        public PlantEigenschappen PlantEigenschappenRaadplegen(Decimal plantNr)
+        {
+            var manager = new TuincentrumDbManager();
+            using (var conTuin = manager.GetConnection())
+            {
+                using (var comEigenschappen = conTuin.CreateCommand())
+                {
+                    comEigenschappen.CommandType=CommandType.StoredProcedure;
+                    comEigenschappen.CommandText = "PlantenInfoRaadplegen";
+
+                    var parPLantNr = comEigenschappen.CreateParameter();
+                    parPLantNr.ParameterName = "@Plantennr";
+                    parPLantNr.Value = plantNr;
+                    parPLantNr.DbType=DbType.Decimal;
+                    comEigenschappen.Parameters.Add(parPLantNr);
+
+                    var parNaam = comEigenschappen.CreateParameter();
+                    parNaam.ParameterName = "@PlantNaam";
+                    parNaam.DbType=DbType.String;
+                    parNaam.Size = 50;
+                    parNaam.Direction=ParameterDirection.Output;
+                    comEigenschappen.Parameters.Add(parNaam);
+
+                    var parSoort = comEigenschappen.CreateParameter();
+                    parSoort.ParameterName = "@PlantSoort";
+                    parSoort.DbType = DbType.String;
+                    parSoort.Size = 50;
+                    parSoort.Direction = ParameterDirection.Output;
+                    comEigenschappen.Parameters.Add(parSoort);
+
+                    var parLevNaam = comEigenschappen.CreateParameter();
+                    parLevNaam.ParameterName = "@LeverancierNaam";
+                    parLevNaam.DbType=DbType.String;
+                    parLevNaam.Size = 50;
+                    parLevNaam.Direction=ParameterDirection.Output;
+                    comEigenschappen.Parameters.Add(parLevNaam);
+
+                    var parKleur = comEigenschappen.CreateParameter();
+                    parKleur.ParameterName = "PlantKleur";
+                    parKleur.DbType=DbType.String;
+                    parKleur.Size = 50;
+                    parKleur.Direction=ParameterDirection.Output;
+                    comEigenschappen.Parameters.Add(parKleur);
+
+                    var parKostPrijs = comEigenschappen.CreateParameter();
+                    parKostPrijs.ParameterName = "@PlantPrijs";
+                    parKostPrijs.DbType=DbType.Currency;
+                    parKostPrijs.Direction=ParameterDirection.Output;
+                    comEigenschappen.Parameters.Add(parKostPrijs);
+
+                    conTuin.Open();
+                    comEigenschappen.ExecuteNonQuery();
+                    if (parKostPrijs.Value == DBNull.Value)
+                    {
+                        throw new Exception("plant bestaat niet");
+                    }
+                    else
+                    {
+                        return new PlantEigenschappen((String)parNaam.Value,(String)parSoort.Value
+                                                       ,(String)parLevNaam.Value,(String)parKleur.Value
+                                                       ,(Decimal)parKostPrijs.Value);
+                    }
+                }
+            }
+        }
+
     }
 }
