@@ -1,0 +1,40 @@
+﻿<Window x:Class="WPFOpgave6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WPFOpgave6" Height="350" Width="350">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Plantnummer:" Margin="10 20 0 0"></Label>
+                <TextBox Text="" Name="TextBoxPlantnr" Margin="10 20 0 0" Width="45"></TextBox>
+                <Button Name="ButtonOpzoeken" Content="Opzoeken" Margin="30 20 0 0" Width="80" Click="ButtonOpzoeken_OnClick"></Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Naam:" Margin="10 40 0 0"></Label>
+                    <Label Name="LabelPlantNaam" Content="" Margin="60 40 0 0" Width="200"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Soort:" Margin="10 10 0 0"></Label>
+                    <Label Name="LabelPlantSoort" Content="" Margin="63 10 0 0" Width="200"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Leverancier:" Margin="10 10 0 0"></Label>
+                    <Label Name="LabelLeverancier" Content="" Margin="32 10 0 0" Width="200"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Kleur:" Margin="10 10 0 0"></Label>
+                    <Label Name="LabelPlantKleur" Content="" Margin="66 10 0 0" Width="200"></Label>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Kostprijs:" Margin="10 10 0 0"></Label>
+                    <Label Name="LabelPlantPrijs" Content="" Margin="49 10 0 0" Width="200"></Label>
+                </StackPanel>
+                <StackPanel>
+                    <Label Name="LabelStatus" HorizontalAlignment="Center" Margin="20"></Label>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

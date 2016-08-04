@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoWPF", "AdoWPF\AdoWPF.csproj", "{C38A2E82-12B9-483D-8374-FB99CE94829C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoGemeenschap", "AdoGemeenschap\AdoGemeenschap.csproj", "{5670BDC6-1334-4852-ACFF-1104469BC367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFOpgave2", "WPFOpgave2\WPFOpgave2.csproj", "{151B7761-87E1-4783-800D-2D2DB29BA708}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C38A2E82-12B9-483D-8374-FB99CE94829C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38A2E82-12B9-483D-8374-FB99CE94829C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38A2E82-12B9-483D-8374-FB99CE94829C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38A2E82-12B9-483D-8374-FB99CE94829C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5670BDC6-1334-4852-ACFF-1104469BC367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5670BDC6-1334-4852-ACFF-1104469BC367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5670BDC6-1334-4852-ACFF-1104469BC367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5670BDC6-1334-4852-ACFF-1104469BC367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151B7761-87E1-4783-800D-2D2DB29BA708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151B7761-87E1-4783-800D-2D2DB29BA708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151B7761-87E1-4783-800D-2D2DB29BA708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151B7761-87E1-4783-800D-2D2DB29BA708}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
