@@ -1,0 +1,64 @@
+﻿<Window x:Class="HerhalingWPFOpgave8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:herhalingWpfOpgave8="clr-namespace:HerhalingWPFOpgave8"
+        xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+        Title="MainWindow" Height="400" Width="525" Loaded="MainWindow_OnLoaded">
+    <Window.Resources>
+        <ControlTemplate x:Key="ErrorTemplate">
+            <StackPanel Orientation="Vertical">
+                <AdornedElementPlaceholder/>
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Kies een soort:"></Label>
+                <ComboBox Name="ComboBoxSoorten" Width="250" Margin="130 0" SelectionChanged="ComboBoxSoorten_OnSelectionChanged" PreviewKeyDown="ComboBoxSoorten_OnPreviewKeyDown" PreviewMouseDown="ComboBoxSoorten_OnPreviewMouseDown"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 30">
+                
+                <ListBox  Height="200" Width="200" Name="ListBoxPlanten" PreviewKeyDown="ListBoxPlanten_OnPreviewKeyDown" PreviewMouseDown="ListBoxPlanten_OnPreviewMouseDown"></ListBox>
+                <StackPanel Orientation="Vertical" Margin="60 0" DataContext="{Binding ElementName=ListBoxPlanten, Path=SelectedItem}">
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
+                        <Label Content="Plantnummer:"/>
+                        <TextBox Margin="10 0" Width="100" Name="TextBoxNaam" IsReadOnly="True" Text="{Binding Naam , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
+                        <Label Content="Leverancier:"/>
+                        <TextBox Margin="21 0" Width="100" Name="TextBoxLeverancier" IsReadOnly="True" Text="{Binding LevNr, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
+                        <Label Content="Kleur:"/>
+                        <TextBox Margin="55 0" Width="100" Name="TextBoxKleur" Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="Kleur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <herhalingWpfOpgave8:VeldMoetIngevuldZijn/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
+                        <Label Content="Prijs:"/>
+                        <TextBox Margin="60 0" Width="100" Name="TextBoxPrijs" Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="VerkoopPrijs" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True" 
+                                         ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c">
+                                <Binding.ValidationRules>
+                                    <herhalingWpfOpgave8:GetalGroterDanNul/>
+                                </Binding.ValidationRules>    
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+            <Button Name="ButtonOpslaan" Content="Opslaan" HorizontalAlignment="Center" Width="300" Click="ButtonOpslaan_OnClick"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

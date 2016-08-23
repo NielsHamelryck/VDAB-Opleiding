@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
 
+
 namespace AdoGemeenschap
 {
     public class TuincentrumDbManager
@@ -19,9 +20,12 @@ namespace AdoGemeenschap
 
         public DbConnection GetConnection()
         {
+            
             var conTuin = factory.CreateConnection();
             conTuin.ConnectionString = conTuincentrumSettings.ConnectionString;
             return conTuin;
         }
+
+        
     }
 }

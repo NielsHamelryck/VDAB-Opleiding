@@ -1,0 +1,32 @@
+﻿<Window x:Class="HerhalingWPFOpgave3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="500">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    Margin="50 50 40 0">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Naam:" VerticalAlignment="Center" ></Label>
+                <TextBox Name="TextBoxNaam" Margin="30 10" Width="250"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Adres:" VerticalAlignment="Center" ></Label>
+                <TextBox Name="TextBoxAdres" Margin="30 10" Width="250"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Postcode:" VerticalAlignment="Center" ></Label>
+                <TextBox Name="TextBoxPostcode" Margin="12 10" Width="250"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Plaats:" VerticalAlignment="Center" ></Label>
+                <TextBox Name="TextBoxPlaats"  Margin="30 10" Width="250"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10">
+                <Button Name="ButtonToevoegen" Content="Toevoegen" HorizontalAlignment="Left" Click="ButtonToevoegen_OnClick"></Button>
+                <Button Name="ButtonKorting" Margin="30 0 0 0" Content="Eindejaarskorting"></Button>
+                <Button Name="ButtonVervangLeverancier" Margin="20 0 0 0" Content="Vervang leverancier" Click="ButtonVervangLeverancier_OnClick" ></Button>
+            </StackPanel>
+            <Label Name="LabelStatus" Margin="10 20"></Label>
+        </StackPanel>
+    </Grid>
+</Window>
