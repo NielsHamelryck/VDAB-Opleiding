@@ -70,16 +70,17 @@ namespace AdoGemeenschap
                 Changed = true;
             }
         }
-        
-        
 
-        public Leverancier(int levNr, string naam, string adres, string postNr, string woonplaats)
+        public Object Versie { get; set; }
+
+        public Leverancier(int levNr, string naam, string adres, string postNr, string woonplaats, object versie)
         {
             this.LevNr = levNr;
             this.Naam = naam;
             this.Adres = adres;
             this.PostNr = postNr;
             this.Woonplaats = woonplaats;
+            this.Versie = versie;
             this.Changed = false;
         }
 

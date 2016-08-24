@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerhalingWPFOpgave8", "Herh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerhalenWPFOpgave10", "HerhalenWPFOpgave10\HerhalenWPFOpgave10.csproj", "{4E87AC8F-5E24-43AD-B2F9-06545B0CB2A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerhalingWPFOpgave11", "HerhalingWPFOpgave11\HerhalingWPFOpgave11.csproj", "{A73CB1D1-45AA-4ABD-A01B-A4D8C9A248B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{4E87AC8F-5E24-43AD-B2F9-06545B0CB2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E87AC8F-5E24-43AD-B2F9-06545B0CB2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E87AC8F-5E24-43AD-B2F9-06545B0CB2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A73CB1D1-45AA-4ABD-A01B-A4D8C9A248B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73CB1D1-45AA-4ABD-A01B-A4D8C9A248B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73CB1D1-45AA-4ABD-A01B-A4D8C9A248B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73CB1D1-45AA-4ABD-A01B-A4D8C9A248B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

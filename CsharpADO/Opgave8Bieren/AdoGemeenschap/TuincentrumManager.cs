@@ -362,15 +362,17 @@ namespace AdoGemeenschap
                         Int32 AdresPos = rdrLeveranciers.GetOrdinal("Adres");
                         Int32 PostNrPos = rdrLeveranciers.GetOrdinal("PostNr");
                         Int32 WoonPlaatsPos = rdrLeveranciers.GetOrdinal("Woonplaats");
+                        Int32 VersiePos = rdrLeveranciers.GetOrdinal("Versie");
 
                         while (rdrLeveranciers.Read())
                         {
-                            Leverancier leverancier = new Leverancier();
-                            leverancier.LevNr = rdrLeveranciers.GetInt32(LevNrPos);
-                            leverancier.Naam = rdrLeveranciers.GetString(NaamPos);
-                            leverancier.Adres = rdrLeveranciers.GetString(AdresPos);
-                            leverancier.PostNr = rdrLeveranciers.GetString(PostNrPos);
-                            leverancier.Woonplaats = rdrLeveranciers.GetString(WoonPlaatsPos);
+                            Leverancier leverancier = new Leverancier(
+                                rdrLeveranciers.GetInt32(LevNrPos),
+                                rdrLeveranciers.GetString(NaamPos),
+                                rdrLeveranciers.GetString(AdresPos),
+                                rdrLeveranciers.GetString(PostNrPos),
+                                rdrLeveranciers.GetString(WoonPlaatsPos),
+                                rdrLeveranciers.GetValue(VersiePos));
                             leveranciers.Add(leverancier);
                         }
                     }
@@ -390,17 +392,23 @@ namespace AdoGemeenschap
                 using (var comDelete = conTuincentrum.CreateCommand())
                 {
                     comDelete.CommandType = CommandType.Text;
-                    comDelete.CommandText = "Delete from Leveranciers Where LevNr=@levnr";
+                    comDelete.CommandText = "Delete from Leveranciers Where LevNr=@levnr and Versie=@versie";
 
                     var parLevnr = comDelete.CreateParameter();
                     parLevnr.ParameterName = "@levnr";
                     comDelete.Parameters.Add(parLevnr);
+                    
+                    var parVersie = comDelete.CreateParameter();
+                    parVersie.ParameterName = "@versie";
+                    comDelete.Parameters.Add(parVersie);
 
+                    conTuincentrum.Open();
                     foreach (var leverancier in leveranciers)
                     {
                         try
                         {
                             parLevnr.Value = leverancier.LevNr;
+                            parLevnr.Value = leverancier.Versie;
                             if(comDelete.ExecuteNonQuery()==0)
                                 nietVerwijderdeLeveranciers.Add(leverancier);
                         }
@@ -471,6 +479,69 @@ namespace AdoGemeenschap
             return NietToegevoegdeLeveranciers;
         }
 
+        public List<Leverancier> LeverancierWijzigen(List<Leverancier> gewijzigdeLeveranciers)
+        {
+            List<Leverancier> NietGewijzigdeLeveranciers = new List<Leverancier>();
+            
+            var manager = new TuincentrumDBManager();
+
+            using (var conTuincentrum = manager.GetConnection())
+            {
+                using (var comUpdate = conTuincentrum.CreateCommand())
+                {
+                    comUpdate.CommandType= CommandType.Text;
+                    comUpdate.CommandText =
+                        "Update Leveranciers set Naam=@naam , Adres=@adres , PostNr=@postnr, Woonplaats=@woonplaats where LevNr=@levnr and Versie=@versie";
+
+                    var parLevnr = comUpdate.CreateParameter();
+                    parLevnr.ParameterName = "@levnr";
+                    comUpdate.Parameters.Add(parLevnr);
+
+                    var parNaam = comUpdate.CreateParameter();
+                    parNaam.ParameterName = "@naam";
+                    comUpdate.Parameters.Add(parNaam);
+
+                    var parAdres = comUpdate.CreateParameter();
+                    parAdres.ParameterName = "@adres";
+                    comUpdate.Parameters.Add(parAdres);
+
+                    var parPostnr = comUpdate.CreateParameter();
+                    parPostnr.ParameterName = "@postnr";
+                    comUpdate.Parameters.Add(parPostnr);
+
+                    var parWoonplaats = comUpdate.CreateParameter();
+                    parWoonplaats.ParameterName = "@woonplaats";
+                    comUpdate.Parameters.Add(parWoonplaats);
+
+                    var parVersie = comUpdate.CreateParameter();
+                    parVersie.ParameterName = "@versie";
+                    comUpdate.Parameters.Add(parVersie);
+                    conTuincentrum.Open();
+                    foreach (var eenrleverancier in gewijzigdeLeveranciers)
+                    {
+                        try
+                        {
+                            parLevnr.Value = eenrleverancier.LevNr;
+                            parNaam.Value = eenrleverancier.Naam;
+                            parAdres.Value = eenrleverancier.Adres;
+                            parPostnr.Value = eenrleverancier.PostNr;
+                            parWoonplaats.Value = eenrleverancier.Woonplaats;
+                            parVersie.Value = eenrleverancier.Versie;
+                            if (comUpdate.ExecuteNonQuery() == 0)
+                            {
+                                NietGewijzigdeLeveranciers.Add(eenrleverancier);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            NietGewijzigdeLeveranciers.Add(eenrleverancier);
+                        }
+                    }
+
+                }
+            }
+            return NietGewijzigdeLeveranciers;
         }
+    }
     }
 

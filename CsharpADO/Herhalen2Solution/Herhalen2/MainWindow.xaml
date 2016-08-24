@@ -1,0 +1,80 @@
+﻿<Window x:Class="Herhalen2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+        xmlns:herhalen2="clr-namespace:Herhalen2"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="MainWindow" Height="350" Width="540" Loaded="MainWindow_OnLoaded" >
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel Orientation="Vertical">
+                <AdornedElementPlaceholder/>
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="red"></TextBlock>
+            </StackPanel>
+        </ControlTemplate>
+        <Style x:Key ="textBoxInError" TargetType="{x:Type TextBox}" >
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Red"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Kies een soort : "></Label>
+                <ComboBox Name="ComboBoxSoort" Margin="200 0" Width="200" SelectionChanged="ComboBoxSoort_OnSelectionChanged"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListBox Name="ListBoxPlanten" Margin="0 30 0 0" Width="200" Height="200"></ListBox>
+                <StackPanel Orientation="Vertical" Margin="20 30 0 0" DataContext="{Binding ElementName=ListBoxPlanten , Path=SelectedItem}">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Plantnummer: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        <TextBox Name="TextBoxPlantNr" Margin="10" Width="150" IsReadOnly="True">
+                            <TextBox.Text>
+                                <Binding Path="PlantNr" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    
+                                </Binding>
+                            </TextBox.Text>
+                            </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Leverancier: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        <TextBox Name="TextBoxLevNr" Margin="20 10" Width="150" IsReadOnly="True">
+                            <TextBox.Text>
+                                <Binding Path="Levnr" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"></Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Kleur: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        <TextBox Name="TextBoxKleur" Margin="53 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" >
+                            <TextBox.Text>
+                                <Binding Path="Kleur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True">
+                                   <Binding.ValidationRules>
+                                        <herhalen2:VeldMoetIngevuldZijn/>
+                                   </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="Prijs: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        <TextBox Name="TextBoxPrijs" Margin="60 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="VerkoopPrijs"  UpdateSourceTrigger="PropertyChanged" 
+                                         ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c" 
+                                         ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True"  >
+                                    
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+               
+            </StackPanel>
+            <Button Content="opslaan"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -164,7 +164,7 @@ namespace HerhalenWPFOpgave10
                 if (NietGoed.Length > 0 || WelGoed.Length > 4)
                     MessageBox.Show(NietGoed.ToString() + WelGoed.ToString(), "Info",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                else MessageBox.Show("Er werd niets aangepast dus ook niets opgeslagen","Info",MessageBoxButton.OK,MessageBoxImage.Information);
+                else MessageBox.Show("Er werd niets aangepast dus ook niets opgeslagen");
                 OudeLeveranciers.Clear();
                 NieuweLeveranciers.Clear();
                 GewijzigdeLeveranciers.Clear();
