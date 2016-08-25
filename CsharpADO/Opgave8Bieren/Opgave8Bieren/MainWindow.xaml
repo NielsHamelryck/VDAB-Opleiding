@@ -1,0 +1,52 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:AdoGemeenschap="clr-namespace:AdoGemeenschap;assembly=AdoGemeenschap" mc:Ignorable="d" x:Class="Opgave8Bieren.MainWindow"
+        Title="MainWindow" Height="350" Width="550" Loaded="MainWindow_OnLoaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="bierViewSource" d:DesignSource="{d:DesignInstance {x:Type AdoGemeenschap:Bier}, CreateList=True}"/>
+       
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Soorten bier:" Margin="10 0"/>
+                <ComboBox x:Name="ComboBoxSoorten" Margin="10 0" Width="200" SelectionChanged="ComboBoxSoorten_OnSelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListBox x:Name="ListBoxBieren" Margin="10 20" Height ="200" Width="300"/>
+                <StackPanel Margin="0 50 0 0">
+                <Grid x:Name="grid1" DataContext="{Binding ElementName=ListBoxBieren, Path=SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <Label Content="Naam:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="naamTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Naam, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsReadOnly="True"/>
+                        <Label Content="Alcohol:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                    <TextBox x:Name="alcoholTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Alcohol, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Bier Nr:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBox x:Name="bierNrTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding BierNr, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsReadOnly="True"/>
+                    <Label Content="Brouwer Nr:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBox x:Name="brouwerNrTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding BrouwerNr, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Soort Nr:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="soortNrTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding SoortNr, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="OpslaanButton" Margin="50 10 10 10" HorizontalAlignment="Center" Content="Opslaan" Visibility="Hidden"></Button>
+                        <Button Name="VerwijderenButton" Margin="0 10" HorizontalAlignment="Center" Content="Verwijderen" Visibility="Hidden"></Button>
+                    </StackPanel>
+                    </StackPanel>
+            </StackPanel>
+            <Button Name="ButtonTest" Margin="10 0" Width="50" Height="28"
+                    Content="test" HorizontalAlignment="Left" Click="ButtonTest_OnClick"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,97 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:AdoGemeenschap="clr-namespace:AdoGemeenschap;assembly=AdoGemeenschap"
+    xmlns:herhaling1="clr-namespace:Herhaling1"
+    mc:Ignorable="d" x:Class="Herhaling1.MainWindow"
+        Title="MainWindow" Height="400" Width="525" Loaded="MainWindow_OnLoaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="bierEigenschappenViewSource" d:DesignSource="{d:DesignInstance {x:Type AdoGemeenschap:BierEigenschappen}, CreateList=True}"/>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style x:Key="textBoxInError" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static
+                        RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="Background" Value="Yellow"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label  Margin="10 10" Content="Soort Bier:"/>
+                <ComboBox Margin="25 10" x:Name="ComboBoxSoorten" Width="150" SelectionChanged="ComboBoxSoorten_OnSelectionChanged" PreviewMouseDown="Grid1_OnPreviewMouseDown" PreviewKeyDown="ListBoxBieren_OnPreviewKeyDown" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListBox x:Name="ListBoxBieren" Margin="10 10 0 0" Width="250" Height="250" PreviewKeyDown="ListBoxBieren_OnPreviewKeyDown" PreviewMouseDown="Grid1_OnPreviewMouseDown"
+                         />
+                <StackPanel Orientation="Vertical" Name="StackPanelControls">
+                <Grid Margin="40" x:Name="grid1" DataContext="{Binding ElementName=ListBoxBieren , Path=SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Alcohol:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="alcoholTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" IsReadOnly="True" Text="{Binding Alcohol,StringFormat=N1 , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Brouwer:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBox x:Name="brouwerTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" IsReadOnly="True" VerticalAlignment="Center" Width="120" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                        <TextBox.Text>
+                                <Binding Path="Brouwer" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="true"
+                                         ValidatesOnExceptions="true">
+                                    <Binding.ValidationRules>
+                                        <herhaling1:BrouwerIngevuldMoetBestaan/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            
+                        </TextBox.Text>
+                    
+                    </TextBox>
+                    <Label Content="Naam:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="naamTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" IsReadOnly="True"  VerticalAlignment="Center" Width="120" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" >
+                           <TextBox.Text>
+                                <Binding Path="Naam" Mode="TwoWay"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         NotifyOnValidationError="true"
+                                         ValidatesOnExceptions="true">
+                                    <Binding.ValidationRules>
+                                        <herhaling1:NaamMoetIngevuldZijn/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                           </TextBox.Text>
+                    </TextBox>
+                    
+                    
+                    
+                    <Label Content="Soort:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="soortTextBox" VerticalAlignment="Center" Width="120" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" IsReadOnly="True" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}">
+                            <TextBox.Text>
+                                <Binding Path="Soort" Mode="TwoWay" NotifyOnValidationError="true"
+                                         ValidatesOnExceptions="true" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                        <herhaling1:SoortIngevuldMoetBestaan/>
+                                </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                            </TextBox>
+                        </Grid>
+                    <Button Name="ButtonNieuw" Width="200" Content="Nieuw" Click="ButtonNieuw_OnClick" PreviewMouseDown="Grid1_OnPreviewMouseDown" Visibility="Hidden" PreviewKeyDown="ListBoxBieren_OnPreviewKeyDown"></Button>
+                    <Button Name="Opslaan" Margin="10" Width="200" Content="Opslaan" Click="Opslaan_OnClick" PreviewMouseDown="Grid1_OnPreviewMouseDown" Visibility="Hidden" PreviewKeyDown="ListBoxBieren_OnPreviewKeyDown"></Button>
+                    <Button Name="Edit" Width="200" Content="Edit" Click="Edit_OnClick"></Button>
+                </StackPanel>                      
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
