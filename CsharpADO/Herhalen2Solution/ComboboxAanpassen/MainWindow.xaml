@@ -1,0 +1,17 @@
+﻿<Window x:Class="ComboboxAanpassen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Loaded="MainWindow_OnLoaded">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <ListBox Name="ListBoxLijst" Width =" 200" Margin="30" SelectionChanged="ListBoxLijst_OnSelectionChanged"></ListBox>
+            <StackPanel Orientation="Vertical">
+                <ComboBox Name="ComboBoxSoort" Margin="30" Height="28" Width="100" DataContext="{Binding ElementName=ListBoxLijst, Path=SelectedItem}" SelectedIndex="{Binding SoortNr}"  ></ComboBox>
+                <TextBox Name="TextBoxSoortNr" Text="{Binding SoortNr}"></TextBox>
+                <TextBox Name="TextBoxSoort" DataContext="{Binding ElementName=ComboBoxSoort,Path=SelectedItem}" Text="{Binding Naam}"></TextBox>
+                <Button Name="ButtonShowObject" Content="Show" Click="ButtonShowObject_OnClick"></Button>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

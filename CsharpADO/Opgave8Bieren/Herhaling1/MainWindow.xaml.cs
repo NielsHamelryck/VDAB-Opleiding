@@ -166,8 +166,10 @@ namespace Herhaling1
                     }
                 }
                 BierEigenschappen bier = new BierEigenschappen();
-                bierEigenschappenOB.Clear();
+                
                 bier.BierNr = 0;
+                bier.Naam = "-";
+                
                 bierEigenschappenOB.Add(bier);
                 ListBoxBieren.SelectedItem = ListBoxBieren.Items[0];
 

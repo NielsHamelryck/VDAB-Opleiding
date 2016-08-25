@@ -12,6 +12,8 @@ namespace AdoGemeenschappelijk
 {
     public class TuincentrumManager
     {
+
+        
         public List<Soort> GetSoorten()
         {
             List<Soort> soorten = new List<Soort>();
@@ -43,7 +45,7 @@ namespace AdoGemeenschappelijk
             return soorten;
         }
 
-        public ObservableCollection<Plant> GetPlanten(int soortnr)
+        public ObservableCollection<Plant> GetPlanten() //voor herhalen 2 int soortnr als parameter meegeven
         {
             ObservableCollection<Plant> planten = new ObservableCollection<Plant>();
             var manager = new TuincentrumDBManager();
@@ -52,12 +54,12 @@ namespace AdoGemeenschappelijk
                 using (var comPlanten = conTuincentrum.CreateCommand())
                 {
                     comPlanten.CommandType = CommandType.Text;
-                    comPlanten.CommandText = "select * from planten where SoortNr=@soortnr";
+                    comPlanten.CommandText = "select * from planten order by Naam";// where SoortNr=@soortnr";
 
-                    var parSoortnr = comPlanten.CreateParameter();
-                    parSoortnr.ParameterName = "@soortnr";
-                    parSoortnr.Value = soortnr;
-                    comPlanten.Parameters.Add(parSoortnr);
+                    //var parSoortnr = comPlanten.CreateParameter();
+                    //parSoortnr.ParameterName = "@soortnr";
+                    //parSoortnr.Value = soortnr;
+                    //comPlanten.Parameters.Add(parSoortnr);
 
                     conTuincentrum.Open();
 

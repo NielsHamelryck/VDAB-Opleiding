@@ -9,7 +9,8 @@
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel Orientation="Vertical">
                 <AdornedElementPlaceholder/>
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="red"></TextBlock>
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="red">
+                </TextBlock>
             </StackPanel>
         </ControlTemplate>
         <Style x:Key ="textBoxInError" TargetType="{x:Type TextBox}" >
@@ -28,10 +29,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ListBox Name="ListBoxPlanten" Margin="0 30 0 0" Width="200" Height="200"></ListBox>
-                <StackPanel Orientation="Vertical" Margin="20 30 0 0" DataContext="{Binding ElementName=ListBoxPlanten , Path=SelectedItem}">
+                <StackPanel Name="StackPanelTextBoxen" Orientation="Vertical" Margin="20 30 0 0" DataContext="{Binding ElementName=ListBoxPlanten , Path=SelectedItem}">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Plantnummer: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                        <TextBox Name="TextBoxPlantNr" Margin="10" Width="150" IsReadOnly="True">
+                        <TextBox Name="TextBoxPlantNr" Margin="10" Width="150" >
                             <TextBox.Text>
                                 <Binding Path="PlantNr" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                     
@@ -41,7 +42,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Leverancier: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                        <TextBox Name="TextBoxLevNr" Margin="20 10" Width="150" IsReadOnly="True">
+                        <TextBox Name="TextBoxLevNr" Margin="20 10" Width="150" >
                             <TextBox.Text>
                                 <Binding Path="Levnr" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"></Binding>
                             </TextBox.Text>
@@ -49,7 +50,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Kleur: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                        <TextBox Name="TextBoxKleur" Margin="53 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" >
+                        <TextBox Name="TextBoxKleur" Margin="53 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"  >
                             <TextBox.Text>
                                 <Binding Path="Kleur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True">
                                    <Binding.ValidationRules>
@@ -61,12 +62,14 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" >
                         <Label Content="Prijs: " HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                        <TextBox Name="TextBoxPrijs" Margin="60 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                        <TextBox Name="TextBoxPrijs" Margin="60 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" >
                             <TextBox.Text>
                                 <Binding Path="VerkoopPrijs"  UpdateSourceTrigger="PropertyChanged" 
                                          ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c" 
                                          ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True"  >
-                                    
+                                    <Binding.ValidationRules>
+                                        <herhalen2:MoetEenGetalZijn/>
+                                    </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
@@ -74,7 +77,25 @@
                 </StackPanel>
                
             </StackPanel>
-            <Button Content="opslaan"></Button>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+            <Button Name="ButtonOpslaan" Content="opslaan" Width ="100" HorizontalAlignment="Left" Margin="10" IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="False"></Setter>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=TextBoxKleur,Path=(Validation.HasError)}" Value="false"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="true" />
+                                </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="ButtonEdit" Content="edit" Width ="100" Margin="10" Click="ButtonEdit_OnClick" ></Button>
+                <Button Name="ButtonNieuw" Content="Nieuw" Width ="100" Margin="10"  Click="ButtonNieuw_OnClick"></Button>
+            </StackPanel>
+            </StackPanel>
     </Grid>
 </Window>
