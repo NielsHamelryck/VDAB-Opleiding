@@ -12,7 +12,7 @@ namespace Herhalen2
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value == null || value.ToString() == String.Empty)
+            if (value == null || (((String)value).Length==0))
             {
                 return new ValidationResult(false,"Veld moet ingevuld zijn");
             }

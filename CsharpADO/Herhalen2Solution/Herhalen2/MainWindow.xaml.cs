@@ -31,7 +31,7 @@ namespace Herhalen2
         private ObservableCollection<Plant> plantenOb = new ObservableCollection<Plant>();
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TextBoxKleur.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            
             var manager = new TuincentrumManager();
             ComboBoxSoort.ItemsSource = manager.GetSoorten();
             ComboBoxSoort.SelectedValuePath = "SoortNr";
@@ -48,7 +48,7 @@ namespace Herhalen2
                         tb.IsEnabled = false;
                     }
                 }
-            } ComboBoxSoort.IsEnabled = false;
+            } //ComboBoxSoort.IsEnabled = false;
         }
 
         private void ComboBoxSoort_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,16 +66,17 @@ namespace Herhalen2
 
         private void ButtonNieuw_OnClick(object sender, RoutedEventArgs e)
         {
-            TextBoxKleur.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            
             if (edit == false)
             {
                 VergrendelenTextboxen();
             }
-            plantenOb.Add(new Plant(0,"-",0,0,"-",0));
+            plantenOb.Add(new Plant());
+          
             ListBoxPlanten.ItemsSource = plantenOb;
             ListBoxPlanten.DisplayMemberPath = "Naam";
             ListBoxPlanten.SelectedItem = plantenOb.Last();
-
+            
         }
 
         public void VergrendelenTextboxen()

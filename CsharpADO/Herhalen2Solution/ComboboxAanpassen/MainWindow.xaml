@@ -10,6 +10,7 @@
                 <TextBox Name="TextBoxSoortNr" Text="{Binding SoortNr}"></TextBox>
                 <TextBox Name="TextBoxSoort" DataContext="{Binding ElementName=ComboBoxSoort,Path=SelectedItem}" Text="{Binding Naam}"></TextBox>
                 <Button Name="ButtonShowObject" Content="Show" Click="ButtonShowObject_OnClick"></Button>
+                <TextBox Name="TextBoxTest" Text="{Binding Path=text}" ></TextBox>
             </StackPanel>
 
         </StackPanel>
