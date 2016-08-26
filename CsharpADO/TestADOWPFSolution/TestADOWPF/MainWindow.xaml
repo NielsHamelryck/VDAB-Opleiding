@@ -1,0 +1,72 @@
+﻿<Window x:Class="TestADOWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+        Title="MainWindow" Height="550" Width="525" SizeToContent="WidthAndHeight"
+        Loaded="MainWindow_OnLoaded">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="325">
+                    <Label Name="labelStatus" Content="Videotheek - films" FontSize="20" HorizontalAlignment="Center"></Label>
+                    <ListBox Name="ListBoxFilms" Height="200" SelectionChanged="ListBoxFilms_OnSelectionChanged"></ListBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0 30 0 0" Width="190">
+                    <Button Name="ButtonToevoegen" Content="Toevoegen" Width="100" Height="30" HorizontalAlignment="Center" Click="ButtonToevoegen_OnClick" ></Button>
+                    <Button Name="ButtonVerwijderen" Content="Verwijderen" Width="100" Height="30" Margin="0 20"></Button>
+                    <Button Name="ButtonOpslaan" Content="Opslaan" Width="100" Height="30" Margin="0 20"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical" Name="StackPanelLabels" Margin="20 0" Width ="100">
+                    <Label Content="Band Nr:" Margin="0 10"></Label>
+                    <Label Content="Titel:" ></Label>
+                    <Label Content="Genre:" Margin="0 10"></Label>
+                    <Label Content="In Voorraad:"></Label>
+                    <Label Content="Uit Voorraad:" Margin="0 10"></Label>
+                    <Label Content="Prijs:"></Label>
+                    <Label Content="Totaal Verhuurd:" Margin="0 10"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Name="StackPanelBoxen" DataContext="{Binding ElementName=ListBoxFilms,Path=SelectedItem}">
+                    <TextBox Name="TextBoxBandNr" Width="150" Margin="0 10 0 0">
+                        <TextBox.Text><Binding Path="BandNr"></Binding></TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxTitel" Width="150" Margin="0 14 0 0">
+                        <TextBox.Text>
+                            <Binding Path="Titel"></Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ComboBox Name="ComboBoxGenre" Width="150" Margin="0 16 0 0 "  SelectedIndex="{Binding GenreNr}"></ComboBox>
+                    <TextBox Name="TextBoxInVoorraad" Width="150" Margin="0 15 0 0">
+                        <TextBox.Text>
+                            <Binding Path="InVoorraad"></Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxUitVoorraad" Width="150" Margin="0 15 0 0">
+                        <TextBox.Text>
+                            <Binding Path="UitVoorraad">
+                                
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxPrijs" Width="150" Margin="0 15 0 0">
+                        <TextBox.Text>
+                            <Binding Path="Prijs" UpdateSourceTrigger="PropertyChanged" ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c"></Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxTotaalVerhuurd" Width="150" Margin="0 14 0 0" >
+                        <TextBox.Text>
+                            <Binding Path="TotaalVerhuurd">
+                                
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  VerticalAlignment="Center">
+                    <Button Content="Verhuur" Height="30" Width="150" HorizontalAlignment="Center" Margin="50 0 20 0" ></Button>
+                </StackPanel>
+            </StackPanel> 
+           
+        </StackPanel>
+    </Grid>
+</Window>

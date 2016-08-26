@@ -53,10 +53,14 @@
                         <TextBox Name="TextBoxKleur" Margin="53 10" Width="150" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"  >
                             <TextBox.Text>
                                 <Binding Path="Kleur" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True">
-                                   <Binding.ValidationRules>
-                                        <herhalen2:VeldMoetIngevuldZijn/>
+                                    
+                                        
+                                    <Binding.ValidationRules>
+                                     <herhalen2:VeldMoetIngevuldZijn
+                                            ValidatesOnTargetUpdated="True"/>
                                    </Binding.ValidationRules>
                                 </Binding>
+                                
                             </TextBox.Text>
                         </TextBox>
                     </StackPanel>
@@ -68,7 +72,7 @@
                                          ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c" 
                                          ValidatesOnDataErrors="True" ValidatesOnNotifyDataErrors="True"  >
                                     <Binding.ValidationRules>
-                                        <herhalen2:MoetEenGetalZijn/>
+                                        <herhalen2:MoetEenGetalZijn ValidatesOnTargetUpdated="True"/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
