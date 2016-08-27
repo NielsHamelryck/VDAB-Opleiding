@@ -2,19 +2,31 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+        xmlns:testAdowpf="clr-namespace:TestADOWPF"
+        
+
         Title="MainWindow" Height="550" Width="525" SizeToContent="WidthAndHeight"
         Loaded="MainWindow_OnLoaded">
+    <Window.Resources>
+        <ControlTemplate x:Key="validationTemplate">
+            <StackPanel Orientation="Horizontal">
+                <AdornedElementPlaceholder/>
+                <TextBlock Margin="10 0" Foreground="Red" Text="{Binding [0].ErrorContent}"></TextBlock>
+            </StackPanel>
+        </ControlTemplate>
+        <testAdowpf:BooleanToBooleanConverter x:Key="BooleanToBooleanConverter"/>
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Width="325">
                     <Label Name="labelStatus" Content="Videotheek - films" FontSize="20" HorizontalAlignment="Center"></Label>
-                    <ListBox Name="ListBoxFilms" Height="200" SelectionChanged="ListBoxFilms_OnSelectionChanged"></ListBox>
+                    <ListBox Name="ListBoxFilms" DisplayMemberPath="Titel" Height="200" IsEnabled="{Binding ElementName=ComboBoxGenre , Path=IsEnabled , Converter={StaticResource BooleanToBooleanConverter}}"></ListBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0 30 0 0" Width="190">
                     <Button Name="ButtonToevoegen" Content="Toevoegen" Width="100" Height="30" HorizontalAlignment="Center" Click="ButtonToevoegen_OnClick" ></Button>
-                    <Button Name="ButtonVerwijderen" Content="Verwijderen" Width="100" Height="30" Margin="0 20"></Button>
-                    <Button Name="ButtonOpslaan" Content="Opslaan" Width="100" Height="30" Margin="0 20"></Button>
+                    <Button Name="ButtonVerwijderen" Content="Verwijderen" Width="100" Height="30" Margin="0 20" Click="ButtonVerwijderen_OnClick"></Button>
+                    <Button Name="ButtonOpslaan" Content="Opslaan" Width="100" Height="30" Margin="0 20" Click="ButtonOpslaan_OnClick" IsEnabled="{Binding ElementName=ComboBoxGenre , Path=IsEnabled , Converter={StaticResource BooleanToBooleanConverter}}"></Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
@@ -27,43 +39,76 @@
                     <Label Content="Prijs:"></Label>
                     <Label Content="Totaal Verhuurd:" Margin="0 10"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Name="StackPanelBoxen" DataContext="{Binding ElementName=ListBoxFilms,Path=SelectedItem}">
-                    <TextBox Name="TextBoxBandNr" Width="150" Margin="0 10 0 0">
-                        <TextBox.Text><Binding Path="BandNr"></Binding></TextBox.Text>
+                <StackPanel Orientation="Vertical" Name="StackPanelBoxen">
+                    <TextBox Name="TextBoxBandNr" IsReadOnly="True"  Width="150" Margin="0 10 0 0">
+                        <TextBox.Text><Binding ElementName="ListBoxFilms" Path="SelectedItem.BandNr"></Binding></TextBox.Text>
                     </TextBox>
-                    <TextBox Name="TextBoxTitel" Width="150" Margin="0 14 0 0">
+                    <TextBox Name="TextBoxTitel" Width="150" Margin="0 14 0 0" Validation.ErrorTemplate="{StaticResource validationTemplate}" 
+                            IsReadOnly="{Binding ControlReadOnly}" >
                         <TextBox.Text>
-                            <Binding Path="Titel"></Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <ComboBox Name="ComboBoxGenre" Width="150" Margin="0 16 0 0 "  SelectedIndex="{Binding GenreNr}"></ComboBox>
-                    <TextBox Name="TextBoxInVoorraad" Width="150" Margin="0 15 0 0">
-                        <TextBox.Text>
-                            <Binding Path="InVoorraad"></Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <TextBox Name="TextBoxUitVoorraad" Width="150" Margin="0 15 0 0">
-                        <TextBox.Text>
-                            <Binding Path="UitVoorraad">
-                                
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.Titel" ValidatesOnNotifyDataErrors="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <testAdowpf:MoetIngevuldZijn
+                                        />
+                                    
+                                </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox Name="TextBoxPrijs" Width="150" Margin="0 15 0 0">
+                    <ComboBox Name="ComboBoxGenre" Width="150" Margin="0 16 0 0 " DisplayMemberPath="GenreNaam" 
+                              IsEnabled="{Binding ControlEnable}" SelectedValue="GenreNr" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                        <ComboBox.SelectedIndex>
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.GenreNr" ValidatesOnDataErrors="True"
+                                     ValidatesOnNotifyDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <testAdowpf:MoetGeldigeGenreZijnGeselecteerd/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedIndex>
+                        
+                    </ComboBox>
+                    <TextBox Name="TextBoxInVoorraad" Width="150" Margin="0 15 0 0" IsReadOnly="{Binding ControlReadOnly}"  Validation.ErrorTemplate="{StaticResource validationTemplate}">
                         <TextBox.Text>
-                            <Binding Path="Prijs" UpdateSourceTrigger="PropertyChanged" ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c"></Binding>
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.InVoorraad" ValidatesOnNotifyDataErrors="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <testAdowpf:MoetInVoorraadZijn/>
+                                </Binding.ValidationRules>
+                            </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox Name="TextBoxTotaalVerhuurd" Width="150" Margin="0 14 0 0" >
+                    <TextBox Name="TextBoxUitVoorraad" Width="150" Margin="0 15 0 0" IsReadOnly="{Binding ControlReadOnly}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
                         <TextBox.Text>
-                            <Binding Path="TotaalVerhuurd">
-                                
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.UitVoorraad" ValidatesOnNotifyDataErrors="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <testAdowpf:MagNietNulZijn/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxPrijs" Width="150" Margin="0 15 0 0" IsReadOnly="{Binding ControlReadOnly}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                        <TextBox.Text>
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.Prijs" ConverterCulture="{x:Static glob:CultureInfo.CurrentCulture}" StringFormat="c"
+                                     ValidatesOnNotifyDataErrors="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <testAdowpf:PrijsMoetIngevuldZijn/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox Name="TextBoxTotaalVerhuurd" Width="150" Margin="0 14 0 0" IsReadOnly="{Binding ControlReadOnly}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                        <TextBox.Text>
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.TotaalVerhuurd" ValidatesOnDataErrors="True" NotifyOnValidationError="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <testAdowpf:MagNietNulZijn/>
+                                </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"  VerticalAlignment="Center">
-                    <Button Content="Verhuur" Height="30" Width="150" HorizontalAlignment="Center" Margin="50 0 20 0" ></Button>
+                    <Button Name="ButtonVerhuur" Content="Verhuur" Height="30" Width="150" HorizontalAlignment="Center" Margin="50 0 20 0" 
+                            IsEnabled="{Binding ElementName=ComboBoxGenre , Path=IsEnabled , 
+                            Converter={StaticResource BooleanToBooleanConverter}}" Click="ButtonVerhuur_OnClick"></Button>
                 </StackPanel>
             </StackPanel> 
            
