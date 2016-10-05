@@ -1,0 +1,20 @@
+﻿@model System.Boolean
+@{
+    ViewBag.Title = "ConfirmEdit";
+}
+
+<h2>Confirm Edit</h2>
+@if (Model)
+{
+    <div>
+        Your accountdetails are succesfully updated
+    </div>
+}
+else
+{
+    <div>
+        There has occurred a problem while changing your accountdetails. Please try again.
+        If this error persists please contact the admin
+    </div>
+}
+

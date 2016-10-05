@@ -17,9 +17,6 @@ namespace AdoGemeenschappelijk
             GenreNr = genreNr;
             GenreNaam = genreNaam;
         }
-        public Genre()
-        {
-            
-        }
+        
     }
 }

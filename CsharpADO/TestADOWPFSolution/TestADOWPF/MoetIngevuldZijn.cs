@@ -14,7 +14,7 @@ namespace TestADOWPF
         {
             if( value==null || (((string)value).Length == 0))
             {
-                return new ValidationResult(false,"Dit veld moet ingevuld zijn");
+                return new ValidationResult(false,"Waarde moet ingevuld zijn");
             }
 
             return ValidationResult.ValidResult;

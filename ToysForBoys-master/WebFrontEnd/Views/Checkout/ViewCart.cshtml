@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebFrontEnd.Models.OrderViewModel>
+@{ WebFrontEnd.Models.ShoppingCart cart = (WebFrontEnd.Models.ShoppingCart)Session["cart"]; }
+@{
+    ViewBag.Title = "ViewCart";
+}
+
+<h2>ViewCart</h2>
+
+@if (cart == null || cart.orders.Count() == 0)
+{
+    <div class="alert alert-info" role="alert">Uw winkelmandje is momenteel leeg!</div>
+}
+else
+{
+    <div class="clearfix">
+        <div class="alert alert-info" role="alert">Inhoud van uw winkelmandje</div>
+
+        @using (Html.BeginForm("EditCart", "Checkout"))
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                      
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @Html.EditorForModel()
+
+                </tbody>
+            </table>
+            <input class="btn btn-default pull-right" type="submit" value="Verwijderen" />
+        }
+    </div>
+    <div class="alert alert-info" role="alert">Te betalen: € @cart.TotalAmount</div>
+
+
+}

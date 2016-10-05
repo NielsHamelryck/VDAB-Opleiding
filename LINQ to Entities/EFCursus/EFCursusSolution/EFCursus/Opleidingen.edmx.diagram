@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0e8333b14164183bc18af9040caa7b1" Name="Diagram1" DisplayType="true">
+        <EntityTypeShape EntityType="OpleidingenModel.Campus" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpleidingenModel.Docent" Width="1.5" PointX="3.375" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="OpleidingenModel.FK__Docenten__Campus__1273C1CD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OpleidingenModel.Voorraad" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="OpleidingenModel.Cursist" Width="1.5" PointX="7" PointY="1.25" />
+        <AssociationConnector Association="OpleidingenModel.FK__Cursisten__Mento__47DBAE45" />
+        <EntityTypeShape EntityType="OpleidingenModel.Cursus" Width="1.5" PointX="5" PointY="4.125" />
+        <EntityTypeShape EntityType="OpleidingenModel.KlassiekaleCursus" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="OpleidingenModel.ZelfstudieCursus" Width="1.5" PointX="3.25" PointY="5.75" />
+        <InheritanceConnector EntityType="OpleidingenModel.ZelfstudieCursus" />
+        <InheritanceConnector EntityType="OpleidingenModel.KlassiekaleCursus" />
+        <EntityTypeShape EntityType="OpleidingenModel.BestBetaaldeDocentPerCampus" Width="1.5" PointX="0.75" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,335 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+
+/* ProductList */
+
+#products .item {
+    margin-top: 20px;
+}
+
+#products .item .caption {
+    height: 300px;
+}
+
+#products .item .row {
+    position: absolute;
+    bottom: 10px;
+}
+
+#products .item img {
+    width: 400px;
+    height: 200px;
+}
+
+
+/* ProductList filter */
+
+#ProductListFilter {
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+#ProductListFilter #ProductNameFilter input[type="text"]{
+    width: 80%;
+}
+
+#ProductListFilter input[type=submit]{
+    display:block;
+    clear:left;
+    float:right;
+}
+
+#ProductListFilter #ProductLineFilter {
+    margin-top: 10px;
+}
+
+#ProductListFilter .productline {
+    float: left;
+    margin-right: 10px;
+}
+#ProductListFilter #ProductBuyPriceFilter input{
+    text-align: center;
+    width: 30px;
+}
+#ProductListFilter #ProductBuyPriceFilter label {
+    font-weight: normal;
+    width: 100px;
+}
+
+
+/* Header */
+.header-login-signup{
+	background-color:#292c2f;
+	box-shadow:0 1px 1px #ccc;
+	padding: 20px 40px;
+	height: 80px;
+	color: #ffffff;
+	box-sizing: border-box;
+}
+
+.header-login-signup .header-limiter {
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Logo */
+
+.header-login-signup .header-limiter h1{
+	float: left;
+	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	margin: 0;
+}
+
+.header-login-signup .header-limiter h1 span {
+	color: #5383d3;
+}
+
+/* The navigation links */
+
+.header-login-signup .header-limiter a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.header-login-signup .header-limiter nav {
+	font:16px Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	float: left;
+	margin: 0 0 0 60px;
+	padding: 0;
+}
+
+.header-login-signup .header-limiter nav a{
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 5px;
+	opacity: 0.9;
+	text-decoration:none;
+	line-height: 1;
+}
+
+.header-login-signup .header-limiter nav a:hover {
+	opacity: 1;
+}
+
+.header-login-signup .header-limiter nav a.selected {
+	color: #608bd2;
+}
+
+/* Login/Sign up buttons */
+
+.header-login-signup .header-limiter ul {
+	font: 14px Arial, Helvetica, sans-serif;
+	list-style: none;
+	line-height: 1;
+	float: right;
+}
+
+.header-login-signup .header-limiter ul li {
+	display: inline-block;
+	margin-left: 15px;
+	opacity:0.9;
+}
+
+.header-login-signup .header-limiter ul li:hover{
+	opacity: 1;
+}
+
+/* The sign up button */
+
+.header-login-signup .header-limiter ul li:last-child a {
+	font-weight: bold;
+	background-color: #3a3c3e;
+	padding: 10px 15px;
+	border-radius: 3px;
+}
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px) {
+
+	.header-login-signup {
+		padding: 25px;
+		height: 85px;
+	}
+
+	.header-login-signup .header-limiter h1 {
+		float: none;
+		margin: -8px 0 2px;
+		text-align: center;
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.header-login-signup .header-limiter nav {
+		margin: 0;
+		float: none;
+	}
+
+	.header-login-signup .header-limiter nav li a {
+		font-size: 13px;
+	}
+
+	.header-login-signup .header-limiter ul {
+		display: none;
+	}
+
+}
+
+/* For the headers to look good, be sure to reset the margin and padding of the body */
+
+body {
+	margin:0;
+	padding:0;
+}
+
+/* product detail page*/
+
+/*********************************************
+					PRODUCTS
+*********************************************/
+
+.product{
+	border: 1px solid #dddddd;
+	height: 321px;
+}
+
+.product>img{
+	max-width: 230px;
+}
+
+.product-rating{
+	font-size: 20px;
+	margin-bottom: 25px;
+}
+
+.product-title{
+	font-size: 20px;
+}
+
+.product-desc{
+	font-size: 14px;
+}
+
+.product-price{
+	font-size: 22px;
+}
+
+.product-stock{
+	color: #74DF00;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.product-info{
+		margin-top: 50px;
+}
+
+.content-wrapper {
+	max-width: 1140px;
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	border: 0px;
+	border-radius: 0px;
+}
+
+.container-fluid{
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.view-wrapper {
+	float: right;
+	max-width: 70%;
+	margin-top: 25px;
+}
+
+.detail-container {
+	padding-left: 0px;
+	padding-right: 0px;
+	max-width: 100%;
+}
+
+.service1-items {
+	padding: 0px 0 0px 0;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	height: 321px;
+	width: 130px;
+}
+
+.service1-item {
+	height: 107px;
+	width: 120px;
+	display: block;
+	float: left;
+	position: relative;
+	padding-right: 20px;
+	border-right: 1px solid #DDD;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+}
+
+.service1-item > img {
+	max-height: 110px;
+	max-width: 110px;
+	opacity: 0.6;
+	transition: all .2s ease-in;
+	-o-transition: all .2s ease-in;
+	-moz-transition: all .2s ease-in;
+	-webkit-transition: all .2s ease-in;
+}
+
+.service1-item > img:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.service-image-left {
+	padding-right: 50px;
+}
+
+.service-image-right {
+	padding-left: 50px;
+}
+
+.service-image-left > center > img,.service-image-right > center > img{
+	max-height: 155px;
+}

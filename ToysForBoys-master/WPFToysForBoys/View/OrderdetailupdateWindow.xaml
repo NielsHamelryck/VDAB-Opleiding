@@ -1,0 +1,78 @@
+﻿<Window x:Class="WPFToysForBoys.View.OrderdetailupdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFToysForBoys.View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:gala="http://www.galasoft.ch/mvvmlight"
+        mc:Ignorable="d"
+        Title="Detail Orders" Height="600" Width="900" ResizeMode="NoResize">
+    <DockPanel>
+        <TabControl Margin="0,0,0,10">
+            <TabItem Header="Order details">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="450">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="400" Margin="0 5 0 0">
+                            <Label Content="Name Product" Width="250" HorizontalContentAlignment="Center"/>
+                            <Label Content="Price" Width="80" HorizontalContentAlignment="Center"/>
+                            <Label Content="Quantity" Width="80" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                    <ListBox Height="375" Width="395" Margin="25 5 25 10" ItemsSource="{Binding OrderdetailList}" SelectedItem="{Binding SelectedOrderDetail}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                    <Grid Width="360">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="250"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="5 0" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" Width="240">
+                                            <TextBlock Text="{Binding Path=product.name}" HorizontalAlignment="Left"></TextBlock>
+                                        </Label>
+                                        <Label Margin="5 0" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Right" Width="70">
+                                            <TextBlock Text="{Binding Path=priceEach}" HorizontalAlignment="Right"></TextBlock>
+                                        </Label>
+                                        <Label Margin="5 0" Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Right" Width="70">
+                                            <TextBlock Text="{Binding Path=quantityOrdered}" HorizontalAlignment="Right"></TextBlock>
+                                        </Label>
+                                    </Grid>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                    <StackPanel Width="400">
+                        <StackPanel Orientation="Horizontal" Margin="25 25 25 0">
+                        <Label Content="Productname:" Width="100"></Label>
+                            <ComboBox Width="220" ItemsSource="{Binding PProductList}" DisplayMemberPath="name" SelectedValue="{Binding SelectedPProductI}" SelectedValuePath="id"></ComboBox>
+                        </StackPanel>
+                   
+                    <StackPanel Orientation="Horizontal" Margin="25 25 25 0">
+                            <Label Content="Quantity:" Width="100"></Label>
+                            <TextBox IsEnabled="True" VerticalContentAlignment="Center" Width="220" Text="{Binding Path=ShowOrderline.quantityOrdered}"></TextBox>
+                    </StackPanel>
+                   
+                    <StackPanel Orientation="Horizontal" Margin="25 25 25 0">
+                        <Label Content="Price:" Width="100"></Label>
+                            <TextBox IsEnabled="True" VerticalContentAlignment="Center" Width="220" Text="{Binding Path=ShowOrderline.priceEach}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+                        <Button Content="Add / Modify" Width="100" Margin="0 0 10 0"
+                                    Command="{Binding ODAddCommand}"></Button>
+                        <Button Content="New" Width="100" Command="{Binding ODNewCommand}"></Button>
+                        <Button Content="Delete" Width="100" Margin="10 0 0 0" Command="{Binding ODDeleteCommand}"></Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        
+       
+    </TabControl>
+
+
+    </DockPanel>
+</Window>

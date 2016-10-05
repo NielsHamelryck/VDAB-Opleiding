@@ -16,7 +16,7 @@ namespace TestADOWPF
             NumberStyles style= NumberStyles.Currency;
             if (value == null || (((string)value).Length == 0))
             {
-                return new ValidationResult(false, "Dit veld moet ingevuld zijn");
+                return new ValidationResult(false, "Getal moet ingevuld zijn");
             }
 
             if (!decimal.TryParse(value.ToString(),style,cultureInfo, out prijs))

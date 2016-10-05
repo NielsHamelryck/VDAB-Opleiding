@@ -1,0 +1,12 @@
+﻿@model WebFrontEnd.Models.OrderViewModel
+@{
+    ViewBag.Title = "OrderViewModel";
+}
+<tr>
+    <td>@Html.DisplayFor(m => m.Product.name)</td>
+    <td>@Html.TextBoxFor(m => m.Aantal)</td>
+    <td>@Html.DisplayFor(m => m.Product.buyPrice)</td>
+    <td>@Html.DisplayFor(m => m.Total)</td>
+    <td><a href="~/Checkout/RemoveFromCart/@Model.Product.id"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></a></td>
+</tr>
+

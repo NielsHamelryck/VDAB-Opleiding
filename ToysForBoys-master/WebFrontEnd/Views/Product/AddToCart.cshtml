@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "AddToCart";
+}
+
+<h2>Product toegevoegd</h2>
+<div class="alert alert-success" role="alert">
+    The product was succesfullly added to your shopping cart.
+    <ul>
+        <li>@Html.ActionLink("View your shopping cart", "ViewCart", "Checkout", new { @class = "btn btn-success" })</li>
+        <li>@Html.ActionLink("Return to homepage", "List", "Product", new { @class = "btn btn-success" })</li>
+
+    </ul>
+</div>
+

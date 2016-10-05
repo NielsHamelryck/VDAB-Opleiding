@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFcursusH2", "EFcursusH2\EFcursusH2.csproj", "{79C2F512-9437-4575-B39F-41DA23A0CF91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTakenH2", "EFTakenH2\EFTakenH2.csproj", "{910BE5A1-172E-4A8E-B462-9946AD70E99A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79C2F512-9437-4575-B39F-41DA23A0CF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C2F512-9437-4575-B39F-41DA23A0CF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C2F512-9437-4575-B39F-41DA23A0CF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C2F512-9437-4575-B39F-41DA23A0CF91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910BE5A1-172E-4A8E-B462-9946AD70E99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910BE5A1-172E-4A8E-B462-9946AD70E99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910BE5A1-172E-4A8E-B462-9946AD70E99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910BE5A1-172E-4A8E-B462-9946AD70E99A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Opleidingen2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Boeken2">
+          <Key>
+            <PropertyRef Name="BoekNr" />
+          </Key>
+          <Property Name="BoekNr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISBNNr" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="Titel" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BoekenCursussen2">
+          <Key>
+            <PropertyRef Name="BoekNr" />
+            <PropertyRef Name="CursusNr" />
+          </Key>
+          <Property Name="BoekNr" Type="int" Nullable="false" />
+          <Property Name="CursusNr" Type="int" Nullable="false" />
+          <Property Name="VolgNr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Campussen">
+          <Key>
+            <PropertyRef Name="CampusNr" />
+          </Key>
+          <Property Name="CampusNr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Straat" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HuisNr" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Gemeente" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cursussen2">
+          <Key>
+            <PropertyRef Name="CursusNr" />
+          </Key>
+          <Property Name="CursusNr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docenten">
+          <Key>
+            <PropertyRef Name="DocentNr" />
+          </Key>
+          <Property Name="DocentNr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Voornaam" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Familienaam" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Wedde" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CampusNr" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BoekenCur__BoekN__3A81B327">
+          <End Role="Boeken2" Type="Self.Boeken2" Multiplicity="1" />
+          <End Role="BoekenCursussen2" Type="Self.BoekenCursussen2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boeken2">
+              <PropertyRef Name="BoekNr" />
+            </Principal>
+            <Dependent Role="BoekenCursussen2">
+              <PropertyRef Name="BoekNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BoekenCur__Cursu__3B75D760">
+          <End Role="Cursussen2" Type="Self.Cursussen2" Multiplicity="1" />
+          <End Role="BoekenCursussen2" Type="Self.BoekenCursussen2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursussen2">
+              <PropertyRef Name="CursusNr" />
+            </Principal>
+            <Dependent Role="BoekenCursussen2">
+              <PropertyRef Name="CursusNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Docenten__Campus__1273C1CD">
+          <End Role="Campussen" Type="Self.Campussen" Multiplicity="1" />
+          <End Role="Docenten" Type="Self.Docenten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campussen">
+              <PropertyRef Name="CampusNr" />
+            </Principal>
+            <Dependent Role="Docenten">
+              <PropertyRef Name="CampusNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Opleidingen2ModelStoreContainer">
+          <EntitySet Name="Boeken2" EntityType="Self.Boeken2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BoekenCursussen2" EntityType="Self.BoekenCursussen2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campussen" EntityType="Self.Campussen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cursussen2" EntityType="Self.Cursussen2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docenten" EntityType="Self.Docenten" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BoekenCur__BoekN__3A81B327" Association="Self.FK__BoekenCur__BoekN__3A81B327">
+            <End Role="Boeken2" EntitySet="Boeken2" />
+            <End Role="BoekenCursussen2" EntitySet="BoekenCursussen2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BoekenCur__Cursu__3B75D760" Association="Self.FK__BoekenCur__Cursu__3B75D760">
+            <End Role="Cursussen2" EntitySet="Cursussen2" />
+            <End Role="BoekenCursussen2" EntitySet="BoekenCursussen2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Docenten__Campus__1273C1CD" Association="Self.FK__Docenten__Campus__1273C1CD">
+            <End Role="Campussen" EntitySet="Campussen" />
+            <End Role="Docenten" EntitySet="Docenten" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Opleidingen2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="CampusNr" />
+          </Key>
+          <Property Name="CampusNr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Straat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HuisNr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Docenten" Relationship="Self.FK__Docenten__Campus__1273C1CD" FromRole="Campussen" ToRole="Docenten" />
+        </EntityType>
+        <EntityType Name="Docent">
+          <Key>
+            <PropertyRef Name="DocentNr" />
+          </Key>
+          <Property Name="DocentNr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Familienaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wedde" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CampusNr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campus" Relationship="Self.FK__Docenten__Campus__1273C1CD" FromRole="Docenten" ToRole="Campussen" />
+        </EntityType>
+        <Association Name="FK__Docenten__Campus__1273C1CD">
+          <End Role="Campussen" Type="Opleidingen2Model.Campus" Multiplicity="1" />
+          <End Role="Docenten" Type="Opleidingen2Model.Docent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campussen">
+              <PropertyRef Name="CampusNr" />
+            </Principal>
+            <Dependent Role="Docenten">
+              <PropertyRef Name="CampusNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Opleidingen2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campussen" EntityType="Opleidingen2Model.Campus" />
+          <EntitySet Name="Docenten" EntityType="Opleidingen2Model.Docent" />
+          <AssociationSet Name="FK__Docenten__Campus__1273C1CD" Association="Self.FK__Docenten__Campus__1273C1CD">
+            <End Role="Campussen" EntitySet="Campussen" />
+            <End Role="Docenten" EntitySet="Docenten" />
+          </AssociationSet>
+          <EntitySet Name="Boeken" EntityType="Opleidingen2Model.Boek" />
+          <EntitySet Name="BoekenCursussen" EntityType="Opleidingen2Model.BoekCursus" />
+          <EntitySet Name="Cursussen" EntityType="Opleidingen2Model.Cursus" />
+          <AssociationSet Name="FK__BoekenCur__BoekN__3A81B327" Association="Opleidingen2Model.FK__BoekenCur__BoekN__3A81B327">
+            <End Role="Boeken2" EntitySet="Boeken" />
+            <End Role="BoekenCursussen2" EntitySet="BoekenCursussen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BoekenCur__Cursu__3B75D760" Association="Opleidingen2Model.FK__BoekenCur__Cursu__3B75D760">
+            <End Role="Cursussen2" EntitySet="Cursussen" />
+            <End Role="BoekenCursussen2" EntitySet="BoekenCursussen" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Boek">
+          <Key>
+            <PropertyRef Name="BoekNr" />
+          </Key>
+          <Property Name="BoekNr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISBNNr" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Titel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BoekenCursussen2" Relationship="Opleidingen2Model.FK__BoekenCur__BoekN__3A81B327" FromRole="Boeken2" ToRole="BoekenCursussen2" />
+        </EntityType>
+        <EntityType Name="BoekCursus">
+          <Key>
+            <PropertyRef Name="BoekNr" />
+            <PropertyRef Name="CursusNr" />
+          </Key>
+          <Property Name="BoekNr" Type="Int32" Nullable="false" />
+          <Property Name="CursusNr" Type="Int32" Nullable="false" />
+          <Property Name="VolgNr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Boek" Relationship="Opleidingen2Model.FK__BoekenCur__BoekN__3A81B327" FromRole="BoekenCursussen2" ToRole="Boeken2" />
+          <NavigationProperty Name="Cursus" Relationship="Opleidingen2Model.FK__BoekenCur__Cursu__3B75D760" FromRole="BoekenCursussen2" ToRole="Cursussen2" />
+        </EntityType>
+        <EntityType Name="Cursus">
+          <Key>
+            <PropertyRef Name="CursusNr" />
+          </Key>
+          <Property Name="CursusNr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BoekenCursussen2" Relationship="Opleidingen2Model.FK__BoekenCur__Cursu__3B75D760" FromRole="Cursussen2" ToRole="BoekenCursussen2" />
+        </EntityType>
+        <Association Name="FK__BoekenCur__BoekN__3A81B327">
+          <End Type="Opleidingen2Model.Boek" Role="Boeken2" Multiplicity="1" />
+          <End Type="Opleidingen2Model.BoekCursus" Role="BoekenCursussen2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boeken2">
+              <PropertyRef Name="BoekNr" />
+            </Principal>
+            <Dependent Role="BoekenCursussen2">
+              <PropertyRef Name="BoekNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BoekenCur__Cursu__3B75D760">
+          <End Type="Opleidingen2Model.Cursus" Role="Cursussen2" Multiplicity="1" />
+          <End Type="Opleidingen2Model.BoekCursus" Role="BoekenCursussen2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursussen2">
+              <PropertyRef Name="CursusNr" />
+            </Principal>
+            <Dependent Role="BoekenCursussen2">
+              <PropertyRef Name="CursusNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Opleidingen2ModelStoreContainer" CdmEntityContainer="Opleidingen2Entities">
+          <EntitySetMapping Name="Campussen">
+            <EntityTypeMapping TypeName="Opleidingen2Model.Campus">
+              <MappingFragment StoreEntitySet="Campussen">
+                <ScalarProperty Name="CampusNr" ColumnName="CampusNr" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="HuisNr" ColumnName="HuisNr" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docenten">
+            <EntityTypeMapping TypeName="Opleidingen2Model.Docent">
+              <MappingFragment StoreEntitySet="Docenten">
+                <ScalarProperty Name="DocentNr" ColumnName="DocentNr" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Familienaam" ColumnName="Familienaam" />
+                <ScalarProperty Name="Wedde" ColumnName="Wedde" />
+                <ScalarProperty Name="CampusNr" ColumnName="CampusNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boeken">
+            <EntityTypeMapping TypeName="Opleidingen2Model.Boek">
+              <MappingFragment StoreEntitySet="Boeken2">
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="ISBNNr" ColumnName="ISBNNr" />
+                <ScalarProperty Name="BoekNr" ColumnName="BoekNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoekenCursussen">
+            <EntityTypeMapping TypeName="Opleidingen2Model.BoekCursus">
+              <MappingFragment StoreEntitySet="BoekenCursussen2">
+                <ScalarProperty Name="VolgNr" ColumnName="VolgNr" />
+                <ScalarProperty Name="CursusNr" ColumnName="CursusNr" />
+                <ScalarProperty Name="BoekNr" ColumnName="BoekNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursussen">
+            <EntityTypeMapping TypeName="Opleidingen2Model.Cursus">
+              <MappingFragment StoreEntitySet="Cursussen2">
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="CursusNr" ColumnName="CursusNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

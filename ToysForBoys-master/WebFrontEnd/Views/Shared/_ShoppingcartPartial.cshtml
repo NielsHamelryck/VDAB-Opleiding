@@ -1,0 +1,10 @@
+﻿@{ WebFrontEnd.Models.ShoppingCart cart = (WebFrontEnd.Models.ShoppingCart)Session["cart"]; }
+<ul class="nav navbar-nav navbar-right">
+    <li>
+       
+    </li>
+    <li>
+        <a href="~/Checkout/ViewCart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="false"></span><span class="badge"> @cart.orders.Count()</span></a>
+    </li>
+</ul>
+

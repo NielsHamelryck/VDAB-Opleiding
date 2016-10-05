@@ -1,0 +1,47 @@
+﻿@model WebFrontEnd.Models.ProductListViewModel
+
+@{
+    ViewBag.Title = "Productenlijst";
+}
+
+
+<div class="container" id="ProductListFilter">
+    @using (Html.BeginForm())
+    {
+        <div class="row" id="ProductNameFilter">
+            @Html.TextBoxFor(model => model.FilterProductName, new { placeholder = "Product name..." })
+        </div>
+        <div class="row" id="ProductLineFilter">
+            <div>
+                Select the categories you want to search for:
+            </div>
+            @foreach (var productLine in Model.AllProductLines)
+            {
+                <div class="productline">
+                    @Html.CheckBox("productLine" + productLine.id.ToString(), Model.FilterProductLines.Contains(productLine.id))
+                    @Html.Label("productLine" + productLine.id.ToString(), productLine.name, new { @class= "checkbox-label" } )
+                </div>
+            }
+        </div>
+
+        <div class="row" id="ProductBuyPriceFilter">
+            <div>
+                @Html.LabelFor(model => model.FilterBuyPriceMinimum):
+                @Html.TextBoxFor(model => model.FilterBuyPriceMinimum)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.FilterBuyPriceMaximum):
+                @Html.TextBoxFor(model => model.FilterBuyPriceMaximum)
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.FilterBuyPriceMinimum)
+            </div>
+        </div>
+        <input type="submit" value="Filter"/>
+    }
+
+</div>
+
+@Html.Partial("_ProductList", Model.Products)
+
+

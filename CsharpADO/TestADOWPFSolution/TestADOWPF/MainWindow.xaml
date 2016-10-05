@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
         xmlns:testAdowpf="clr-namespace:TestADOWPF"
-        
-
         Title="MainWindow" Height="550" Width="525" SizeToContent="WidthAndHeight"
         Loaded="MainWindow_OnLoaded">
     <Window.Resources>
@@ -56,9 +54,9 @@
                         </TextBox.Text>
                     </TextBox>
                     <ComboBox Name="ComboBoxGenre" Width="150" Margin="0 16 0 0 " DisplayMemberPath="GenreNaam" 
-                              IsEnabled="{Binding ControlEnable}" SelectedValue="GenreNr" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                              IsEnabled="{Binding ControlEnable}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
                         <ComboBox.SelectedIndex>
-                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.GenreNr" ValidatesOnDataErrors="True"
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.GenreNr" Mode="TwoWay" 
                                      ValidatesOnNotifyDataErrors="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <testAdowpf:MoetGeldigeGenreZijnGeselecteerd/>
@@ -97,7 +95,7 @@
                     </TextBox>
                     <TextBox Name="TextBoxTotaalVerhuurd" Width="150" Margin="0 14 0 0" IsReadOnly="{Binding ControlReadOnly}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
                         <TextBox.Text>
-                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.TotaalVerhuurd" ValidatesOnDataErrors="True" NotifyOnValidationError="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding ElementName="ListBoxFilms" Path="SelectedItem.TotaalVerhuurd" ValidatesOnNotifyDataErrors="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <testAdowpf:MagNietNulZijn/>
                                 </Binding.ValidationRules>

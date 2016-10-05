@@ -14,7 +14,7 @@ namespace TestADOWPF
         {
             if (int.Parse(value.ToString()) == 0)
             {
-                return new ValidationResult(false, "Selecteer een genre");
+                return new ValidationResult(false, "Genre moet gekozen worden");
             }
 
             return ValidationResult.ValidResult;

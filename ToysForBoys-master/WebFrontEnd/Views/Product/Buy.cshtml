@@ -1,0 +1,69 @@
+﻿@model WebFrontEnd.Models.OrderViewModel
+@{
+    ViewBag.Title = "Buy";
+}
+
+@*code snippet taken from here: http://bootsnipp.com/snippets/featured/product-page-for-online-shop *@
+
+<div class="container-fluid">
+    <div class="content-wrapper">
+        <div class="item-container">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="product col-md-3 service-image-left">
+
+                        <center>
+                            <img id="item-display" src="@Html.GetImageSourceForProductline(Model.Product.productlineId)" alt="" />
+                        </center>
+                    </div>
+
+                    <div class="container service1-items col-sm-2 col-md-2 pull-left">
+                        <center>
+                            <a id="item-1" class="service1-item">
+                                <img src="@Html.GetImageSourceForProductline(Model.Product.productlineId)" alt=""></img>
+                            </a>
+                            <a id="item-2" class="service1-item">
+                                <img src="@Html.GetImageSourceForProductline(Model.Product.productlineId)" alt=""></img>
+                            </a>
+                            <a id="item-3" class="service1-item">
+                                <img src="@Html.GetImageSourceForProductline(Model.Product.productlineId)" alt=""></img>
+                            </a>
+                        </center>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="product-title">@Html.DisplayFor(model => model.Product.name)</div>
+                    <div class="product-desc">@Html.DisplayFor(model => model.Product.description)</div>
+                    <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+                    <hr>
+                    <div class="product-price">€ @Html.DisplayFor(model => model.Product.buyPrice)</div>
+                    <div class="product-stock">
+                        @if (Model.Product.quantityInStock > 0)
+                        {
+                            <text>in stock</text>
+                        }
+                        else
+                        {
+                            <text>out of stock</text>
+                        }
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Product", FormMethod.Post))
+                    {
+                        <div>Qty: @Html.TextBoxFor(model => model.Aantal, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Aantal)</div>
+
+                    <hr>
+                    <div class="btn-group cart">
+                        <button type="submit" class="btn btn-success">
+                            Add to cart
+                        </button>
+                    </div>
+                    @Html.HiddenFor(model => model.Product.id)
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

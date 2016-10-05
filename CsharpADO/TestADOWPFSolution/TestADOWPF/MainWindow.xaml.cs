@@ -4,21 +4,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AdoGemeenschappelijk;
-using TestADOWPF.Annotations;
 
 namespace TestADOWPF
 {
@@ -72,11 +60,10 @@ namespace TestADOWPF
             {
                 var manager = new FilmManager();
                 filmsOB = manager.GetFilms();
-                UpdateNaAnnulatie();
+                VulDeLijst();
                 genres = manager.GetGenres();
-                genres.Insert(0, new Genre(0, "-"));
+                genres.Insert(0, new Genre(0, ""));
                 ComboBoxGenre.ItemsSource = genres;
-
                 filmsOB.CollectionChanged += this.OnCollectionChanged;
                 ControlReadOnly = true;
                 ControlEnable = false;
@@ -122,36 +109,36 @@ namespace TestADOWPF
                 ButtonToevoegen.Content = "Bevestigen";
                 ButtonVerwijderen.Content = "Annuleren";
                 filmsOB.Add(new Film(0, "", 0, 0, 0, 0, 0));
-                UpdateNaAnnulatie();
-
+                VulDeLijst();
                 ListBoxFilms.SelectedItem = filmsOB.Last();
-                ComboBoxGenre.SelectedIndex = 0;
                 ListBoxFilms.ScrollIntoView(ListBoxFilms.SelectedItem);
                 ControlEnable = true;
                 ControlReadOnly = false;
             }
             else
             {
-                //TextBoxTitel.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                //ComboBoxGenre.GetBindingExpression(ComboBox.SelectedIndexProperty).UpdateSource();
-                //TextBoxInVoorraad.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                //TextBoxUitVoorraad.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                //TextBoxPrijs.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                //TextBoxTotaalVerhuurd.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                RefreshDeTextboxen();
-                if (!FilmToevoegenHasErrors()) {
+               
+                RefreshDeBoxen();
+                if (!FilmToevoegenHasErrors())
+                {
                     ControlEnable = false;
                     ControlReadOnly = true;
                     ButtonToevoegen.Content = "Toevoegen";
                     ButtonVerwijderen.Content = "Verwijderen";
+                    VulDeLijst();
                 }
-                
+                else
+                    MessageBox.Show("Er zijn nog velden die niet voldoen aan de juiste verreisten",
+                        "Toevoegen - Error", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+
             }
             
                
         }
 
-        private void RefreshDeTextboxen()
+        private void RefreshDeBoxen()
         {
             TextBoxTitel.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             ComboBoxGenre.GetBindingExpression(ComboBox.SelectedIndexProperty).UpdateSource();
@@ -183,36 +170,53 @@ namespace TestADOWPF
                      filmsOB.Remove(filmsOB.Last());
                      OudeFilms.Remove(OudeFilms.Last());
                      NieuwFilms.Remove(NieuwFilms.Last());
-                     UpdateNaAnnulatie();
-                     ListBoxFilms.ScrollIntoView(ListBoxFilms.SelectedItem);
+                     GeselecteerdeIndexInView();
                      ControlEnable = false;
                      ControlReadOnly = true;
                  }
                  else
                  {
-                     if ((ListBoxFilms.SelectedItem != null) &&(MessageBox.Show("Wilt u de film '"+((Film)ListBoxFilms.SelectedValue).Titel.TrimEnd()+"' verwijderen? ","Verwijderen"
-                     ,MessageBoxButton.YesNo,MessageBoxImage.Question,MessageBoxResult.Yes)==MessageBoxResult.Yes))
+                     if ((ListBoxFilms.SelectedItem != null) &&
+                         (MessageBox.Show("Ben je zeker dat je deze film wil verwijderen? ", "Verwijderen"
+                             , MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) ==
+                          MessageBoxResult.No))
                      {
-                         var index = 0;
-                          foreach (var nieuweFilm in NieuwFilms)
+                         MessageBox.Show("Verwijderen geannuleerd", "Verwijderen", MessageBoxButton.OK,
+                             MessageBoxImage.Information);
+
+                     }
+                     else
+                     {
+                         if (NieuwFilms.Count > 0)
                          {
-                             if ((Film) ListBoxFilms.SelectedItem == nieuweFilm)
+
+                             var index = -1;
+                             foreach (var nieuweFilm in NieuwFilms)
                              {
-                                 NieuwFilms.IndexOf(nieuweFilm);
+                                 if ((Film)ListBoxFilms.SelectedItem == nieuweFilm)
+                                 {
+                                     index=NieuwFilms.IndexOf(nieuweFilm);
+                                 }
                              }
+                             if(index>=0)
+                                NieuwFilms.RemoveAt(index);
                          }
-                         NieuwFilms.RemoveAt(index);
                          filmsOB.Remove((Film)ListBoxFilms.SelectedItem);
-                         ListBoxFilms.SelectedIndex = 0;
-                        
-                        
-                     }else MessageBox.Show("Verwijderen geannuleerd","Verwijderen",MessageBoxButton.OK,MessageBoxImage.Information);
+                         GeselecteerdeIndexInView();
+                     } 
                  } // als de button "verwijderen" is selecteditem deleten
         }
-        private void UpdateNaAnnulatie()
+        private void VulDeLijst()
         {
             ListBoxFilms.ItemsSource = filmsOB;
+            GeselecteerdeIndexInView();
+            
+        }
+
+        private void GeselecteerdeIndexInView()
+        {
             ListBoxFilms.SelectedIndex = 0;
+            ListBoxFilms.ScrollIntoView(ListBoxFilms.SelectedItem);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -227,53 +231,55 @@ namespace TestADOWPF
 
         private void ButtonOpslaan_OnClick(object sender, RoutedEventArgs e)
         {
-            var manager = new FilmManager();
-            if (NieuwFilms.Count > 0)
+            if ((MessageBox.Show("Wilt u alles wegschrijven naar de database ?", "Opslaan", MessageBoxButton.YesNo,
+                MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes))
             {
-                manager.ToevoegingenWegschrijven(NieuwFilms);
-            }
-            if (GewijzigdeFilms.Count > 0)
-            {
-                manager.GewijzigdeFilmsToevoegen(GewijzigdeFilms);
-            }
+                var manager = new FilmManager();
+                if (NieuwFilms.Count > 0)
+                {
+                    manager.ToevoegingenWegschrijven(NieuwFilms);
+                }
+                foreach (var gewijzigdeFilm in filmsOB)
+                {
+                    if (gewijzigdeFilm.Changed == true && gewijzigdeFilm.BandNr != 0)
+                    {
+                        GewijzigdeFilms.Add(gewijzigdeFilm);
+                    }
+                }
+                if (GewijzigdeFilms.Count > 0)
+                {
+                    manager.GewijzigdeFilmsToevoegen(GewijzigdeFilms);
+                }
 
-            if (OudeFilms.Count > 0)
-            {
-                manager.VerwijderingenToevoegen(OudeFilms);
-            }
-            
-            OudeFilms.Clear();
-            NieuwFilms.Clear();
-            GewijzigdeFilms.Clear();
-            MessageBox.Show("Opslaan is geslaagd", "Opslaan", MessageBoxButton.OK, MessageBoxImage.Information);
-            filmsOB = manager.GetFilms();
-            ListBoxFilms.ItemsSource = filmsOB;
-            ListBoxFilms.SelectedIndex = 0;
+                if (OudeFilms.Count > 0)
+                {
+                    manager.VerwijderingenToevoegen(OudeFilms);
+                }
+
+                OudeFilms.Clear();
+                NieuwFilms.Clear();
+                GewijzigdeFilms.Clear();
+                filmsOB = manager.GetFilms();
+                VulDeLijst();
+            } else MessageBox.Show("Opslaan geanulleerd", "Opslaan", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ButtonVerhuur_OnClick(object sender, RoutedEventArgs e)
         {
             if (((Film)ListBoxFilms.SelectedItem).InVoorraad != 0)
             {
-                //Film verhuurFilm = new Film();
-                //verhuurFilm = (Film) ListBoxFilms.SelectedItem;
-                //verhuurFilm.InVoorraad= verhuurFilm.InVoorraad-1;
-                //verhuurFilm.UitVoorraad = verhuurFilm.UitVoorraad+1;
-                //verhuurFilm.TotaalVerhuurd = verhuurFilm.TotaalVerhuurd+1;
-                //GewijzigdeFilms.Add(verhuurFilm);
-                //MessageBox.Show("Film verhuurt", "Verhuur", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 Film verhuurFilm = (Film)ListBoxFilms.SelectedItem;
                 verhuurFilm.InVoorraad = verhuurFilm.InVoorraad - 1;
                 verhuurFilm.UitVoorraad = verhuurFilm.UitVoorraad + 1;
                 verhuurFilm.TotaalVerhuurd = verhuurFilm.TotaalVerhuurd + 1;
-                GewijzigdeFilms.Add(verhuurFilm);
+                MessageBox.Show("Film verhuurd", "Verhuur", MessageBoxButton.OK, MessageBoxImage.Information);
+                GeselecteerdeIndexInView();
                 
-                MessageBox.Show("Film verhuurt", "Verhuur", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
             else
-            MessageBox.Show("Er zijn geen films meer in voorraad", "Verhuur", MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            MessageBox.Show("Alle films zijn verhuurd !", "Verhuur", MessageBoxButton.OK,
+                MessageBoxImage.Exclamation);
         }
     }
 }

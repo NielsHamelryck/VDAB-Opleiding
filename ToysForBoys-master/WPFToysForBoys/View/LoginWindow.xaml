@@ -1,0 +1,34 @@
+﻿<Window x:Class="WPFToysForBoys.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFToysForBoys.View"
+        mc:Ignorable="d"
+        Title="ToysForBoys - Login" Height="325" Width="525">
+    <StackPanel Margin="25">
+        <TextBlock Text="Login" FontSize="25"></TextBlock>
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Margin="5"
+            Content="_Username" Target="{Binding ElementName=userNameTextBox}"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Margin="5" 
+            Content="_Password" Target="{Binding ElementName=passwordBox}" ></Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="userNameTextBox" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"></TextBox>
+            <PasswordBox Grid.Row="1" Grid.Column="1" Margin="5" Name="passwordBox" VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center" MaxLength="16" ></PasswordBox>
+        </Grid>
+        <Button HorizontalAlignment="Center" Content="Login" Width="150" Height="20" Click="LoginButton_Click" IsDefault="True"></Button>
+        <Button HorizontalAlignment="Center" Content="Register" Width="150" Height="20" Margin="0 10" Click="RegisterButton_Click"></Button>
+    </StackPanel>
+
+
+</Window>
