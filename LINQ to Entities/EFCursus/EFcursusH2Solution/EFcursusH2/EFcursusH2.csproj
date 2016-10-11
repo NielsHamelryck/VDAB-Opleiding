@@ -52,19 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boek.cs">
-      <DependentUpon>Opleidingen2Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BoekCursus.cs">
-      <DependentUpon>Opleidingen2Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Campus.cs">
+      <DependentUpon>Opleidingen2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cursist.cs">
       <DependentUpon>Opleidingen2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Cursus.cs">
       <DependentUpon>Opleidingen2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Docent.cs">
+      <DependentUpon>Opleidingen2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KlassikaleCursus.cs">
       <DependentUpon>Opleidingen2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Opleidingen2Model.Context.cs">
@@ -84,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZelfstudieCursus.cs">
+      <DependentUpon>Opleidingen2Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -108,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFTakenH2\EFTakenH2.csproj">
+      <Project>{910BE5A1-172E-4A8E-B462-9946AD70E99A}</Project>
+      <Name>EFTakenH2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

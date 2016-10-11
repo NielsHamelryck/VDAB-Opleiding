@@ -16,14 +16,14 @@ namespace EFTakenH2
     {
         public Personeelslid()
         {
-            this.Beschermelingen = new HashSet<Personeelslid>();
+            this.Ondergeschikten = new HashSet<Personeelslid>();
         }
     
         public int PersoneelsNr { get; set; }
         public string Voornaam { get; set; }
         public Nullable<int> ManagerNr { get; set; }
     
-        public virtual ICollection<Personeelslid> Beschermelingen { get; set; }
+        public virtual ICollection<Personeelslid> Ondergeschikten { get; set; }
         public virtual Personeelslid Manager { get; set; }
     }
 }

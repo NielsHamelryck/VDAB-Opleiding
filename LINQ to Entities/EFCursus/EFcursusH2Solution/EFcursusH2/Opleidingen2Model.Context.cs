@@ -27,8 +27,7 @@ namespace EFcursusH2
     
         public virtual DbSet<Campus> Campussen { get; set; }
         public virtual DbSet<Docent> Docenten { get; set; }
-        public virtual DbSet<Boek> Boeken { get; set; }
-        public virtual DbSet<BoekCursus> BoekenCursussen { get; set; }
+        public virtual DbSet<Cursist> Cursisten { get; set; }
         public virtual DbSet<Cursus> Cursussen { get; set; }
     }
 }

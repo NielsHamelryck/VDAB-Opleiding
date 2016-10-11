@@ -1,0 +1,17 @@
+﻿@using MVC_Voorbeeld2.Models
+@model List<Werknemer>
+
+@{
+    ViewBag.Title = "AlleWerknemers";
+}
+
+<h2>AlleWerknemers</h2>
+<ul>
+    @foreach (var werknemer in Model)
+    {
+        <li>@werknemer.Voornaam verdient @werknemer.Wedde</li>
+    }
+</ul>
+@section scripts {
+    <p>Hier komen nog allerlei scripts...</p>
+}

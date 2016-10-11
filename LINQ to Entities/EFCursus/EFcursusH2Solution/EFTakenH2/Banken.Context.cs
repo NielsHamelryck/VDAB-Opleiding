@@ -29,8 +29,8 @@ namespace EFTakenH2
     
         public virtual DbSet<Klant> Klanten { get; set; }
         public virtual DbSet<Rekening> Rekeningen { get; set; }
-        public virtual DbSet<Personeelslid> Personeel { get; set; }
         public virtual DbSet<TotaleSaldoPerKlant> TotaleSaldosPerKlant { get; set; }
+        public virtual DbSet<Personeelslid> Personeel { get; set; }
     
         public virtual int AdministratieveKost(Nullable<decimal> kost)
         {

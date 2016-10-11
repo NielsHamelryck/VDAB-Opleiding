@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "AndereNaam";
+    
+}
+
+<h2>AndereNaam</h2>
+
+
+het resultaat var (1+2*5+0.5) is @(1 + 2 * 5 + 0.5)
+
+@for (var teller = 0; teller < 10; teller++)
+{
+    <br />@teller
+}
+
+@if (new Random().Next(1, 11) == 7)
+{   <br />
+    <text>Het is zeven</text>
+    @: Je hebt geluk
+}
+else
+{
+    <br />
+    <text>Het is geen zeven</text>
+    @: Een andere keer misschien
+} 
+
+@{
+    var getal1 = 0;
+    var getal2 = 1;
+    int resultaat=0;
+    <h2>Rij van Fibonacci</h2>
+    <text> @getal1 , @getal2 </text>
+    while (resultaat < 100)
+    {
+
+        resultaat = getal1 + getal2;
+        if (resultaat < 100)
+        {
+            @: ,@resultaat 
+        }
+      
+        getal1 = getal2;
+        getal2 = resultaat;
+        
+        
+
+    }
+}

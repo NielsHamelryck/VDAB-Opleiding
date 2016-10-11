@@ -70,6 +70,7 @@
     <Compile Include="Klant.cs">
       <DependentUpon>Banken.tt</DependentUpon>
     </Compile>
+    <Compile Include="OverschrijvingRekeninguitbreiding.cs" />
     <Compile Include="Personeelslid.cs">
       <DependentUpon>Banken.tt</DependentUpon>
     </Compile>

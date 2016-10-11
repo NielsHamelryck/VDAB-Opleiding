@@ -1,0 +1,23 @@
+﻿
+@model float
+
+
+@{
+    if (Model < 2)
+    {
+        <span class="groen">@Model %</span>
+    }
+    else if (Model <= 5)
+    {
+        <span class="geel"> @Model %</span>
+    }
+    else if (Model <= 8)
+    {
+        <span class="oranje"> @Model %</span>
+    }
+    else
+    { <span class="rood"> @Model %</span>}
+
+}
+           
+

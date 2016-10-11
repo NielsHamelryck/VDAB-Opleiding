@@ -12,16 +12,9 @@ namespace EFcursusH2
     using System;
     using System.Collections.Generic;
     
-    public partial class Cursus
+    public abstract partial class Cursus
     {
-        public Cursus()
-        {
-            this.BoekenCursussen2 = new HashSet<BoekCursus>();
-        }
-    
         public int CursusNr { get; set; }
         public string Naam { get; set; }
-    
-        public virtual ICollection<BoekCursus> BoekenCursussen2 { get; set; }
     }
 }

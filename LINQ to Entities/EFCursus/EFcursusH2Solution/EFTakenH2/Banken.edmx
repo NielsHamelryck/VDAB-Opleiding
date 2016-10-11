@@ -127,16 +127,27 @@ warning 6002: The table/view 'Bank3.dbo.TotaleSaldoPerKlant' does not have a pri
             <End Role="Klanten" EntitySet="Klanten" />
             <End Role="Rekeningen" EntitySet="Rekeningen" />
           </AssociationSet>
+          <EntitySet Name="TotaleSaldosPerKlant" EntityType="Bank3Model.TotaleSaldoPerKlant" />
+          <FunctionImport Name="AdministratieveKost">
+          <Parameter Name="Kost" Mode="In" Type="Decimal" />
+          </FunctionImport>
           <EntitySet Name="Personeel" EntityType="Bank3Model.Personeelslid" />
           <AssociationSet Name="FK__Personeel__Manag__239E4DCF" Association="Bank3Model.FK__Personeel__Manag__239E4DCF">
             <End Role="Personeel" EntitySet="Personeel" />
             <End Role="Personeel1" EntitySet="Personeel" />
           </AssociationSet>
-          <EntitySet Name="TotaleSaldosPerKlant" EntityType="Bank3Model.TotaleSaldoPerKlant" />
-          <FunctionImport Name="AdministratieveKost">
-            <Parameter Name="Kost" Mode="In" Type="Decimal" />
-          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="Zichtrekening" BaseType="Bank3Model.Rekening" />
+        <EntityType Name="Spaarrekening" BaseType="Bank3Model.Rekening" />
+        <EntityType Name="TotaleSaldoPerKlant">
+          <Key>
+            <PropertyRef Name="KlantNr" />
+            <PropertyRef Name="Voornaam" />
+          </Key>
+          <Property Name="KlantNr" Type="Int32" Nullable="false" />
+          <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotaleSaldo" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
         <EntityType Name="Personeelslid">
           <Key>
             <PropertyRef Name="PersoneelsNr" />
@@ -144,7 +155,7 @@ warning 6002: The table/view 'Bank3.dbo.TotaleSaldoPerKlant' does not have a pri
           <Property Name="PersoneelsNr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ManagerNr" Type="Int32" />
-          <NavigationProperty Name="Beschermelingen" Relationship="Bank3Model.FK__Personeel__Manag__239E4DCF" FromRole="Personeel" ToRole="Personeel1" />
+          <NavigationProperty Name="Ondergeschikten" Relationship="Bank3Model.FK__Personeel__Manag__239E4DCF" FromRole="Personeel" ToRole="Personeel1" />
           <NavigationProperty Name="Manager" Relationship="Bank3Model.FK__Personeel__Manag__239E4DCF" FromRole="Personeel1" ToRole="Personeel" />
         </EntityType>
         <Association Name="FK__Personeel__Manag__239E4DCF">
@@ -159,17 +170,6 @@ warning 6002: The table/view 'Bank3.dbo.TotaleSaldoPerKlant' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Zichtrekening" BaseType="Bank3Model.Rekening" />
-        <EntityType Name="Spaarrekening" BaseType="Bank3Model.Rekening" />
-        <EntityType Name="TotaleSaldoPerKlant">
-          <Key>
-            <PropertyRef Name="KlantNr" />
-            <PropertyRef Name="Voornaam" />
-          </Key>
-          <Property Name="KlantNr" Type="Int32" Nullable="false" />
-          <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TotaleSaldo" Type="Decimal" Precision="38" Scale="2" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -205,15 +205,6 @@ warning 6002: The table/view 'Bank3.dbo.TotaleSaldoPerKlant' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Personeel">
-            <EntityTypeMapping TypeName="Bank3Model.Personeelslid">
-              <MappingFragment StoreEntitySet="Personeel">
-                <ScalarProperty Name="ManagerNr" ColumnName="ManagerNr" />
-                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
-                <ScalarProperty Name="PersoneelsNr" ColumnName="PersoneelsNr" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TotaleSaldosPerKlant">
             <EntityTypeMapping TypeName="Bank3Model.TotaleSaldoPerKlant">
               <MappingFragment StoreEntitySet="TotaleSaldoPerKlant">
@@ -224,6 +215,15 @@ warning 6002: The table/view 'Bank3.dbo.TotaleSaldoPerKlant' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AdministratieveKost" FunctionName="Bank3Model.Store.AdministratieveKost" />
+          <EntitySetMapping Name="Personeel">
+            <EntityTypeMapping TypeName="Bank3Model.Personeelslid">
+              <MappingFragment StoreEntitySet="Personeel">
+                <ScalarProperty Name="ManagerNr" ColumnName="ManagerNr" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="PersoneelsNr" ColumnName="PersoneelsNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

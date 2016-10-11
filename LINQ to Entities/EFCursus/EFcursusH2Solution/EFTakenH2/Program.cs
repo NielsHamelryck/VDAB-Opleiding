@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using IsolationLevel = System.Transactions.IsolationLevel;
+
 
 namespace EFTakenH2
 {
@@ -18,31 +20,28 @@ namespace EFTakenH2
 
             using (var entities = new Bank3Entities())
             {
-                var hoogsteInHierarchie = (from peroneel in entities.Personeel
-                    where peroneel.Manager == null
-                    select peroneel).ToList();
 
-                new Program().Afbeelden(hoogsteInHierarchie,0);
-            }
-            
-        }
+                var query = entities.Klanten.Join(entities.Rekeningen,
+                    (klant => klant.KlantNr),
+                    (rekening => rekening.KlantNr),
+                    ((klant, rekening) => new {Klante = klant, Rekeningen = rekening})
+                    ).Where(rekening=>rekening.Rekeningen is Spaarrekening);
 
-        void Afbeelden(List<Personeelslid> personeel, int aantalTab)
-        {
-            
-            foreach (var manager in personeel)
-            {
-                Console.Write(new string('\t', aantalTab));
-                Console.WriteLine(manager.Voornaam);
-                
-                if (manager.Beschermelingen.Count != 0)
+                foreach (var rekening in query)
                 {
-                    Afbeelden(manager.Beschermelingen.ToList(),aantalTab+1);
+                    Console.WriteLine("{0} : {1} - {2} : {3}",
+                        rekening.Klante.KlantNr,rekening.Klante.Voornaam,rekening.Rekeningen.RekeningNr,rekening.Rekeningen.Saldo);
                 }
             }
+        
         }
+
         
         
+          
     }
+
+
 }
+
 

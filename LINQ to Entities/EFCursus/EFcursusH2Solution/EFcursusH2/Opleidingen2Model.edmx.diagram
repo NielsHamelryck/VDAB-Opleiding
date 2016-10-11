@@ -8,12 +8,14 @@
         <EntityTypeShape EntityType="Opleidingen2Model.Campus" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Opleidingen2Model.Docent" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="Opleidingen2Model.FK__Docenten__Campus__1273C1CD" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Opleidingen2Model.Boek" Width="1.5" PointX="1.125" PointY="4.375" />
-        <EntityTypeShape EntityType="Opleidingen2Model.BoekCursus" Width="1.5" PointX="3.375" PointY="4.375" />
-        <EntityTypeShape EntityType="Opleidingen2Model.Cursus" Width="1.5" PointX="5.625" PointY="4.5" />
-        <AssociationConnector Association="Opleidingen2Model.FK__BoekenCur__BoekN__3A81B327" />
-        <AssociationConnector Association="Opleidingen2Model.FK__BoekenCur__Cursu__3B75D760" />
-      </Diagram>
+        <EntityTypeShape EntityType="Opleidingen2Model.Cursist" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="Opleidingen2Model.FK__Cursisten__Mento__49C3F6B7" />
+        <EntityTypeShape EntityType="Opleidingen2Model.Cursus" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="Opleidingen2Model.KlassikaleCursus" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="Opleidingen2Model.ZelfstudieCursus" Width="1.5" PointX="3" PointY="7.625" />
+        <InheritanceConnector EntityType="Opleidingen2Model.KlassikaleCursus" />
+        <InheritanceConnector EntityType="Opleidingen2Model.ZelfstudieCursus" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
