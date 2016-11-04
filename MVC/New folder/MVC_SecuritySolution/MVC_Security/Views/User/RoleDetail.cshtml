@@ -1,0 +1,50 @@
+﻿@model MVC_Security.Models.RoleDetailViewModel
+@{
+    ViewBag.Title = "RoleDetail";
+}
+
+<h2>Detail van de role <i>@Model.RoleName</i>
+</h2>
+<h3>Members :</h3>
+@if (Model.UsersUitRole.Count != 0)
+{
+    <table class="zebra">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Delete member from role</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model.UsersUitRole)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td align="center">
+                    <a href="/user/VerwijderMermberFromRole?userid=@user.Id&roleid=@Model.RoleId">
+                        <img src="~/Images/delete.png"/>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>De role @Model.RoleName heeft geen members.</p>
+}
+<br/>
+@using (Html.BeginForm("MemberToevoegen", "User", new {roleid = Model.RoleId}, FormMethod.Post))
+{
+    <fieldset>
+        Kies een user om aan deze rol toe te voegen :
+        @Html.DropDownList("SelectUser")
+        <br/><br/>
+        <p><input type="submit" value="Toevoegen"/>
+        </p>
+    </fieldset>
+    
+}
+<a href="/User/Rolebeheer">Terug naar rolebeheer</a>
+

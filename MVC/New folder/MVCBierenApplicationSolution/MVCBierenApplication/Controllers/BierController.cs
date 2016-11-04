@@ -4,44 +4,61 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCBierenApplication.Models;
+using MVCBierenApplication.Services;
+
 
 namespace MVCBierenApplication.Controllers
 {
+    
     public class BierController : Controller
     {
+
         // GET: Bier
+        private BierService BierService = new BierService();
+
         public ActionResult Index()
         {
-            var bieren= new List<Bier>();
-
-            bieren.Add(new Bier
-            {
-                Naam = "Aardsmonnik",
-                Alcohol = 8,
-                ID = 5
-
-            });
-            bieren .Add(new Bier
-            {
-                Naam = "Gouden Carolus Classic",
-                Alcohol = 7.5f,
-                ID = 17
-            });
-            bieren.Add(new Bier
-            {
-                Naam="Duvel",
-                Alcohol = 9,
-                ID = 38
-                
-            });
-            bieren.Add(new Bier
-            {
-                Naam = "Jupiler NA",
-                Alcohol = 0.0f,
-                ID = 105
-
-            });
+            var bieren = BierService.FindAll();
             return View(bieren);
+        }
+
+        public ActionResult Verwijderen(int id)
+        {
+            var bier = BierService.Read(id);
+            return View(bier);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var bier = BierService.Read(id);
+            this.TempData["bier"] = bier;
+            BierService.Delete(id);
+            return RedirectToAction("Verwijderd","Bier");
+        }
+
+        public ActionResult Verwijderd()
+        {
+            var bieren = (Bier) this.TempData["bier"];
+            return View(bieren);
+        }
+
+        [HttpGet]
+        public ActionResult Toevoegen()
+        {
+            var bier =new Bier();
+            return View(bier);
+        }
+
+        [HttpPost]
+        public ActionResult Toevoegen(Bier b)
+        {
+            if (this.ModelState.IsValid)
+            {
+                BierService.Add(b);
+                return Redirect("Index");
+            }
+            return View(b);
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model System.Data.Entity.IDbSet<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Rolebeheer";
+}
+
+<h2>Rolebeheer</h2>
+
+<table class="zebra">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Delete role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var rol in Model)
+    {
+        <tr>
+            <td>@rol.Id</td>
+            <td><a Href="RoleDetail/@rol.Id">@rol.Name</a></td>
+            <td align="center">
+                <a href="VerwijderRole/@rol.Id"><img src="~/Images/delete.png" /></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

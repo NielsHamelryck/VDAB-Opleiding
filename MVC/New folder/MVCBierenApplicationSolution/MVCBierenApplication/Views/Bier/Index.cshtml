@@ -6,9 +6,42 @@
 }
 
 <h2>Alle bieren</h2>
+<table class="zebra">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Alcohol</th>
+        <th></th>
+    </tr>
+    </thead>
+    
+        @foreach (var bier in Model)
+        {
+            var url = Url.Action("Verwijderen", "Bier", new { ID = bier.BierNr });
 
-    @foreach (var bier in Model)
-    {
-        <p>@Html.DisplayFor(m=>bier.ID):@bier.Naam @Html.DisplayFor(m=>bier.Alcohol)</p>
-    }
+            //var url = "Verwijderen/" + bier.ID;
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(m => bier.BierNr)
+                </td>
+                <td>@bier.Naam</td>
+                <td>
+                    @if (bier.Alcohol != null)
+                    {
+                        @Html.DisplayFor(m => bier.Alcohol)
+                    }
+                    else
+                    {
+                        <Span>Niet gekend</Span>
+                    }
+                </td>
+
+                <td><a href="@url"><img src="~/Images/delete.png" alt="Delete_btn" /></a></td>
+            </tr>
+        }
+        
+</table>
+ @Html.ActionLink("Bier toevoegen","Toevoegen")
 

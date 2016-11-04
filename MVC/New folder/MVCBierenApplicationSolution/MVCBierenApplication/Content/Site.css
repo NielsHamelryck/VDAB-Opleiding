@@ -1,6 +1,28 @@
-﻿body {
+﻿/*Layout voor toevoegen van bieren*/
+.input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+/*layout van de tabel */
+
+table.zebra, table.zebra td,table.zebra th {
+    border: 1px solid silver;
+    border-collapse: collapse;
+} 
+
+table.zebra thead {
+    color: white;
+    background-color: gray;
+}
+
+table.zebra tbody tr:nth-child(even) {
+
+    background-color: #DDDDDD;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,7 +46,7 @@ textarea {
 }
 
 .geel {
-    color: yellow;
+    color:gold;
 }
 
 .groen {
@@ -36,4 +58,20 @@ textarea {
 }
 .rood {
     color: red;
+}
+
+/* layout voor de validation*/
+
+.validation-summary-errors {
+    color: red;
+    
+}
+
+.input-validation-error {
+    border-color: red;
+    background-color: #fff0f5;
+}
+
+.input-validation-valid {
+    display: none;
 }

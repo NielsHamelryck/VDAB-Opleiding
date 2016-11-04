@@ -16,9 +16,12 @@ namespace MVC_Voorbeeld3
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DefaultModelBinder.ResourceClassKey = "Messages";
             Application.Lock();
             Application.Add("aantalBezoeken",0);
             Application.UnLock();
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal?), new DecimalModelBinder());
         }
 
         protected void Session_Start()

@@ -1,0 +1,191 @@
+﻿@model MVC_Cultuurhuis2.Models.NieuwKlantForm
+@{
+    ViewBag.Title = "Nieuw";
+}
+
+<div class="jumbotron">
+    <h1>
+        Het Cultuurhuis <img src="~/Images/nieuweklant.png" />
+    </h1>
+    <p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tickets kiezen &raquo;</a>
+        <a href="@Url.Action("Mandje", "Home")" class="btn btn-primary">Winkelmandje &raquo;</a>
+        <a href="@Url.Action("Bevestiging", "Home")" class="btn btn-primary">Kassa &raquo;</a>
+    </p>
+    
+
+</div>
+<p class="lead alert alert-info">Vul jou gegevens in</p>
+
+@using (Html.BeginForm("Nieuw", "Home", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.Voornaam)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Voornaam,
+                new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @style = "Display:inline-block"
+                    }
+                })
+            @Html.ValidationMessageFor(m => m.Voornaam,
+                String.Empty, new {@style = "font-style: italic; padding-left:1em"})
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">@Html.LabelFor(m => m.Familienaam)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Familienaam,
+                new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @style = "Display:inline-block"
+
+                    }
+                })
+            @Html.ValidationMessageFor(m => m.Familienaam, String.Empty,
+                new
+                {
+                    @style = "font-style: italic; padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">@Html.LabelFor(m => m.Straat)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Straat, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display: inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Straat, String.Empty
+                , new
+                {
+                    @style = "font-style:italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">@Html.LabelFor(m => m.Huisnr)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Huisnr, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Huisnr, String.Empty,
+
+                new
+                {
+                    @Style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.Postcode)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Postcode, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Postcode, String.Empty,
+                new
+                {
+                    @style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.Gemeente)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Gemeente, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Gemeente, String.Empty,
+                new
+                {
+                    @style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.Gebruikersnaam)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Gebruikersnaam, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Gebruikersnaam, String.Empty,
+                new
+                {
+                    @style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.Paswoord)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Paswoord, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.Paswoord, String.Empty,
+                new
+                {
+                    @style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LabelFor(m => m.BevestigPaswoord)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.BevestigPaswoord, new
+            {
+                htmlAttributes = new
+                {
+                    @class = "form-control",
+                    @style = "Display:inline-block"
+                }
+            })
+            @Html.ValidationMessageFor(m => m.BevestigPaswoord, String.Empty,
+                new
+                {
+                    @style = "font-style: italic;padding-left: 1em"
+                })
+        </div>
+    </div>
+    <div class="form-group">
+        
+        <div class="col-md-offset-2 col-md-10">
+           <input name="toevoegen" type="submit" class="btn btn-primary" value="Registreer me"/>
+        </div>
+    </div>
+}

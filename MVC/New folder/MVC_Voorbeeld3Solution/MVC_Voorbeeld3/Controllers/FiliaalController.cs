@@ -34,7 +34,7 @@ namespace MVC_Voorbeeld3.Controllers
             var filiaal = filiaalService.Read(id);
             this.TempData["filiaal"] = filiaal;
             filiaalService.Delete(id);
-            return Redirect("~/Filiaal/Verwijderd");
+            return RedirectToAction("Verwijderd");
         }
 
         public ActionResult Verwijderd()
