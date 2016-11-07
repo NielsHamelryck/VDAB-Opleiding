@@ -1,0 +1,66 @@
+﻿@using MVC_Cultuurhuis2.Models
+@model List<MVC_Cultuurhuis2.Models.MandjeItem>
+@{
+    ViewBag.Title = "Overzicht";
+}
+
+<div class="jumbotron">
+    <h1>Het Cultuurhuis <img src="~/Images/bevestig.png"/>
+    </h1>
+    <p><a href="@Url.Action("Index","Home")" class="btn btn-primary">Tickets kiezen &raquo;</a></p>
+</div>
+
+@if (((List<MandjeItem>)ViewBag.gelukt).Count > 0)
+{
+    <h2 class="alert alert-success">Gelukte reserveringen</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Titel</th>
+            <th>Uitvoerders</th>
+            <th>Prijs</th>
+            <th>Plaatsen</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var reservering in (List<MandjeItem>) ViewBag.gelukt)
+        {
+            <tr>
+                <td class="col-md-3">@Html.DisplayFor(m => reservering.Datum)</td>
+                <td class="col-md-2">@reservering.Title</td>
+                <td class="col-md-3">@reservering.Uitvoerders</td>
+                <td class="col-md-1">@Html.DisplayFor(m => reservering.Prijs)</td>
+                <td class="col-md-2">@reservering.Plaatsen</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+@if (((List<MandjeItem>)ViewBag.mislukt).Count > 0)
+{
+    <h2 class="alert alert-danger">Gelukte reserveringen</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Titel</th>
+                <th>Uitvoerders</th>
+                <th>Prijs</th>
+                <th>Plaatsen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservering in (List<MandjeItem>)ViewBag.mislukt)
+            {
+                <tr>
+                    <td class="col-md-3">@Html.DisplayFor(m => reservering.Datum)</td>
+                    <td class="col-md-2">@reservering.Title</td>
+                    <td class="col-md-3">@reservering.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m => reservering.Prijs)</td>
+                    <td class="col-md-2">@reservering.Plaatsen</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

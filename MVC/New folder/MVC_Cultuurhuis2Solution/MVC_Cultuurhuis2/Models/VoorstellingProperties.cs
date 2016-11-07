@@ -17,7 +17,8 @@ namespace MVC_Cultuurhuis2.Models
         
         public short VrijePlaatsen { get; set; }
 
-      
+        [MaxAantalPlaatsen(ErrorMessage = "U moet een waarde invoeren tussen {0} en {1}")]
+        public Int16 Plaatsen { get; set; }
         
     }
 }

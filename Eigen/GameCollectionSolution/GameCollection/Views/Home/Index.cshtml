@@ -1,0 +1,71 @@
+﻿@model GameCollection.Models.GameInfo
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Game Collection</h2>
+    <p><a href="@Url.Action("AddNewGame","Home")" class="btn btn-primary">Nieuwe Game toevoegen</a></p>
+</div>
+
+
+<!--Insert hier op welke console of platform je wil gaan filteren-->
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Platform
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        @foreach (var platform in Model.Platformen)
+        {
+            <li><a href="@Url.Action("Index", "Home", new {id = platform.Id})">@platform.PlatformName</a></li>
+        }
+    </ul>
+    <br />
+</div>
+
+<ul class="nav nav-pills ">
+    <br/>
+    @foreach (var console in Model.ConsoleSoorten)
+    {
+        var URL = Url.Action("Index", "Home", new {consoleId = console.Id});
+
+        if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
+        {
+            <li class="active"><a href="@URL">@console.ConsoleName</a></li>
+        }
+        else
+        {
+            <li><a href="@URL">@console.ConsoleName</a></li>
+        }
+
+
+    }
+</ul>
+@if (Model.ConsoleSoort != null)
+{
+    if (Model.Games.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Conditie</th>
+                    <th>Console</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.Games)
+                {
+                    <tr>
+                        <td class="col-md-3">@game.Title </td>
+                        <td class="col-md-2">@game.Condition</td>
+                        <td class="col-md-2">@game.ConsoleSoort.ConsoleName</td>
+                        <td class="col-md-3" ><a href="@Url.Action("Details","Home")" >Details</a></td>
+                     </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

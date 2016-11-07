@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GameCollectionDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GameCollectionDBStoreContainer">
+    <EntitySet Name="GameSet" EntityType="GameCollectionDB.Store.GameSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConsoleSet" EntityType="GameCollectionDB.Store.ConsoleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlatformSet" EntityType="GameCollectionDB.Store.PlatformSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ConsoleGame" Association="GameCollectionDB.Store.ConsoleGame">
+      <End Role="Console" EntitySet="ConsoleSet" />
+      <End Role="Game" EntitySet="GameSet" />
+    </AssociationSet>
+    <AssociationSet Name="PlatformConsole" Association="GameCollectionDB.Store.PlatformConsole">
+      <End Role="Platform" EntitySet="PlatformSet" />
+      <End Role="Console" EntitySet="ConsoleSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GameSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Condition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Console_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConsoleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsoleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Platform_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlatformSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlatformName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ConsoleGame">
+    <End Role="Console" Type="GameCollectionDB.Store.ConsoleSet" Multiplicity="1" />
+    <End Role="Game" Type="GameCollectionDB.Store.GameSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Console">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="Console_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlatformConsole">
+    <End Role="Platform" Type="GameCollectionDB.Store.PlatformSet" Multiplicity="1" />
+    <End Role="Console" Type="GameCollectionDB.Store.ConsoleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platform">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Console">
+        <PropertyRef Name="Platform_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="GameCollectionDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="GameCollectionDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GameSet" EntityType="GameCollectionDB.Game" />
+          <EntitySet Name="ConsoleSoortSet" EntityType="GameCollectionDB.ConsoleSoort" />
+          <AssociationSet Name="ConsoleGame" Association="GameCollectionDB.ConsoleGame">
+            <End Role="Console" EntitySet="ConsoleSoortSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <EntitySet Name="PlatformSet" EntityType="GameCollectionDB.Platform" />
+          <AssociationSet Name="PlatformConsole" Association="GameCollectionDB.PlatformConsole">
+            <End Role="Platform" EntitySet="PlatformSet" />
+            <End Role="Console" EntitySet="ConsoleSoortSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Condition" Type="String" Nullable="false" />
+          <NavigationProperty Name="ConsoleSoort" Relationship="GameCollectionDB.ConsoleGame" FromRole="Game" ToRole="Console" />
+        </EntityType>
+        <EntityType Name="ConsoleSoort">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsoleName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="GameCollectionDB.ConsoleGame" FromRole="Console" ToRole="Game" />
+          <NavigationProperty Name="Platform" Relationship="GameCollectionDB.PlatformConsole" FromRole="Console" ToRole="Platform" />
+        </EntityType>
+        <Association Name="ConsoleGame">
+          <End Type="GameCollectionDB.ConsoleSoort" Role="Console" Multiplicity="1" />
+          <End Type="GameCollectionDB.Game" Role="Game" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlatformName" Type="String" Nullable="false" />
+          <NavigationProperty Name="ConsoleSoorten" Relationship="GameCollectionDB.PlatformConsole" FromRole="Platform" ToRole="Console" />
+        </EntityType>
+        <Association Name="PlatformConsole">
+          <End Type="GameCollectionDB.Platform" Role="Platform" Multiplicity="1" />
+          <End Type="GameCollectionDB.ConsoleSoort" Role="Console" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameCollectionDBStoreContainer" CdmEntityContainer="GameCollectionDBContainer">
+    <EntitySetMapping Name="GameSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.Game)">
+        <MappingFragment StoreEntitySet="GameSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConsoleSoortSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.ConsoleSoort)">
+        <MappingFragment StoreEntitySet="ConsoleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ConsoleName" ColumnName="ConsoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlatformSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.Platform)">
+        <MappingFragment StoreEntitySet="PlatformSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlatformName" ColumnName="PlatformName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ConsoleGame" TypeName="GameCollectionDB.ConsoleGame" StoreEntitySet="GameSet">
+      <EndProperty Name="Console">
+        <ScalarProperty Name="Id" ColumnName="Console_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PlatformConsole" TypeName="GameCollectionDB.PlatformConsole" StoreEntitySet="ConsoleSet">
+      <EndProperty Name="Platform">
+        <ScalarProperty Name="Id" ColumnName="Platform_Id" />
+      </EndProperty>
+      <EndProperty Name="Console">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

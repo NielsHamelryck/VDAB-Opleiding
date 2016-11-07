@@ -1,0 +1,84 @@
+﻿
+@model MVC_CultuurHuisSelf.Models.VoorstellingInfo
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Het Cultuurhuis <img src="~/Images/voorstellingen.png"/>
+    </h1>
+</div>
+
+@if (Model.Genre == null)
+{
+    <p class="alert alert-info">Kies een voorstellingsgenre</p>
+}
+
+<ul class="nav nav-pills">
+    @foreach (var genre in Model.Genres)
+    {
+        var url = Url.Action("Index", "Home", new {id = genre.GenreNr});
+
+        if (Model.Genre != null && Model.Genre.GenreNaam == genre.GenreNaam)
+        {
+            <li> <a href="@url" class="active">@genre.GenreNaam</a></li>
+        }
+        else
+        {
+
+            <li><a href="@url">@genre.GenreNaam</a></li>
+
+        }
+
+    }
+
+</ul>
+
+@if (Model.Genre != null)
+{
+    if (Model.Voorstellingen.Count > 0)
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Titel</th>
+                <th>Uitvoerders</th>
+                <th>Prijs</th>
+                <th>Vrije plaatsen</th>
+                <th>Reserveren</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var voorstelling in Model.Voorstellingen)
+            {
+                <tr>
+                    <td class="col-md-3">@Html.DisplayFor(m => voorstelling.Datum)</td>
+                    <td class="col-md-2">@voorstelling.Titel</td>
+                    <td class="col-md-2">@voorstelling.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m => voorstelling.Prijs)</td>
+                    <td class="col-md-1">@voorstelling.VrijePlaatsen</td>
+                    <td class="col-md-3">
+                        @if (voorstelling.VrijePlaatsen == 0)
+                        {
+                            <label class="label label-danger">Uitverkocht</label>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Reserveer", "Home", new {voorstellingsNr = voorstelling.VoorstellingsNr})">Reserveren</a>
+                        }
+
+
+
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="alert alert-warning">Er zijn geen voorstellingen voor dit genre</p>
+    }
+
+}
