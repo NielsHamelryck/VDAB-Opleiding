@@ -129,6 +129,7 @@
     <Compile Include="Models\Klanten.cs">
       <DependentUpon>MVC_CultuurhuisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MandjeItem.cs" />
     <Compile Include="Models\MVC_CultuurhuisModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

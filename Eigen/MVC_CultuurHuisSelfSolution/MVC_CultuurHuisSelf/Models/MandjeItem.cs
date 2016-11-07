@@ -10,7 +10,7 @@ namespace MVC_CultuurHuisSelf.Models
 {
     public class MandjeItem
     {
-        public Int16 VoorstellingsNr { get; set; }
+        public int VoorstellingsNr { get; set; }
 
         [DisplayFormat(DataFormatString = "{0: dd/MM/yy HH:mm}")]
         public DateTime Datum { get; set; }
