@@ -1,0 +1,53 @@
+﻿@model cultuurhuis3.Models.Voorstelling
+@{
+    ViewBag.Title = "Reserveer";
+}
+
+<div class="jumbotron">
+    <h1>
+        Het Cultuurhuis <img src="~/Images/reserveren.png" alt="logo reserveer aantal tickets" />
+    </h1>
+
+    <p ><a href="@Url.Action("Index","Home")" class="btn btn-primary">Tickets Kiezen &raquo;</a></p>
+</div>
+
+<p class="lead alert alert-info">Aantal tickets voor deze voorstelling</p>
+
+<form class="form-horizontal" method="post" action="~/Home/Reserveren/@Model.VoorstellingsNr">
+    <div class="form-group">
+        <label class="col-md-2 control-label">Voorstelling</label>
+        <p class="form-control-static">@Model.Titel</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Uitvoerders</label>
+        <p class="form-control-static">@Model.Uitvoerders</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Datum</label>
+        <p class="form-control-static">@Html.DisplayFor(m => Model.Datum)</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Prijs</label>
+        <p class="form-control-static">@Html.DisplayFor(m => Model.Prijs)</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Vrije plaatsen</label>
+        <p class="form-control-static">@Model.VrijePlaatsen</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">plaatsen</label>
+        @{
+            var aantal = 1;
+            if (Session[Model.VoorstellingsNr.ToString()] != null)
+            {
+                aantal = Convert.ToInt16(Session[Model.VoorstellingsNr.ToString()]);
+            }
+        }
+        <input name="aantalPlaatsen" type="number" value="@aantal" max="@Model.VrijePlaatsen" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2">
+            <input type="submit" value="Reserveren" class="btn btn-default" />
+        </div>
+    </div>
+</form>

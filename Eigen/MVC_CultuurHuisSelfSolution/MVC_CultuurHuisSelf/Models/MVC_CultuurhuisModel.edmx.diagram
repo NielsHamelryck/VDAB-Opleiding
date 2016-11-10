@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8c005afd068d4d00a016171e3a5f454a" Name="Diagram1">
         <EntityTypeShape EntityType="CultuurHuisMVCModel.Genre" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CultuurHuisMVCModel.Klanten" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CultuurHuisMVCModel.Klant" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CultuurHuisMVCModel.Reservatie" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CultuurHuisMVCModel.Voorstelling" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="CultuurHuisMVCModel.FK_Voorstellingen_Genres" ManuallyRouted="false" />

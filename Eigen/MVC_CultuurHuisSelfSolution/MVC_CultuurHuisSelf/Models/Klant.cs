@@ -12,9 +12,9 @@ namespace MVC_CultuurHuisSelf.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Klanten
+    public partial class Klant
     {
-        public Klanten()
+        public Klant()
         {
             this.Reservaties = new HashSet<Reservatie>();
         }

@@ -1,0 +1,81 @@
+﻿@model cultuurhuis3.Models.VoorstellingsInfo
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Het Cultuurhuis <img src="~/Images/voorstellingen.png" alt="logo voorstellingen"/>
+    </h1>
+
+</div>
+
+
+@if (Model.Genre == null)
+{
+    <p class="lead alert alert-info">Kies een voorstellingsgenre</p>
+}
+
+<div class="list-group">
+    <ul class="nav nav-pills list-inline">
+        @foreach (var genre in Model.Genres)
+        {
+            var url = Url.Action("Index", "Home", new {id = genre.GenreNr});
+            if (Model.Genre != null && Model.Genre.GenreNaam == genre.GenreNaam)
+            {
+                <li class="active"> <a href="@url" >@genre.GenreNaam</a></li>
+            }
+            else
+            {
+                <li> <a href="@url">@genre.GenreNaam</a></li>
+
+            }
+
+        }
+    </ul>
+</div>
+@if (Model.Genre != null)
+{
+    if (Model.Voorstellingen.Count > 0)
+    {
+
+
+        <table class="table">
+            <tr>
+                <th>Datum</th>
+                <th>Title</th>
+                <th>Uitvoerders</th>
+                <th>Prijs</th>
+                <th>Vrije plaatsen</th>
+                <th>Reserveren</th>
+            </tr>
+
+            <tbody>
+            @foreach (var voorstelling in Model.Voorstellingen)
+            {
+                <tr>
+                    <td class="col-md-2">@Html.DisplayFor(m=>voorstelling.Datum)</td>
+                    <td class="col_md-3">@voorstelling.Titel</td>
+                    <td class="col-md-3">@voorstelling.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m=>voorstelling.Prijs)</td>
+                    <td class="col_md-2">@voorstelling.VrijePlaatsen</td>
+                    <td class="col-md-2">
+                        @if (voorstelling.VrijePlaatsen == 0)
+                        {
+                            <label class="label label-danger">Uitverkocht</label>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Reserveer", "Home", new {id = voorstelling.VoorstellingsNr})">Reserveren</a>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="lead alert alert-warning">Er zijn geen voorstellingen van dit genre beschikbaar</p>
+    }
+}

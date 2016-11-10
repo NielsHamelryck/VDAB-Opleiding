@@ -26,7 +26,7 @@ namespace MVC_CultuurHuisSelf.Models
         }
     
         public virtual DbSet<Genre> Genres { get; set; }
-        public virtual DbSet<Klanten> Klanten { get; set; }
+        public virtual DbSet<Klant> Klanten { get; set; }
         public virtual DbSet<Reservatie> Reservaties { get; set; }
         public virtual DbSet<Voorstelling> Voorstellingen { get; set; }
     }

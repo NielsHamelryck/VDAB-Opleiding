@@ -37,11 +37,56 @@ namespace MVC_CultuurHuisSelf.Services
             }
         }
 
-        public Voorstelling GetGekozenVoorstelling(int voorstellingsNr)
+        public Voorstelling GetGekozenVoorstelling(int? voorstellingsNr)
         {
             using (var db = new CultuurHuisMVCEntities())
             {
                 return db.Voorstellingen.Find(voorstellingsNr);
+            }
+        }
+
+        public bool BestaatKlant(string gebruikersnaam)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                var bestaandeklant = (from klant in db.Klanten
+                    where klant.GebruikersNaam == gebruikersnaam
+                    select klant).FirstOrDefault();
+
+                return bestaandeklant != null;
+            }
+        }
+
+        public Klant GetKlant(string naam, string paswoord)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                Klant gevondenklant = (from klant in db.Klanten
+                    where klant.GebruikersNaam == naam && klant.Paswoord == paswoord
+                    select klant).FirstOrDefault();
+                
+                    return gevondenklant;
+                
+            }
+        }
+
+        public void ToevoegenKlant(Klant nieuw)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                db.Klanten.Add(nieuw);
+                db.SaveChanges();
+            }
+        }
+
+        public void BewaarReservatie(Reservatie nieuweReservatie)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                var voorstelling = db.Voorstellingen.Find(nieuweReservatie.VoorstellingsNr);
+                voorstelling.VrijePlaatsen -= nieuweReservatie.Plaatsen;
+                db.Reservaties.Add(nieuweReservatie);
+                db.SaveChanges();
             }
         }
     }

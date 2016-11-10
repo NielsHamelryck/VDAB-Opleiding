@@ -1,0 +1,57 @@
+﻿@using MVC_CultuurHuisSelf.Models
+
+@{
+    ViewBag.Title = "Bevestiging";
+}
+@if (Session["klant"] != null)
+{
+    var klant = (MVC_CultuurHuisSelf.Models.Klant) Session["klant"];
+    ViewBag.klant = klant.GebruikersNaam + " " + klant.Familienaam + " "
+                    + klant.Straat + " " + klant.HuisNr + " " + klant.Postcode
+                    + " " + klant.Gemeente;
+
+}
+<div class="jumbotron">
+    <h1>Het Cultuurhuis <img src="~/Images/bevestig.png"/>
+    </h1>
+    <p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tickets kiezen &raquo;</a>
+        <a href="@Url.Action("Mandje", "Home")" class="btn btn-primary">Winkelmandje &raquo;</a>
+    </p>
+</div>
+
+<form method="post" action="~/Home/Bevestiging" class="form-horizontal">
+    <h2>Stap 1: Wie ben je?</h2>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Gebruikersnaam</label>
+        <input type="text" class="form-control" name="naam"/>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Wachtwoord</label>
+        <input type="password" class="form-control" name="paswoord"/>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3">
+            <input type="submit" @if (ViewBag.klant != null)
+                                 {<text>disabled</text>} 
+                   class="btn btn-default" value="Zoek me op" name="zoek"/>
+            <input type="submit" @if (ViewBag.klant != null)
+                                 {
+                                     <text> disabled</text>} 
+                   value="Ik ben nieuw" name="nieuw" class="btn btn-default" />
+
+        </div>
+    </div>
+    @if (ViewBag.klant != null)
+    {
+        <p class="alert alert-success">@ViewBag.klant</p>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p class="alert alert-danger">@ViewBag.errorMessage</p>
+    }
+
+    <h2>Stap 2: Bevestigen</h2>
+    <input type="submit" class="btn btn-default" name="bevestig" value="Bevestigen"/>
+</form>
+

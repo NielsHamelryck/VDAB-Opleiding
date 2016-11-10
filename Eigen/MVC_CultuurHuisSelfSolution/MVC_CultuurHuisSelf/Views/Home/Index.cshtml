@@ -6,7 +6,15 @@
 
 <div class="jumbotron">
     <h1>Het Cultuurhuis <img src="~/Images/voorstellingen.png"/>
-    </h1>
+   
+        
+    </h1>@if (ViewBag.winkelMandje)
+    {
+        <ul class="list-inline">
+            <li><a href="@Url.Action("Mandje","Home")" class="btn btn-primary">Winkelmandje &raquo;</a></li>
+            <li><a href="@Url.Action("Bevestiging","Home")" class="btn btn-primary">Kassa &raquo;</a></li>
+        </ul>
+    }
 </div>
 
 @if (Model.Genre == null)
@@ -65,7 +73,7 @@
                         }
                         else
                         {
-                            <a href="@Url.Action("Reserveer", "Home", new {voorstellingsNr = voorstelling.VoorstellingsNr})">Reserveren</a>
+                            <a href="@Url.Action("Reserveren", "Home", new {voorstellingsNr = voorstelling.VoorstellingsNr})">Reserveren</a>
                         }
 
 

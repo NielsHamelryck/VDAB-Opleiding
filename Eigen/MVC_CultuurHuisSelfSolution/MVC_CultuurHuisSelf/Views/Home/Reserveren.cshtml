@@ -5,13 +5,13 @@
 }
 
 <div class="jumbotron">
-    <h1>Het Cultuurhuis <img src="~/Images/reserveren.png"/>
+    <h1>Het Cultuurhuis <img src="~/Images/reserveren.png" alt="reserveren img"/>
     </h1>
     <p ><a href="@Url.Action("Index","Home")" class="btn btn-primary">Tickets kiezen &raquo;</a></p>
 </div>
 <h3 class="alert alert-info">Aantal tickets voor deze voorstelling</h3>
 
-<form class=" form-horizontal" action="~/Home/Overzicht/@Model.VoorstellingsNr" method="post">
+<form class=" form-horizontal" action="~/Home/Reserveer/@Model.VoorstellingsNr" method="post">
     <div class="form-group">
         <label class="col-md-2 control-label">Voorstelling</label>
         <div class="col-md-10">
@@ -52,10 +52,10 @@
                     aantal = Convert.ToInt16(Session[Model.VoorstellingsNr.ToString()]);
                 }
             }
-            <input name="aantalPlaatsen" required="required" value="@aantal" type="number" min="1" max="@Model.VrijePlaatsen" class="form-control "/>
+            <input name="aantalPlaatsen" required="required" value="@aantal" type="number" min="1" max="@Model.VrijePlaatsen" class="form-control " />
         </div>
     </div>
     <div class="col-md-offset-2">
-        <input type="submit" Value="Reserveer" class="btn btn-default"/>
+        <input type="submit" value="Reserveer" class="btn btn-default" />
     </div>
 </form>

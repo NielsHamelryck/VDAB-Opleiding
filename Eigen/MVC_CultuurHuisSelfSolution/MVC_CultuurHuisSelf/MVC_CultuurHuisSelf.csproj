@@ -120,13 +120,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="GebruikerBestaatNogNiet.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Genre.cs">
       <DependentUpon>MVC_CultuurhuisModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Klanten.cs">
+    <Compile Include="Models\Klant.cs">
       <DependentUpon>MVC_CultuurhuisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MandjeItem.cs" />
@@ -145,6 +146,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MVC_CultuurhuisModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\NieuweKlant.cs" />
     <Compile Include="Models\Reservatie.cs">
       <DependentUpon>MVC_CultuurhuisModel.tt</DependentUpon>
     </Compile>
@@ -215,7 +217,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Reserveer.cshtml" />
+    <Content Include="Views\Home\Reserveren.cshtml" />
+    <Content Include="Views\Home\Mandje.cshtml" />
+    <Content Include="Views\Home\Bevestiging.cshtml" />
+    <Content Include="Views\Home\Nieuw.cshtml" />
+    <Content Include="Views\Home\Overzicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

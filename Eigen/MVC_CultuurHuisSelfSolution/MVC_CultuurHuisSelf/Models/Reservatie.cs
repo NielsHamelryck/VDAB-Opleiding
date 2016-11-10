@@ -19,7 +19,7 @@ namespace MVC_CultuurHuisSelf.Models
         public int VoorstellingsNr { get; set; }
         public short Plaatsen { get; set; }
     
-        public virtual Klanten Klant { get; set; }
+        public virtual Klant Klant { get; set; }
         public virtual Voorstelling Voorstelling { get; set; }
     }
 }

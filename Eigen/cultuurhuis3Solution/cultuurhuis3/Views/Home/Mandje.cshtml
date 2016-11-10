@@ -1,0 +1,57 @@
+﻿@model List<cultuurhuis3.Models.MandjeItem>
+@{
+    ViewBag.Title = "Mandje";
+}
+
+<div class="jumbotron">
+    <h1>
+        Het Cultuurhuis <img src="~/Images/mandje.png" alt="logo items in mandje"/>
+    </h1>
+    <p><a href="@Url.Action("Index","Home")" class="btn btn-primary">Ticket Kiezen &raquo;</a>
+    <a href="@Url.Action("Bevestig","Home")" class="btn btn-primary">Kassa &raquo;</a></p>
+</div>
+
+<p class="lead alert alert-info">Inhoud van uw winkelmandje</p>
+<form method="post" action="~/Home/Verwijderen">
+    <table class="table">
+        <tr>
+            <th>Datum</th>
+            <th>Title</th>
+            <th>Uitvoerders</th>
+            <th>Prijs</th>
+            <th>Plaatsen</th>
+            <th>Reserveren</th>
+        </tr>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col-md-2">@Html.DisplayFor(m => item.Datum)</td>
+                    <td class="col_md-3">@item.Titel</td>
+                    <td class="col-md-3">@item.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m => item.Prijs)</td>
+                    <td class="col_md-2">@item.Plaatsen</td>
+                    <td class="col-md-2 text-center">
+                        <input type="checkbox" name="@item.VoorstellingsNr" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-default" value="Selectie verwijderen"/>
+                </td>
+
+            </tr>
+
+        </tfoot>
+    </table>
+</form>
+<p class="alert alert-info">Te betalen bedrag = @(String.Format("{0: € #,##0.00}", ViewBag.teBetalen))</p>

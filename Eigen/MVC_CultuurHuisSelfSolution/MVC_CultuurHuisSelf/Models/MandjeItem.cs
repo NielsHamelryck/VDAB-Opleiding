@@ -21,9 +21,9 @@ namespace MVC_CultuurHuisSelf.Models
         [DisplayFormat(DataFormatString = "{0:€ #,##0.00}")]
         public decimal Prijs { get; set; }
 
-        public Int16 Plaatsen { get; set; }
+        public short Plaatsen { get; set; }
 
-        public MandjeItem(short voorstellingsNr, DateTime datum, string title, string uitvoerders, decimal prijs, short plaatsen)
+        public MandjeItem(int voorstellingsNr, DateTime datum, string title, string uitvoerders, decimal prijs, short plaatsen)
         {
             VoorstellingsNr = voorstellingsNr;
             Datum = datum;
