@@ -51,9 +51,13 @@ eToevoegen.addEventListener('click' , function()
 ePersoneelsLijst.addEventListener('click',function()
 {
 	//weergeven geselecteerde persoon
+	if(selectieControle(eFunctie)){
+		var sGegevens = persoonGegevens(ePersonenL);
+	eOutput.appendChild(sGegevens);
 	
-	var sGegevens = persoonGegevens(ePersonenL);
-	eOutput.innerHTML = sGegevens;
+	
+	}
+	
 });
 
 //=======KEUZELIJST OPVULLEN ===================================
@@ -133,13 +137,16 @@ function persoonGegevens(personenlijst)
 	//personenlijst  het element van de personen selectiebox
 	
 	var persoon = personenlijst.options[personenlijst.selectedIndex].value;
-	var sTekst = "";
+	var eTekst = document.createElement('div');
+	var sTekst="";
 	for(var i= 0 ; i<aoPersoneel.length;i++)
 	{
 		
+		
+		
 		if(aoPersoneel[i].naam==persoon)
-		{
-			sTekst+="id: " + aoPersoneel[i].id + "<br>" +
+		{	eTekst.className="_" +aoPersoneel[i].id;
+			sTekst+="id: " + aoPersoneel[i].id + "\n" +
 					"naam: "+aoPersoneel[i].naam + "<br>" + 
 					"leeftijd: "+aoPersoneel[i].leeftijd + "<br>";
 			sTekst+= "vrienden: "+ aoPersoneel[i].vrienden + "<br>" ; 
@@ -159,7 +166,9 @@ function persoonGegevens(personenlijst)
 					}
 					
 		}
+		
 	}
-	return sTekst;
-	
+	var tekst = document.createTextNode(sTekst);
+	eTekst.appendChild(tekst);
+	return eTekst;
 }
