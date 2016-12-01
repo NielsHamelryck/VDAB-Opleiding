@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS PF taak: faculteit</title>
+<style>
+	<!--
+label {
+	display:inline-block;
+	width:100px;
+}
+div.vb {
+	background-color:#CCFFCC;
+	padding:1em;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Javascript PF taak: Faculteit</h1>
+
+<h3>Opdracht: </h3>
+<ul>
+  <li>De faculteit van een geheel getal is het product van alle gehele getallen van 1 t.e.m. het getal zelf. Bijv: 	5! = 1 * 2 * 3 * 4 * 5 = 120. </li>
+  <li>	We veronderstellen dat een getal ingegeven wordt, valideer dat met de functie <code>isNaN()</code></li>
+  <li>Opgelet: de faculteit van 0 (0!) is 1, en de faculteit van een negatief getal bestaat niet. </li>
+  <li>Indien de invoer goed is toont het de faculteit van dat getal in het outputelement. </li>
+</ul>
+<h3>Geteste topics</h3>
+<ul>
+  <li>programmatielogica : iteratie</li>
+</ul>
+<h3>Oplossing: </h3>
+
+<form name="frmFaculteit" id="frmFaculteit" method="get" action="">
+<p>
+<label for="getal">getal</label>
+<input type="text" name="getal" id="getal">
+</p>
+<p>
+<button type="button" id="deKnop">Bereken faculteit</button>
+</p>
+</form> 
+<div class="vb" id="output"></div>
+
+<script>
+/*
+opmerking voor de lesgever:
+- validatie voor getallen, omvormen van decimale naar integers
+- deze oplossing is een demo voor een script dat onderaan staat = perfect toelaatbaar. 
+	Wordt het verplaatst naar boven dan zal er met een window.onload gewerkt moeten worden
+
+meeste efficiente oplossing me WHILE, maar kan ook met FOR
+
+*/
+
+var eKnop 		= document.getElementById('deKnop'); //global
+eKnop.onclick	= berekenFaculteit;
+
+//======================================================================
+function berekenFaculteit(){
+/*
+leest, valideert het inputgetal en toont het resultaat berekend door de andere functie: faculteit()
+*/
+	var sFac 		= "";
+	var eOutput 	= document.getElementById('output'); //
+	var sWaarde		= document.getElementById('getal').value; //
+	
+	if(sWaarde==""||isNaN(sWaarde)){
+		//kan niet in een getal omgezet worden
+		sFac = "U moet een getal ingeven";
+	}
+	else
+	{ // een getal, inclusief 0, decimalen, en negatieve getallen
+		
+		if(sWaarde<0){ // eender welk negatief getal
+			sFac = "de faculteit van een negatief getal kan niet berekend worden";
+		}
+		else{ //positieve getallen, inclusief 0
+			var nGetal = parseInt(sWaarde); //geeft NaN voor een niet-getal, geen fout, dus validatie moet gebeurd zijn
+			//parseInt: Decimale getallen worden integers, negatieve getallen worden positief
+			sFac = "de faculteit van " + nGetal + " is " + faculteit(nGetal);
+		}
+	}
+	
+	//console.log(sFac);
+	eOutput.innerHTML = sFac;
+}
+
+//======================================================================
+function faculteit(n){
+/* 
+berekent de faculteit van een geheel getal 
+@n		integer niet negatief, verplicht
+
+return	f integer
+*/
+	var f = 1;
+	var i ;			
+	//indien 0 is de fac 1
+	if(n>0){
+		i = n;
+		while (i>1){
+			f = f * i;
+			i--;
+		}
+		//kan ook met een for lus 
+	}	
+	return f;
+}
+</script>
+</body>
+</html>

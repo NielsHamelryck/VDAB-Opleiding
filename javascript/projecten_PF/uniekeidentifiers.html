@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unieke identifier</title>
+<script type="text/javascript">
+
+var arrKeuzes = ["bier","kaas","wijn","wortels","dipsaus","chips","nootjes"];
+var mysteryNumber = 0;
+var arrMijnKeuzes = new Array(); //enkel voor output: getallen worden opgeteld
+//----------------------------------------------------------------------
+window.onload = function(){
+	//elementen
+	var deKnop = document.getElementById('deKnop');
+	//vars
+	
+	
+	//event handlers
+	deKnop.onclick = toonKeuzes;
+	
+	// nu uitvoeren
+	//test: wat is de macht base 2 van 64?
+	//console.log(Math.log(128)/Math.log(2));
+	
+	
+	vulFormMetKeuzes()
+	
+	}
+//---------------------------------------------------------------------
+function vulFormMetKeuzes(){
+	var frm = document.frmKeuzes;
+	var str= "\n";
+	
+	for(var i=0;i<arrKeuzes.length;i++){
+		str += "<label>" + arrKeuzes[i] + "</label>";
+		str += "<input type='checkbox' id='" + arrKeuzes[i] + "' name='" + arrKeuzes[i] + "' value='" + Math.pow(2,i+1) + "' />";
+		str += "<br />\n";
+		
+		}
+	frm.innerHTML = str;
+	}
+//---------------------------------------------------------------------
+function toonKeuzes(){
+	//overloop gemaakte keuzes
+	for(var i=0;i<document.frmKeuzes.elements.length;i++){
+			if(document.frmKeuzes.elements[i].checked==true){
+				var w = parseInt(document.frmKeuzes.elements[i].value);
+				mysteryNumber +=  w;
+				
+				//console.log(document.frmKeuzes.elements[i].id + ":  "+ w)
+				}
+			}
+	//console.log("mysteryNumber: %s",mysteryNumber);
+	//analyse getal
+	analyse(mysteryNumber);
+	var output = document.getElementById('output');
+	output.innerHTML = toonMijnKeuzes();
+	
+	
+	}
+//-------------------------------------------------------------------
+function analyse(getal){
+	//vult arrMijnKeuzes op met component nummers
+	//zoek grootste macht van 2 die nog in getal past
+	var base = function (g){
+			var i=1;
+			while(Math.pow(2,i)<=g){
+				i++;
+			}
+			var b = Math.pow(2,i-1);
+			arrMijnKeuzes.push(b);
+			//console.log("push b: %s",b);
+		  	return b;
+		  }
+	
+	while(getal>0){
+		getal = getal-base(getal);
+		//console.log("getal : %s",getal);
+		}
+	}
+//-----------------------------------------------------------------
+function toonMijnKeuzes(){
+	//correleert arrMijnKeuzes met arrKeuzes
+	var str ="";
+	
+	for(var i=0;i<arrMijnKeuzes.length;i++){
+		//de logaritme base 2
+		var positie = (Math.log(arrMijnKeuzes[i])/Math.log(2)-1); 
+		//console.log("arrMijnKeuzes[i]: %s positie %s",arrMijnKeuzes[i],positie)
+		str += arrKeuzes[positie];
+		str += "<br />";
+		}
+	
+	return str;
+	}
+
+</script>
+</head>
+
+<body>
+<h1>Unieke identifier</h1>
+<p>Hoe een aantal keuzes combineren in één getal en die nadien terug analyseren: ideaal bv voor opties</p>
+<p>start met een array van keuzes, de positie + 1 van elk item is de macht van 2, dus 2<sup>1</sup>(2),2<sup>2</sup>(4),2<sup>3</sup>(8),2<sup>4</sup>(16),32,64,128,...</p>
+<p>Tel daarna de getallen van alle keuzes op, bijv 2 + 16 + 32 = 50. Dit geeft een uniek getal, waaruit je nadien de delen opnieuw kunt construeren</p>
+<h3>kies</h3>
+<form name="frmKeuzes" name="frmKeuzes" action="" method="get">
+
+</form>
+
+<button type="button" id="deKnop">toon mijn keuzes</button>
+
+<div id="output"></div>
+
+</body>
+</html>

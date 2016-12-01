@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS PF taak: deling</title>
+<style media="screen">
+label {
+	display:inline-block;
+	width:100px;
+}
+div.vb {
+	background-color:#CCFFCC;
+	padding:1em;
+}
+</style>
+<script>
+
+window.onload = function(){
+	
+	var eKnop = document.getElementById('deKnop');
+	eKnop.onclick = deling;
+	
+	}
+/*
+	voorlopig zijn globale vars (waarde1, waarde2) toegelaten
+	ofwel zoals hier, inlezen van de waarden door de functie zelf
+	ideaal is het doorgeven van de waarden aan de deling functie, maar in dit stadium weet cursist onvoldoende
+	een parseInt of parseFloat is nodig
+*/
+
+function deling(){
+/* 
+deelt de grootste waarde door de kleinste 
+validatie in deze oefening nog niet aan de orde, getallen zijn verondersteld
+*/
+	//DOM 
+	var eOutput 	= document.getElementById('output');
+	var eGetal1 	= document.getElementById('getal1');
+	var eGetal2 	= document.getElementById('getal2');
+	//waarden
+	var nWaarde1 	= parseFloat(eGetal1.value); 
+	var nWaarde2 	= parseFloat(eGetal2.value); 
+	
+		
+	if(nWaarde1 > nWaarde2){
+		var nMax = nWaarde1;
+		var nMin = nWaarde2;
+		}
+	else{
+		var nMax = nWaarde2;
+		var nMin = nWaarde1;
+		}
+	 
+	if(nMin == 0){ 
+		alert('je kan niet delen door 0\n geef een nieuw getal');
+	}
+	else{
+		var nQuotient 		= nMax/nMin;
+		var sResultaat 		= nMax + " gedeeld door " + nMin + " is : " + nQuotient;
+		eOutput.innerHTML 	= sResultaat;
+	}	
+}
+
+
+</script>
+</head>
+
+<body>
+<h1>Javascript PF taak: Deling</h1>
+<h3>Opdracht: </h3>
+<ul>
+  <li>Lees twee getallen in. Deel het grootste door het kleinste en toon het resultaat in het <em>output element</em>. </li>
+  <li>ook negatieve getallen zijn toegelaten</li>
+  <li>herinner de gebruiker er aan dat je niet mag delen door 0. Waarschuw de gebruiker  in een  <em>berichtenvenster</em></li>
+  <li>we veronderstellen dat de input echt een getal is, <em>valideren</em> moet je nog niet doen</li>
+</ul>
+<h3>Geteste topics</h3>
+<ul>
+  <li>programmatielogica : selectie</li>
+</ul>
+<h3>Oplossing: </h3>
+
+<form name="frmDeling" id="frmDeling" method="get" action="">
+<p>
+<label for="getal1">getal 1</label>
+<input type="text" name="getal1" id="getal1">
+</p>
+<p>
+<label for="getal2">getal 2</label>
+<input type="text" name="getal2" id="getal2">
+</p>
+<p>
+<button type="button" id="deKnop">Bereken deling</button>
+</p>
+</form> 
+
+<div class="vb" id="output"></div>
+</body>
+</html>

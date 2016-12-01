@@ -1,0 +1,28 @@
+﻿@model VideoVerhuur.Models.Klant
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Session["klant"] == null && Session["sessie"] == null)
+{
+    <Form method="post" action="~/Home/Inloggen" class="form-horizontal">
+
+        
+        <p>Naam</p>
+        <input type="text" name="naam"/>
+        <p>Postcode</p>
+        <input type="text" name="postcode"/>
+        <br/>
+        <input type="submit" value="Aanmelden"/>
+
+    </Form>
+}
+@if (Session["klant"] != null)
+{
+    <h2><a href="@Url.Action("Verhuuringen","Home")">Ga naar verhuringen</a></h2>
+}
+@if (Session["klant"]==null && Session["sessie"]!=null)
+{
+    <h2><a href="@Url.Action("Uitloggen","Home")">Foutieve gegevens, probeer opnieuw</a></h2>
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl">
+
+
+<head>
+<title>JS taak: eventhandlers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style media="all" type="text/css">
+img{float:left;margin: 2em;}
+#pic_drakenboom{float:right;}
+form{border:1px dashed gray;}
+
+</style>
+
+</head>
+
+<body>
+<h1>JS taak: eventhandlers</h1>
+
+
+<h2>Opdracht:</h2>
+<ul>
+  <li>Laat verschillende berichtjes verschijnen op een pagina, niet noodzakelijk in deze volgorde: 
+    <ul>
+      <li>bij het klikken op een hyperlink, verhinder hier het doorlinken</li>
+      <li>door het klikken op een knop </li>
+      <li>bij een mouseover van een image</li>
+      <li>bij het klikken op een submitknop van een formulier, verhinder hier de submit </li>
+    </ul>
+  </li>
+  <li>&bull;	Het bericht bevat telkens dezelfde info, probeer hiervoor dezelfde functie te gebruiken:
+<ul>
+      <li>het <code>type</code> event</li>
+      <li>de <code>nodeName</code> en de <code>id</code> van het <code>target</code> object</li>
+      <li>als het element een <code>src</code> attribuut heeft, toon het</li>
+      <li>als het element een <code>href</code> attribuut heeft, toon het</li>
+      <li>als het element een <code>action</code> attribuut heeft, toon het</li>
+      <li>als het element een <code>method</code> attribuut heeft, toon het</li>
+    </ul>
+  </li>
+  <li>de knop &quot;<i>stop alle ingestelde eventhandlers</i>&quot; verbreekt het vorige</li>
+  <li>probeer <i>unobtrusive</i> te werken </li>
+</ul>
+
+
+<h2>Oplossing:</h2>
+<p><button id="stopKnop">Stop alle ingestelde eventhandlers</button></p>
+<p><img id="pic_lofoten" src="lofoten.jpg" alt="de lofoten" /><img  id="pic_drakenboom" src="socotra.jpg" alt="drakenboom" />The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog.The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. The crazy fox jumps over the lazy dog. </p>
+<ul>
+<li><a id="eerste_link" href="http://www.vdab.be">www.vdab.be</a></li>
+<li><a id="tweede_link" href="http://www.vlaanderen.be">www.vlaanderen.be</a></li>
+<li><a id="derde_link" href="http://www.wired.com">www.wired.com</a></li>
+</ul>
+<p><button id="btn_knop1">Ceçi n'est pas un BOUTON</button><button id="btn_knop2">This is a BUTTON, however</button></p>
+<form name="frm1" id="frm1" method="get" action="JS_form_ontvanger.html">
+<input type="text" name="naam"  id="naam" />
+<input type="submit" />
+</form>
+</body>
+</html>
+

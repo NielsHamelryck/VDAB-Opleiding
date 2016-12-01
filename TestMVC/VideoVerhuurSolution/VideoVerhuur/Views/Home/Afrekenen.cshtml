@@ -1,0 +1,45 @@
+﻿@using System.Drawing
+@using VideoVerhuur.Models;
+@{
+    ViewBag.Title = "Afrekenen";
+}
+
+<h2><strong>Afrekenen</strong>
+</h2>
+<br/>
+@{
+    AfrekeningDetails details = ViewBag.afrekening;
+    Klant klant = details.Klant;
+    List<MandjeItem> mandje = details.Winkelmandje;
+}
+<table class="zebra">
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Prijs</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in mandje)
+    {
+        <tr>
+            <th>@item.Titel</th>
+            <th>@Html.DisplayFor(m => item.Prijs)</th>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+    <tr>
+        <th class="text-center">Totaal:</th>
+        <th>@String.Format("{0: € #,##0.00}", ViewBag.totaal)</th>
+    </tr>
+    </tfoot>
+</table>
+<br/>
+<p>Wordt gefactureerd naar</p>
+<p>@klant.Voornaam @klant.Naam</p>
+<br/>
+<p>@klant.Straat_Nr</p>
+<br/>
+<p>@klant.PostCode @klant.Gemeente</p>
+

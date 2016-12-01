@@ -1,0 +1,19 @@
+var jsonQuiz = {
+    "datum": "2012-02-28",
+    "vragen": [
+        {
+            "vraag": "Welke film won de oscar voor beste buitenlandse film?",
+            "antwoorden": [
+                "Rundskop",
+                "In Darkness",
+                "A separation",
+                "Footnote"
+            ],
+            "correct": 2,
+            "tekst": "A separation is de eerste Iraans film die een Oscar wint. De film gaat over een echtscheiding in het huidige Iran",
+            "media": [
+                "oscar.jpg"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+﻿@model List<VideoVerhuur.Models.MandjeItem>
+@{
+    ViewBag.Title = "Mandje";
+    
+}
+
+<h2><strong>Winkelmandje</strong>
+</h2>
+<br/>
+@if (Model.Count > 0)
+{
+    <table class="zebra">
+        <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Prijs</th>
+            <th>Verwijderen</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Titel</th>
+                <th>@Html.DisplayFor(m => item.Prijs)</th>
+                <th>
+                    <a href="@Url.Action("Verwijder", "Home", new {id = item.BandNr})">Verwijderen</a>
+                </th>
+            </tr>
+        }
+        </tbody>
+
+    </table>
+}
+<br/>
+<a href="@Url.Action("Verhuuringen","Home")">Verder winkelen</a>
+

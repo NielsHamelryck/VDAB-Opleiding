@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS project: cookieBank</title>
+<style>
+div.waarschuwing {
+	display:none;
+	background-color:yellow;
+	color:red;
+	border:medium solid red;
+	padding:1em;
+	margin:1em;
+	width: 34em;
+}
+#output {
+	background-color:#F5F5F5;
+	padding: 1em;
+	width: 34em;
+}
+form {
+	background-color: silver;
+	width: 34em;
+	padding: 1em;
+}
+form input[type=text], form select, button {
+	width: 14em;
+}
+button.small {
+	width:2em;
+}
+form label {
+	display: inline-block;
+	text-align: right;
+	width: 4em;
+	padding: 0.3em 1em;
+}
+label.msg {
+	width: auto;
+	text-align: left;
+}
+</style>
+
+<script type="text/javascript" >
+
+window.onload = function()
+{
+//DOM elementen 
+
+	var eOutput = document.getElementById('output');
+	var eKnopKrediet = document.getElementById('krediet');
+	var eKnopDebiet = document.getElementById('debiet');
+	
+// standaard waarden
+
+	var sMsg= ""; // bericht aan de gebruiker
+	var sNaam = 'nieuwe klant'; // standaard invulling naam
+	var nSaldo = 0;
+	
+	if(localStorage)
+	{
+		//kan deze browser dit script aan?
+		console.log('Local storage : OK');
+		
+		if(localStorage.klantnaam)
+		{
+			//gekende klant
+			var sNaam = localStorage.klantnaam;
+			var nSaldo = parseFloat(localStorage.saldo).toFixed(2);
+			//bericht
+			sMsg +="Welkom "+ sNaam +",";
+			sMsg +="uw saldo bedraagt "+ nSaldo + " Euro";
+			//knop
+			var eKnop = maakKnop('Sluit Rekening');
+			eKnop.addEventListener('click',rekeningSluiten);// eventhandler
+		} else
+		{
+				//eerste bezoek
+			sMsg += "Welkom beste bezoeker.";
+			sMsg += "Als u bij ons een nieuwe rekening opent, ontvangt u een startsaldo van 100 Euro!";
+		
+			var eKnop = maakKnop('Open rekening');
+			eKnop.addEventListener('click',rekeningOpenen);
+		}
+	}else
+	{
+		//gebruik cookies
+	/*	// test cookieBank	
+			if(getCookie('klantnaam'))
+			{
+				
+				//gekende klant
+				var sNaam = getCookie('klantnaam');
+				var nSaldo = parseFloat(getCookie('saldo')).toFixed(2);
+				
+				//outputbericht 
+				
+				sMsg +="Welkom "+ sNaam +",";
+				sMsg +="uw saldo bedraagt "+ nSaldo + " Euro";
+				
+				//knop
+					var eKnop = maakKnop('Sluit Rekening');
+					eKnop.addEventListener('click',rekeningSluiten);// eventhandler
+			}
+			else
+			{
+				
+				//eerste bezoek
+				sMsg += "Welkom beste bezoeker.";
+				sMsg += "Als u bij ons een nieuwe rekening opent, ontvangt u een startsaldo van 100 Euro!";
+				
+				var eKnop = maakKnop('Open rekening');
+				eKnop.addEventListener('click',rekeningOpenen);
+			}
+	*/
+	}
+
+	
+	//generische DOM elementen
+	var dfBericht = document.createDocumentFragment();
+	var eNl = document.createElement('br');
+	
+	//vervolledig documentFragment en voeg in 
+	
+	var tNode = document.createTextNode(sMsg);
+	dfBericht.appendChild(tNode);
+	dfBericht.appendChild(eNl.cloneNode(false));
+	dfBericht.appendChild(eNl.cloneNode(false));
+	dfBericht.appendChild(eKnop);
+	eOutput.appendChild(dfBericht);
+	
+	//event voor + - knoppen
+	
+	eKnopKrediet.addEventListener('click',function(){ berekenen('+')});
+	eKnopDebiet.addEventListener('click', function(){berekenen('-')});
+	
+}//einde window.onload
+
+/**************************FUNCTIES**************************/
+
+function maakKnop(tekst)
+{
+	/*
+	return een DOM button element
+	*/
+	
+	var eKnop = document.createElement('button');
+	var sTekst = document.createTextNode(tekst);
+	
+	eKnop.appendChild(sTekst);
+	eKnop.setAttribute('type','button');
+	return eKnop;
+}
+//--------------------------------------------------------------
+
+function rekeningSluiten()
+{
+	//console.log('rekening sluiten');
+	localStorage.clear();
+	window.history.go(0);
+}
+
+function rekeningOpenen(){
+	//console.log('rekening openen');
+	var sNaam =window.prompt("uw naam graag?","");
+	if((sNaam!=null)&& (sNaam!="")){
+		localStorage.setItem('klantnaam',sNaam);
+		localStorage.setItem('saldo',100);
+		window.history.go(0);
+	}
+}
+
+function berekenen(sModifier)
+{
+	/*
+		het nieuwe saldo berekenen aan de hand van de megegeven bewerking
+		@sModifier , verplicht , zorgt voor het verhogen of verlagen van het saldo
+	
+	*/
+	var nNieuweSaldo = 0;
+	var sSaldo = localStorage.getItem('saldo');
+	var eBedrag = document.getElementById('bedrag');
+	var nBedrag = eBedrag.value;
+	var sBericht= '';
+	var re = /,/;
+	nBedrag= nBedrag.replace(re,'.');
+	console.log(nBedrag);
+	if(sSaldo!=null && sSaldo!='')
+	{
+		if(nBedrag!='' && !isNaN(nBedrag))
+		{
+			nSaldo = parseFloat(sSaldo);
+			nBedrag =parseFloat(nBedrag);
+		
+			switch(sModifier)
+			{
+				case '+' :
+						nNieuweSaldo= nSaldo + nBedrag;
+				break;
+				case '-' : 
+						
+						nNieuweSaldo= nSaldo - nBedrag;
+				break;
+			
+			}
+			if(nNieuweSaldo<=0)
+			{
+				var nMax = nSaldo-1;
+				sBericht +="Uw saldo is onvoldoende om dit bedrag af te halen.";
+				sBericht += "U kunt maximaal " + nMax + " Euro afhalen.";
+				eBedrag.value = nMax;
+				eBedrag.focus();
+				toonWaarschuwing(sBericht);
+			}else
+			{
+				localStorage.setItem('saldo',nNieuweSaldo);
+				window.history.go(0);
+				eBedrag.value='';
+			}
+			
+		}
+		else 
+		{
+			alert("U moet een correcte bedrag ingeven")
+		}
+	}else 
+	{
+		//geen saldo is geen rekening
+		var bOpenen = window.confirm('U heeft nog geen rekening geopend, nu even doen?');
+		if (bOpenen)
+		{
+			rekeningOpenen();
+		}
+	}
+	
+	
+	
+}
+
+function toonWaarschuwing(sBericht)
+{
+	/*
+	Toont een waarschuwingstekst in divWarning
+	@sBericht vereist , de tekst
+	*/
+	
+	var eWarning = document.querySelector('.waarschuwing');
+	eWarning.innerHTML = sBericht;
+	eWarning.style.display = "block";
+	
+	
+}
+
+</script>
+</head>
+<body>
+<h1>CookieBank</h1>
+<p>Welkom bij CookieBank, de bank met smaak!</p>
+<div id="output"></div>
+<div class="waarschuwing"></div>
+<form name="frmBank" action="" method="get">
+  <p> * verplicht </p>
+  <div>
+    <label for='bedrag'>bedrag *</label>
+    <input type="text" name="bedrag" id="bedrag">
+    <label class="msg"></label>
+  </div>
+  <div>
+    <label>&nbsp;</label>
+    <button type="button" class="small" id="krediet">+</button>
+    <button type="button" class="small" id="debiet">-</button>
+    <label class="msg"></label>
+  </div>
+</form>
+</body>
+</html>

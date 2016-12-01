@@ -1,0 +1,72 @@
+﻿@using cultuurhuis3.Models
+
+@{
+    ViewBag.Title = "Overzicht";
+}
+
+<div class="jumbotron">
+    <h1>
+        Het Cultuurhuis <img src="~/Images/bevestig.png" alt="logo voorstellingen" />
+    </h1>
+        <p> <a href="@Url.Action("Index","Home")" class="btn btn-primary">Tickets kiezen &raquo;</a></p>
+</div>
+
+@if (((List<MandjeItem>) ViewBag.gelukt).Count > 0)
+{
+    <p class="lead alert alert-success">Gelukte reserveringen</p>
+
+    <table class="table">
+        <tr>
+            <th>Datum</th>
+            <th>Title</th>
+            <th>Uitvoerders</th>
+            <th>Prijs</th>
+            <th>Plaatsen</th>
+            
+        </tr>
+
+        <tbody>
+            @foreach (MandjeItem item in ViewBag.gelukt)
+            {
+                <tr>
+                    <td class="col-md-2">@Html.DisplayFor(m => item.Datum)</td>
+                    <td class="col_md-3">@item.Titel</td>
+                    <td class="col-md-3">@item.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m => item.Prijs)</td>
+                    <td class="col_md-2">@item.Plaatsen</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (((List<MandjeItem>)ViewBag.mislukt).Count > 0)
+{
+    <p class="lead alert alert-Danger">Mislukte reserveringen</p>
+
+    <table class="table">
+        <tr>
+            <th>Datum</th>
+            <th>Title</th>
+            <th>Uitvoerders</th>
+            <th>Prijs</th>
+            <th>Plaatsen</th>
+
+        </tr>
+
+        <tbody>
+            @foreach (MandjeItem item in ViewBag.mislukt)
+            {
+                <tr>
+                    <td class="col-md-2">@Html.DisplayFor(m => item.Datum)</td>
+                    <td class="col_md-3">@item.Titel</td>
+                    <td class="col-md-3">@item.Uitvoerders</td>
+                    <td class="col-md-1">@Html.DisplayFor(m => item.Prijs)</td>
+                    <td class="col_md-2">@item.Plaatsen</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

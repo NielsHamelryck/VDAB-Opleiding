@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl">
+
+
+<head>
+<title>JS taak: taalkeuze</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="taalkeuze.css" media="all" />
+
+<script type="text/javascript" src="nuttig_lib.js"></script>
+<script type="text/javascript" src="taalkeuze.js"></script>
+<script type="text/javascript">
+
+//omgevingsvar, global
+var paginaTaal= "FR";
+window.onload = function(){
+	var wijzigTaalKnop = document.getElementById('new_choice');
+	wijzigTaalKnop.onclick = function(){
+		wijzigTaal();
+		}
+	
+	} 
+
+</script>
+</head>
+
+<body>
+<h1>JS taak: taalkeuze</h1>
+<h3>Bienvenue sur la version Française de cette exercise!</h3>
+
+<p><em>Le monde appartient à ceux qui se lèvent tôt!</em></p>
+<div id="lmenu">
+<a  class="lChoice" id="new_choice" href="JS_taak_taalkeuze_afgewerkt.html"  title="changez la langue">autre langue</a>
+</div>
+</body>
+</html>
+

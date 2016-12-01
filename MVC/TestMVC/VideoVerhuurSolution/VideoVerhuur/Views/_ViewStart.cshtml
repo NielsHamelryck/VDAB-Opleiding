@@ -1,0 +1,39 @@
+﻿@using VideoVerhuur.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <img src="~/Images/videoVerhuur.jpg" width="157" height="177" alt="logo videoVerhuur"/>
+</div>
+<br />
+
+@if (Session["klant"] == null)
+{
+    <p>Eerst aanmelden om te kunnen huren !</p>
+}
+else
+{
+    var klant = (Klant) Session["klant"];
+    <p>Welkom, @klant.Voornaam @klant.Naam</p>
+    
+}
+
+<br/>
+@{
+    var aantalFilms = 0;
+    foreach (string nummer in Session)
+    {
+        int bandnr;
+        if (int.TryParse(nummer, out bandnr))
+        {
+            aantalFilms += 1;
+        }
+
+    }
+}
+<p><a href="~/Home/Uitloggen">Uitloggen en naar beginpagina</a>
+   @if (Session["klant"] != null && aantalFilms>0)
+   {
+       <a href="@Url.Action("Afrekenen", "Home")" >Afrekenen</a>
+   }</p>

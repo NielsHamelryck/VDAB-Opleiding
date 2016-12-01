@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML5 Cookiebank log</title>
+<script src="../../jquery/jquery-1.6.1.min.js"></script>
+
+<script>
+window.onload= function(){
+	
+	var eLog = document.getElementById('storage_events');
+	
+	//window.addEventListener('storage',function(e){
+//		if (!e) { e = window.event; }
+//		console.log(e)
+//			var str = "<li>storage gewijzigd voor key '" + 
+//							e.originalEvent.key + 
+//							"', oude waarde '" + 
+//							e.originalEvent.oldValue + 
+//							"', nieuwe waarde '"+ 
+//							e.originalEvent.newValue +"'</li>";
+//							
+//							
+//			eLog.innerHTML = str;
+//			
+//			}, false);
+
+	//event: vuurt af in AFGELEIDE VENSTERS, niet in origineel!
+		$(window).bind("storage", function(e){
+			console.log(e.originalEvent);
+			var str = $('#storage_events').html();
+			str += "<li>storage gewijzigd voor key '" + e.originalEvent.key + "', oude waarde '" + e.originalEvent.oldValue + "', nieuwe waarde '"+ e.originalEvent.newValue +"'</li>";
+			$('#storage_events').html(str )
+			})
+	
+	}
+
+</script>
+</head>
+
+<body>
+<p>HTML5 Cookiebank log</p>
+<ul id="storage_events">
+  <li>voorlopig niets</li>
+</ul>
+</body>
+</html>

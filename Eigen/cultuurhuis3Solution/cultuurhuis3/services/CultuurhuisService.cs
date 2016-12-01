@@ -43,5 +43,49 @@ namespace cultuurhuis3.services
                 return db.Voorstellingen.Find(id);
             }
         }
+
+        public Klant GetKlant(string naam, string paswoord)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                var query = (from klant in db.Klanten
+                    where klant.GebruikersNaam == naam && klant.Paswoord == paswoord
+                    select klant
+                    ).FirstOrDefault();
+
+                return query;
+            }
+        }
+
+        public bool BestaatKlant(string gebruikersnaam)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                var query = (from klant in db.Klanten
+                             where klant.GebruikersNaam == gebruikersnaam
+                             select klant).FirstOrDefault();
+                return query != null;
+            }
+        }
+
+        public void VoegKlantToe(Klant klant)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                db.Klanten.Add(klant);
+                db.SaveChanges();
+            }
+        }
+
+        public void BewaarReservatie(Reservatie nieuweReservatie)
+        {
+            using (var db = new CultuurHuisMVCEntities())
+            {
+                var voorstelling = db.Voorstellingen.Find(nieuweReservatie.VoorstellingsNr);
+                voorstelling.VrijePlaatsen -= nieuweReservatie.Plaatsen;
+                db.Reservaties.Add(nieuweReservatie);
+                db.SaveChanges();
+            }
+        }
     }
 }

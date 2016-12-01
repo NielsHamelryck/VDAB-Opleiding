@@ -120,9 +120,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DynamicRangeValidator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="KlantBestaatNietAttribute.cs" />
     <Compile Include="Models\Cultuurhuis.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +147,7 @@
       <DependentUpon>Cultuurhuis.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MandjeItem.cs" />
+    <Compile Include="Models\NieuweKlant.cs" />
     <Compile Include="Models\Reservatie.cs">
       <DependentUpon>Cultuurhuis.tt</DependentUpon>
     </Compile>
@@ -217,6 +220,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Reserveer.cshtml" />
     <Content Include="Views\Home\Mandje.cshtml" />
+    <Content Include="Views\Home\Bevestig.cshtml" />
+    <Content Include="Views\Home\Nieuw.cshtml" />
+    <Content Include="Views\Home\Overzicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

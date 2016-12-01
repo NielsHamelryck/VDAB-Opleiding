@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS PF taak: kindergeld</title>
+<style media="screen" type="text/css">
+<!--
+label {
+	display:inline-block;
+	width:100px;
+}
+div.vb {
+	background-color:#CCFFCC;
+	padding:1em;
+}
+-->
+</style>
+<script>
+/*
+opmerking voor de lesgever:
+- geen validatie: veronderstel getallen. Conversie eigenlijk onnodig, want toch geen validatie
+
+
+geef aflaten voor 
+
+4		logische structuur
+2		geneste if structuur
+1		gebruik parseInt()
+
+geef extra aflaten voor 
+
+2		declaratie van constanten en vars vooraan de functie
+1		duidelijk naamgeving vars
+1		commentaar op vars
+1		uitkomst in outputdiv ipv alert
+
+neem aflaten weg voor
+
+1		geen var sleutelwoord
+1		geen commentaar over doel functie	
+1 		geen ;	
+
+enkele testcases:
+
+k:3, ml:1000 -> kg: 87,5
+k:3, ml:2001 -> kg: 75
+k:5, ml:1000 -> kg:  
+
+
+*/
+
+window.onload = function(){
+	
+	var eKnop = document.getElementById('deKnop');
+	//event handler knop
+	eKnop.onclick = kindergeld;
+
+	}//einde window.onload
+	
+	
+function kindergeld(){
+/* 
+berekent het kindergeld ahv de parameters 
+@aantalKinderen		integer, verplicht, niet 0
+@maandloon			integer, verplicht, niet 0 
+*/
+		//DOM
+		var eOutput 			= document.getElementById('output');
+		var eKinderen			= document.getElementById('kinderen');
+		var eMaandloon			= document.getElementById('maandloon');
+		//waarden
+		var nKinderen 			= eKinderen.value;
+		var nMaandloon 			= eMaandloon.value;
+		
+		//vars
+		var nKgPerKind 			= 25.00; 	// bedrag, kindergeld per kind
+		var nToeslag3EnMeer 	= 12.50; 	// percentage, toeslag vanaf derde kind
+		var nToeslag5EnMeer 	= 7.50; 	// percentage, toeslag vanaf derde kind
+		var nMinMaandloon 		= 500; 		// bedrag, ondergrens maandloon waaronder er een extra toelag komt op het kg
+		var nMaxMaandloon 		= 2000; 	// bedrag, bovengrens maandloon waarboven er een vermindering komt op het kg
+		var nMinMndlToeslag 	= 0.25; 	// percentage, zie minMaandloon
+		var nMaxMndlVermindering= 0.45;		// percentage, zie maxMaandloon
+		var nMinKgPK 			= 25; 		// bedrag, minimaal kindergeld per kind in alle omstandigheden
+		var nKg 				= 0; 		// werkbedrag kindergeld
+		var sKg 				= ""; 		// te tonen tekst
+		
+		
+		if(nKinderen <=0 || nMaandloon <= 0){
+			alert('aantal kinderen en/of maandloon moeten meer dan 0 zijn');
+		}
+		else
+		{
+			nKg = nKinderen * nKgPerKind;
+			
+			//toeslagen
+			nKg += (nKinderen >= 3) ? (nKinderen-2) * nToeslag3EnMeer : 0;
+			//ook
+			// if(nKinderen>=3){nKg = nKg + (nKinderen-2) * nToeslag3EnMeer }
+			
+			nKg += (nKinderen >= 5) ? (nKinderen-4) * nToeslag5EnMeer : 0;			
+			
+			//verminderingen
+			nKg -= (nMaandloon > nMaxMaandloon) ? nKg * nMaxMndlVermindering : 0;
+					
+			//minimaal
+			nKg = (nKg < nKinderen * nKgPerKind) ? nKinderen * nKgPerKind : nKg;
+			//ook
+			//if(kg <  nKinderen * nKgPerKind) { nKg = nKinderen * nKgPerKind;}
+			
+			sKg += "met een maandloon van " + nMaandloon;
+			sKg += "\nen " + nKinderen + " kinderen,";
+			sKg += "\nheeft deze moeder recht op " + nKg + " Euro kindergeld";
+			
+			//console.log(strKg);
+			eOutput.innerHTML = sKg;
+		}	
+}
+</script>
+</head>
+<body>
+<h1>Javascript PF taak: kindergeld</h1>
+
+<h3>Opdracht: </h3>
+<ul>
+  <li>Een moeder heeft recht op &euro; 25,00 kindergeld per kind. Voor het derde kind (en elk volgend kind) krijgt ze een toeslag van &euro; 12,50. Voor het vijfde (en elk volgend) kind krijgt ze nog eens een toeslag van &euro; 7,50.</li>
+  <li>Als het maandloon van de moeder kleiner is dan of gelijk aan &euro; 500,00, dan krijgt ze 25% toeslag op het kindergeld. Maar als haar      maandloon groter is dan &euro; 2000,00, dan krijgt ze 45% minder kindergeld.</li>
+  <li> Minimaal heeft een moeder altijd recht op &euro; 25,00 per kind.</li>
+  <li>Vul aantal kinderen en maandloon in, en <i>toon in het outputelement</i> het kindergeld waar de moeder recht op heeft. </li>
+  <li>indien een 0 of een negatief getal wordt ingevuld voor kinderen of maandloon, <em>waarschuw in een berichtenvenster</em></li>
+  <li>Bijv. : 6 kinderen en &euro; 1 500,00 maandloon &agrave; &euro; 215,00 kindergeld</li>
+  <li>validatie van getallen mag ook hier nog achterwege blijven</li>
+</ul>
+
+<h3>Geteste topics</h3>
+<ul>
+  <li>programmatielogica : selectie</li>
+</ul>
+<h3>Oplossing: </h3>
+
+<form name="frmKindergeld" id="frmKindergeld" method="get" action="">
+<p>
+<label for="kinderen">aantal kinderen</label>
+<input type="text" name="kinderen" id="kinderen">
+</p>
+<p>
+<label for="maandloon">maandloon</label>
+<input type="text" name="maandloon" id="maandloon">
+</p>
+<p>
+<button type="button" id="deKnop">Bereken kindergeld</button>
+</p>
+</form> 
+
+<div class="vb" id="output"></div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS PF taak: feature sensing</title>
+<style type="text/css">
+.rood{background-color:#FF8ABF}
+.groen{background-color:#FF9;}
+#browserTest{font-weight:bold; background-color:#FF9;}
+#featureLijst{width:500px;}
+.support{float:right;}
+ul{background-color:#D8E6F3;}
+li{margin:0.2em;}
+</style>
+<script>
+/*
+opmerkingen voor de lesgever:
+de vraag is hoe pakt een cursist dit aan? 
+- gebruikt hij/zij een array?
+- hoe zetten ze de kleurtjes?
+- eval()gebruiken mag hier
+- waarschijnlijk zijn er meerdere andere oplossingen op het net te vinden -> kijk eens of hij/zij ze ook begrijpen...
+- innerHTML is zeker de kortere manier om de lijst te genereren, maar als ze willen DOM gebruiken, evengoed of beter
+
+*/
+
+var aFeatures = [
+
+	'document.images',
+	'document.layers', 							// niet meer, enkel vroege versies van Netscape
+	'document.all', 							// enkel IE
+	'document.getElementById',
+	'document.querySelector',					//selector API
+	'document.styleSheets',
+	'document.createElement',
+	'document.createNodeIterator',				// niet IE
+	'document.implementation.createDocument', 	// niet IE
+	'window.walkTheDog', 						// bestaat niet
+	'window.focus', 
+	'window.hasFeatures',  						// elke vrije functie die je zelf schrijft, is een property van het window object
+	'window.ActiveXObject', 					// enkel IE
+	'window.XMLHttpRequest',
+	'window.localStorage',						// HTML5 feature
+	'[].push', 									// array method JS 1.2
+	'[].filter',								// array method JS 1.6
+	'Object.prototype',
+	'document.documentElement.style.WebkitBorderRadius',
+	'navigator.geolocation', 					// HTML5 feature
+	'document.documentElement.classList' 		// HTML5 feature
+];
+
+//===================================
+window.onload = function () {
+	
+	var eBrowserTest= document.getElementById('browserTest');
+	eBrowserTest.innerHTML = "Uw browser is " + navigator.userAgent;
+	
+	hasFeatures();
+	
+}
+
+//===================================
+function hasFeatures(){
+/*
+	Maakt een tabel via innerHTML met de ondersteunin van de feature hierboven in het array
+*/
+	
+	var eFeatureLijst 			= document.getElementById('featureLijst');
+	var nFeatures 				= aFeatures.length;
+	//enkel als er features zijn: een lege ul is ongeldig
+	if(nFeatures>0){
+		
+		var sLijst 				 = "<ul>";
+		
+		for (var i=0;i<nFeatures;i++) {
+			// eval evalueert een tekst die Javascipt bevat, eval('window.focus') = window.focus
+			var bSupport 		 = (eval(aFeatures[i]))?true:false; 
+			var sKleur 			 = (bSupport===true)?'groen':'rood';
+			sLijst				+= "<li ";
+			sLijst 				+= "class=' " + sKleur + "'>";
+			sLijst 				+= aFeatures[i];
+			sLijst 				+= " <span class='support'>" + bSupport  + "</span>";
+			sLijst 				+= "</li>";
+		}
+		sLijst 					+= "</ul>";
+		eFeatureLijst.innerHTML  = sLijst;
+		}
+}
+//===================================
+
+
+</script>
+</head>
+
+<body>
+
+<h1>JS PF taak Feature sensing</h1>
+<div id="browserTest"></div>
+<p> ondersteunt de volgende objecten, collections, methods, properties:</p>
+<div id="featureLijst"></div>
+
+</body>
+</html>

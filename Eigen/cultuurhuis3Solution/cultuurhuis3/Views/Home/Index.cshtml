@@ -7,7 +7,10 @@
 <div class="jumbotron">
     <h1>Het Cultuurhuis <img src="~/Images/voorstellingen.png" alt="logo voorstellingen"/>
     </h1>
-
+    @if (ViewBag.mandje)
+    {   <a href="@Url.Action("Mandje", "Home")" class="btn btn-primary">Winkelmandje &raquo;</a>
+        <a href="@Url.Action("Bevestig", "Home")" class="btn btn-primary">Kassa &raquo;</a>
+    }
 </div>
 
 

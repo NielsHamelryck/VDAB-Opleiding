@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="nuttig_lib.js" ></script>
+<script type="text/javascript">
+window.onload= function ()
+{
+	//voor te testen voor mezelf
+	var eKnopReset = document.getElementById('reset');
+	eKnopReset.onclick = function(){resetten();}
+	
+	//---- DOM elementen ------
+	var eLinkGB = document.getElementById('engels');
+	var eLinkFR = document.getElementById('frans');
+	var eLinkBE = document.getElementById('nederlands');
+	// --- click events voor de verschillende keuzes aanmaken
+	// en het voorkomen van de orginele functie van de hyperlink
+	eLinkGB.onclick = function(){ 
+	
+	gekozenTaal('engels');
+	}
+	eLinkFR.onclick = function(){ 
+	
+	gekozenTaal('frans');}
+	eLinkBE.onclick = function() { 
+	
+	gekozenTaal('nederlands');}
+	//kijken of er al eens een keuze gemaakt geweest is
+
+
+}
+//VOOR MEZELF
+function resetten(){
+	clearCookie("taal");
+	
+
+}
+
+
+function gekozenTaal(taal)
+{
+	setCookie('taal',taal,100);
+	gaNaar(taal);
+}
+
+function gaNaar(taal)
+{
+	var sBestand;
+	switch(taal){
+		case "engels":
+			sBestand = "engels.html";
+		break;
+		case "frans":
+			sBestand ="frans.html";
+		break;
+		case "nederlands":
+			sBestand ="nederlands.html"
+		break;
+		}
+	top.location.href=sBestand;
+}
+</script>
+</head>
+<body>
+	<div id="taalkeuze">
+		<div>
+		<a id="engels" href="#"><img src="../images/gb.png"/> English</a>
+		</div>
+		<div >
+		<a id="frans" href="#"><img src="../images/fr.png"/> Francais</a>
+		</div>
+		<div >
+		<a id="nederlands" href="#"><img src="../images/be.png"/> Nederlands</a>
+		<button id="reset">ResetCookies</button>
+		</div>
+	</div>
+</body>
+</html>

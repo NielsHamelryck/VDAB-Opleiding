@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JS PF Taak: valideer zowel ISBN-10 als 13</title>
+
+<style media="screen" type="text/css">
+	div.vb{
+		background-color:#CCFFCC;
+		padding:1em;
+		}
+	label.error{
+	  display:none;
+	  color:red;
+		}
+
+</style>
+<script type="text/javascript" src="nuttig_lib.js"></script>
+<script type="text/javascript">
+
+/**** vervollediging van project ISBN10 -> ISBN13 ****/
+/*
+
+
+*/
+
+
+
+
+//globals
+var divOutput;
+var isbnVeld;
+var frm;
+var arrISBN = ['978-90-209-7557-4','978-2-87386-537-5','0-596-00048-0','0 9579218 4 3','90-430-0508-8','90-430-0779-X','978-90-209-7455-3','048629868X','0_140009_930','978-0552139823','978-0-596-51774-8','978-1-59059-908-2']
+
+//*******************************
+window.onload = function(){
+	
+	divOutput	= document.getElementById('output');
+	labelFout 	= document.getElementById('fout');
+	frm			= document.frmISBN;
+	isbnVeld 	= frm.kw; //name kw noodzakelijk voor isbndb.com
+	
+	//lijst testwaarden
+	maakLijst(arrISBN);
+	
+	//
+	isbnVeld.onfocus = function(){
+		labelFout.style.display = "none";
+		}
+	//event handler voor form.submit onderscheppen
+	frm.onsubmit = function (){
+		var isbn 	= isbnVeld.value;
+		var geldig 	= isValidISBN(isbn)
+		//console.log("waarde is een geldig isbnnummer: " + geldig);
+		if(geldig===false){
+				labelFout.style.display = "inline";
+			}
+		return geldig;
+		}
+		
+	
+}
+//------------------------------------------
+function isValidISBN(isbn){
+	/*
+	return Boolean
+	@isbn	 string, de te testen waarde
+	
+	*/
+	
+	isbn_Z_spaties 		= isbn.replace(/\s*/g,""); //verwijder alle spaties
+	isbn_Z_streepjes 	= isbn_Z_spaties.replace(/-/g,""); //verwijder alle koppeltekens
+	var l 	= isbn_Z_streepjes.length;
+	//console.log("rauw: ",isbn.length,"Z_spaties: ",isbn_Z_spaties.length,"Z_streepjes: ",isbn_Z_streepjes.length," " ,isbn_Z_streepjes)
+	
+	if(l==10){
+		var basis9 	= isbn_Z_streepjes.substr(0,9);
+		var control = isbn_Z_streepjes.substr(9);
+		//console.log("ISBN 10; basis9: ", basis9, "control: ", control)
+		if(!isNaN(basis9)){
+		  	var sum = 0;
+			for(var i=0;i<basis9.length;i++){
+				sum += parseInt(basis9.charAt(i)) * (i+1);
+			}
+			var modulo = sum % 11;
+			return (control==modulo);
+
+		}
+		else {
+		  return false;
+		}
+
+	}
+	//TAAK
+	else if(l==13){
+		
+		
+		/*
+			isbn-13
+			
+			g13 = controlegetal 
+			checksum: 
+			g13 = 10 -  ((g1 + g3 + g5 + g7 + g9 + g11 + 3*(g2 + g4 + g6 + g8 +g10 + g12) mod 10)
+			
+		*/
+		
+		//de volledige code moet numerisch zijn (geen X in isbn13)
+		if(!isNaN(isbn_Z_streepjes)){
+			
+			var basis12 = isbn_Z_streepjes.substr(0,12);
+			var control = parseInt(isbn_Z_streepjes.substr(12));
+			//console.log("ISBN 13; basis12: ", basis12, "control: ", control);
+			
+			//algoritme: beschouw tekst als array en lus erdoorheen
+			var sum = 0;
+			var factor;//vermenigvuldigingsfactor for lus
+			
+			for(var i=0;i<basis12.length;i++){
+				//even of oneven?
+				factor = (i%2==0)?1:3;	
+				sum += parseInt(basis12.charAt(i)) * factor; //ook [i]
+			}
+						
+			var checksum = 10 - (sum % 10);
+			
+			return (control==checksum);
+		}
+		else {
+		  return false;
+		}
+	}
+	else
+	{
+		console.log("foutive lengte ISBN"); 
+		return false;
+	}
+
+}
+//------------------------------------------
+
+function maakLijst(arr){
+//returnt een ul Node met de waarden van een array
+
+	divOutput	= document.getElementById('output');
+	var strNummers = "<ul>";
+	for(var i=0;i<arr.length;i++){
+		//test elke waarde
+		var geldig = (isValidISBN(arr[i]))?"OK":"ongeldig";
+		
+		strNummers += "<li>"+arr[i] +"  ["+ geldig +  "]</li>";
+		}
+	strNummers += "</ul>";
+	divOutput.innerHTML = strNummers;
+	//console.log(strNummers);
+	
+}
+</script>
+</head>
+<body>
+<!---->
+<h1>JS PF Taak: valideer zowel ISBN-10 als 13</h1>
+<form name="frmISBN" id="frmISBN" action="http://isbndb.com/search-all.html" method="get">
+<p>Vul een ISBN-10 <strong>of ISBN-13</strong> in:
+  <input type="text" name="kw" id="kw" /><input type="submit" value="Valideer"/>
+<label class="error" id="fout">ongeldig ISBN nummer</label></p>
+</form>
+<p>Enkele testwaarden (geldig en ongeldig):</p>
+<div id="output"></div>
+<p>Geldige isbn-nummers worden doorgestuurd naar isbndb.com. Dat betekent niet dat ze gevonden zullen worden. Ongeldige nummers worden geweigerd.</p>
+
+
+</body>
+</html>
