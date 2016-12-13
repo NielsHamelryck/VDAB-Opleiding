@@ -18,7 +18,7 @@ window.onload = function(){
 var eToevoegen 		= document.getElementById('toevoegen');
 var ePersoneelsLijst= document.getElementById('personeelsLijst');
 //invulvelden, keuzelijsten, etc...
-var eNaam 			= document.getElementById('naam');
+var eNaam 			= document.getElementById('naam');²²é
 var eFunctie 		= document.getElementById('functie');
 var eSexe 			= document.frmPersoneelslid.sexe;
 var eLeeftijd 		= document.getElementById('leeftijd');

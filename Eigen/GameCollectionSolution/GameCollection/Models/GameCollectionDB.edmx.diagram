@@ -5,12 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ce702d4dc3094d09a79d27b3af613144" Name="Diagram1" >
-        <EntityTypeShape EntityType="GameCollectionDB.Game" Width="1.5" PointX="0.875" PointY="1.125" />
-        <EntityTypeShape EntityType="GameCollectionDB.ConsoleSoort" Width="1.5" PointX="3.25" PointY="1.125" />
+        <EntityTypeShape EntityType="GameCollectionDB.Game" Width="1.5" PointX="3.375" PointY="2.25" />
+        <EntityTypeShape EntityType="GameCollectionDB.ConsoleSoort" Width="1.5" PointX="1" PointY="1.375" />
         <AssociationConnector Association="GameCollectionDB.ConsoleGame" />
         <EntityTypeShape EntityType="GameCollectionDB.Platform" Width="1.5" PointX="5.5" PointY="1.125" />
         <AssociationConnector Association="GameCollectionDB.PlatformConsole" />
-      </Diagram>
+        <EntityTypeShape EntityType="GameCollectionDB.User" Width="1.5" PointX="1.5" PointY="6.125" />
+        <EntityTypeShape EntityType="GameCollectionDB.Collection" Width="1.5" PointX="0.625" PointY="3.875" />
+        <AssociationConnector Association="GameCollectionDB.CollectionUser" />
+        <EntityTypeShape EntityType="GameCollectionDB.GameCollectionUI" Width="1.5" PointX="5.875" PointY="5.375" />
+        <AssociationConnector Association="GameCollectionDB.FK_GameCollectionUI_CollectionSet" />
+        <AssociationConnector Association="GameCollectionDB.FK_GameCollectionUI_GameSet" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

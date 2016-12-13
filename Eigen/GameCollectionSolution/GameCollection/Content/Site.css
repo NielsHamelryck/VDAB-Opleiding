@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 20px;
 }
 
@@ -22,3 +22,52 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*set the size of the search bar*/
+.achterElkaar h2 {
+    display: inline;
+    
+}
+
+.zoekpertitel {
+    padding-top: 0;
+    text-align: right;
+}
+
+.zoekpertitel label {
+
+    font-size: 12px;
+   
+}
+
+.zoekpertitel input.text{
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    
+
+}
+
+.zoekpertitel input.knop {
+    height: 25px;
+    font-size: 12px;
+    display: inline;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+ color: #ff0000;
+}
+.field-validation-valid {
+ display: none;
+}
+.input-validation-error {
+ border: 1px solid #ff0000;
+ background-color: #ffeeee;
+} 
+
+.validation-summary-errors {
+    color: #ff0000;
+}
+

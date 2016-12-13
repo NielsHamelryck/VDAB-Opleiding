@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,14 +26,32 @@
                 </ul>
             </div>
         </div>
+    </div>*@
+<div class="container body-content">
+    @{
+        var hidden = "";
+        var show = "Display:none;";
+        if (Session["user"] == null)
+        {
+            hidden = "Display:none;";
+            show = "";
+        }
+
+    }
+    <div class="zoekpertitel" style=@hidden>
+        @using (Html.BeginForm("zoekGame", "Home"))
+        {
+            <label>Search: </label>
+            <input type="text" name="zoekbox" class="text" title="Zoek een bepaald spel via keywords"/>
+            <input type="submit" name="zoekGame" class="knop" value="Search"/>
+        }
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year Mijn game collection</p>
-        </footer>
-    </div>
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year Mijn game collection</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

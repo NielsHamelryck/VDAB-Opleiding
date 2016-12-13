@@ -12,18 +12,17 @@ namespace GameCollection.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ConsoleSoort
+    public partial class User
     {
-        public ConsoleSoort()
+        public User()
         {
-            this.Games = new HashSet<Game>();
+            this.Collection = new HashSet<Collection>();
         }
     
         public int Id { get; set; }
-        public string ConsoleName { get; set; }
-        public int Platform_Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     
-        public virtual ICollection<Game> Games { get; set; }
-        public virtual Platform Platform { get; set; }
+        public virtual ICollection<Collection> Collection { get; set; }
     }
 }

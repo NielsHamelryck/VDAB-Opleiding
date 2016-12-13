@@ -1,0 +1,31 @@
+﻿@model GameCollection.Models.GameDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="jumbotron">
+    <div class="achterElkaar">
+        <h2>Game Collection - Game Details</h2>
+        <div>
+            <a href="@Url.Action("Index","Home")" class="btn btn-primary">Collection &raquo;</a>
+        </div>
+       
+    </div>
+</div>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-2">@Html.LabelFor(m => m.Title)</label>
+        <p class="col-md-10">@Model.Title</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">@Html.LabelFor(m => m.ConsoleNaam)</label>
+        <p class="col-md-10">@Model.ConsoleNaam</p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">@Html.LabelFor(m => m.Conditie)</label>
+        <p class="col-md-10">@Model.Conditie</p>
+    </div>
+</div>

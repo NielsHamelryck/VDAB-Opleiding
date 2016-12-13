@@ -2,15 +2,42 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@{
+    var hidden="";
+    var show = "Display:none;";
+    if (Session["user"] == null)
+    {
+        hidden = "Display:none;";
+        show = "";
+    }
+   
+}
+@*<div class="zoekpertitel" style=@hidden>
+    @using (Html.BeginForm("zoekGame", "Home"))
+    {
+        <label>Search: </label>
+        <input type="text" name="zoekbox" class="text" title="Zoek een bepaald spel via keywords" />
+        <input type="submit" name="zoekGame" class="knop" value="Search" />
+    }
+</div>*@
 
 <div class="jumbotron">
-    <h2>Game Collection</h2>
-    <p><a href="@Url.Action("AddNewGame","Home")" class="btn btn-primary">Nieuwe Game toevoegen</a></p>
+    <div class="achterElkaar">
+        <h2>Game Collection</h2>
+       
+
+    </div>
+  
+    <p style=@hidden><a href="@Url.Action("AddNewGame", "Home")" class="btn btn-primary">Nieuwe Game toevoegen  &raquo;</a>
+    </p>
+
+
+
 </div>
 
 
 <!--Insert hier op welke console of platform je wil gaan filteren-->
-<div class="dropdown">
+<div class="dropdown" style=@hidden>
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
         Platform
         <span class="caret"></span>
@@ -25,7 +52,7 @@
 </div>
 
 <ul class="nav nav-pills ">
-    <br/>
+    
     @foreach (var console in Model.ConsoleSoorten)
     {
         var URL = Url.Action("Index", "Home", new {consoleId = console.Id});
@@ -33,10 +60,12 @@
         if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
         {
             <li class="active"><a href="@URL">@console.ConsoleName</a></li>
+            
         }
         else
         {
             <li><a href="@URL">@console.ConsoleName</a></li>
+            
         }
 
 
@@ -48,24 +77,51 @@
     {
         <table class="table">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Conditie</th>
-                    <th>Console</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Title</th>
+                <th>Conditie</th>
+                <th>Console</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var game in Model.Games)
-                {
-                    <tr>
-                        <td class="col-md-3">@game.Title </td>
-                        <td class="col-md-2">@game.Condition</td>
-                        <td class="col-md-2">@game.ConsoleSoort.ConsoleName</td>
-                        <td class="col-md-3" ><a href="@Url.Action("Details","Home")" >Details</a></td>
-                     </tr>
-                }
+            @foreach (var game in Model.Games)
+            {
+                <tr>
+                    <td class="col-md-3">@game.Title </td>
+                    <td class="col-md-2">@game.Conditie</td>
+                    <td class="col-md-2">@game.ConsoleNaam</td>
+                    <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
+                </tr>
+            }
             </tbody>
         </table>
+
     }
+    else
+    {
+        <p class="alert-warning alert">Er zijn geen games gevonden voor de soort "@Model.ConsoleSoort.ConsoleName"</p>
+    }
+}
+
+@using (Html.BeginForm("Login", "Home",FormMethod.Post))
+{
+    <div class="form-horizontal" style=@show>
+        <div class="form-group">
+            <label class="col-md-2">Username:</label>
+            <input class="col-md-10" type="text" name="usernaam"/>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">Paswoord:</label>
+            <input class="col-md-10" type="password" name="passwoord"/>
+        </div>
+        <div class="form-group">
+            <input class="col-md-offset-2 col-md-10" type="submit" value="login"/>
+        </div>
+        @if (Session["failed"] != null)
+        {
+            <p class="alert alert-warning">@Session["failed"].ToString()</p>
+        }
+        
+    </div>
 }

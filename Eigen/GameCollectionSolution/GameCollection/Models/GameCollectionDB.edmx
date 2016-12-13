@@ -4,69 +4,127 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GameCollectionDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="GameCollectionDBStoreContainer">
-    <EntitySet Name="GameSet" EntityType="GameCollectionDB.Store.GameSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ConsoleSet" EntityType="GameCollectionDB.Store.ConsoleSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PlatformSet" EntityType="GameCollectionDB.Store.PlatformSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="ConsoleGame" Association="GameCollectionDB.Store.ConsoleGame">
-      <End Role="Console" EntitySet="ConsoleSet" />
-      <End Role="Game" EntitySet="GameSet" />
-    </AssociationSet>
-    <AssociationSet Name="PlatformConsole" Association="GameCollectionDB.Store.PlatformConsole">
-      <End Role="Platform" EntitySet="PlatformSet" />
-      <End Role="Console" EntitySet="ConsoleSet" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="GameSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Condition" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Console_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ConsoleSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ConsoleName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Platform_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PlatformSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PlatformName" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <Association Name="ConsoleGame">
-    <End Role="Console" Type="GameCollectionDB.Store.ConsoleSet" Multiplicity="1" />
-    <End Role="Game" Type="GameCollectionDB.Store.GameSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Console">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Game">
-        <PropertyRef Name="Console_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PlatformConsole">
-    <End Role="Platform" Type="GameCollectionDB.Store.PlatformSet" Multiplicity="1" />
-    <End Role="Console" Type="GameCollectionDB.Store.ConsoleSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Platform">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Console">
-        <PropertyRef Name="Platform_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="GameCollectionDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CollectionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConsoleSoortSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsoleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Platform_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameCollectionUI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Games_Id" Type="int" Nullable="false" />
+          <Property Name="Collection_id" Type="int" Nullable="false" />
+          <Property Name="Condition" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GameSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ConsoleSoort_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlatformSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlatformName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CollectionUser">
+          <End Role="UserSet" Type="Self.UserSet" Multiplicity="1" />
+          <End Role="CollectionSet" Type="Self.CollectionSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionSet">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsoleGame">
+          <End Role="ConsoleSoortSet" Type="Self.ConsoleSoortSet" Multiplicity="1" />
+          <End Role="GameSet" Type="Self.GameSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsoleSoortSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameSet">
+              <PropertyRef Name="ConsoleSoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameCollectionUI_CollectionSet">
+          <End Role="CollectionSet" Type="Self.CollectionSet" Multiplicity="1" />
+          <End Role="GameCollectionUI" Type="Self.GameCollectionUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CollectionSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameCollectionUI">
+              <PropertyRef Name="Collection_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameCollectionUI_GameSet">
+          <End Role="GameSet" Type="Self.GameSet" Multiplicity="1" />
+          <End Role="GameCollectionUI" Type="Self.GameCollectionUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameCollectionUI">
+              <PropertyRef Name="Games_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameCollectionDBStoreContainer">
+          <EntitySet Name="CollectionSet" EntityType="Self.CollectionSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsoleSoortSet" EntityType="Self.ConsoleSoortSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameCollectionUI" EntityType="Self.GameCollectionUI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameSet" EntityType="Self.GameSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlatformSet" EntityType="Self.PlatformSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSet" EntityType="Self.UserSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CollectionUser" Association="Self.FK_CollectionUser">
+            <End Role="UserSet" EntitySet="UserSet" />
+            <End Role="CollectionSet" EntitySet="CollectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsoleGame" Association="Self.FK_ConsoleGame">
+            <End Role="ConsoleSoortSet" EntitySet="ConsoleSoortSet" />
+            <End Role="GameSet" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameCollectionUI_CollectionSet" Association="Self.FK_GameCollectionUI_CollectionSet">
+            <End Role="CollectionSet" EntitySet="CollectionSet" />
+            <End Role="GameCollectionUI" EntitySet="GameCollectionUI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameCollectionUI_GameSet" Association="Self.FK_GameCollectionUI_GameSet">
+            <End Role="GameSet" EntitySet="GameSet" />
+            <End Role="GameCollectionUI" EntitySet="GameCollectionUI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="GameCollectionDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -82,42 +140,140 @@
             <End Role="Platform" EntitySet="PlatformSet" />
             <End Role="Console" EntitySet="ConsoleSoortSet" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="UserSet" EntityType="GameCollectionDB.User" />
+          <EntitySet Name="CollectionSet" EntityType="GameCollectionDB.Collection" />
+          <AssociationSet Name="CollectionUser" Association="GameCollectionDB.CollectionUser">
+            <End Role="Collection" EntitySet="CollectionSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <EntitySet Name="GameCollectionUIs" EntityType="GameCollectionDB.GameCollectionUI" />
+          <AssociationSet Name="FK_GameCollectionUI_CollectionSet" Association="GameCollectionDB.FK_GameCollectionUI_CollectionSet">
+            <End Role="Collection" EntitySet="CollectionSet" />
+            <End Role="GameCollectionUI" EntitySet="GameCollectionUIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameCollectionUI_GameSet" Association="GameCollectionDB.FK_GameCollectionUI_GameSet">
+            <End Role="Game" EntitySet="GameSet" />
+            <End Role="GameCollectionUI" EntitySet="GameCollectionUIs" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Game">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Condition" Type="String" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ConsoleSoort" Relationship="GameCollectionDB.ConsoleGame" FromRole="Game" ToRole="Console" />
+          <Property Name="ConsoleSoort_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GameCollectionUIs" Relationship="GameCollectionDB.FK_GameCollectionUI_GameSet" FromRole="Game" ToRole="GameCollectionUI" />
         </EntityType>
         <EntityType Name="ConsoleSoort">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConsoleName" Type="String" Nullable="false" />
+          <Property Name="ConsoleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Games" Relationship="GameCollectionDB.ConsoleGame" FromRole="Console" ToRole="Game" />
           <NavigationProperty Name="Platform" Relationship="GameCollectionDB.PlatformConsole" FromRole="Console" ToRole="Platform" />
+          <Property Name="Platform_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="ConsoleGame">
           <End Type="GameCollectionDB.ConsoleSoort" Role="Console" Multiplicity="1" />
           <End Type="GameCollectionDB.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Console">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ConsoleSoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityType Name="Platform">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PlatformName" Type="String" Nullable="false" />
+          <Property Name="PlatformName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ConsoleSoorten" Relationship="GameCollectionDB.PlatformConsole" FromRole="Platform" ToRole="Console" />
-        </EntityType>
+          </EntityType>
         <Association Name="PlatformConsole">
           <End Type="GameCollectionDB.Platform" Role="Platform" Multiplicity="1" />
           <End Type="GameCollectionDB.ConsoleSoort" Role="Console" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Console">
+              <PropertyRef Name="Platform_Id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Collection" Relationship="GameCollectionDB.CollectionUser" FromRole="User" ToRole="Collection" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="GameCollectionDB.CollectionUser" FromRole="Collection" ToRole="User" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GameCollectionUIs" Relationship="GameCollectionDB.FK_GameCollectionUI_CollectionSet" FromRole="Collection" ToRole="GameCollectionUI" />
+        </EntityType>
+        <Association Name="CollectionUser">
+          <End Type="GameCollectionDB.Collection" Role="Collection" Multiplicity="*" />
+          <End Type="GameCollectionDB.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GameCollectionUI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Games_Id" Type="Int32" Nullable="false" />
+          <Property Name="Collection_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CollectionSet" Relationship="GameCollectionDB.FK_GameCollectionUI_CollectionSet" FromRole="GameCollectionUI" ToRole="Collection" />
+          <NavigationProperty Name="GameSet" Relationship="GameCollectionDB.FK_GameCollectionUI_GameSet" FromRole="GameCollectionUI" ToRole="Game" />
+          <Property Name="Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_GameCollectionUI_CollectionSet">
+          <End Type="GameCollectionDB.Collection" Role="Collection" Multiplicity="1" />
+          <End Type="GameCollectionDB.GameCollectionUI" Role="GameCollectionUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameCollectionUI">
+              <PropertyRef Name="Collection_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameCollectionUI_GameSet">
+          <End Type="GameCollectionDB.Game" Role="Game" Multiplicity="1" />
+          <End Type="GameCollectionDB.GameCollectionUI" Role="GameCollectionUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameCollectionUI">
+              <PropertyRef Name="Games_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -126,16 +282,17 @@
     <EntitySetMapping Name="GameSet">
       <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.Game)">
         <MappingFragment StoreEntitySet="GameSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsoleSoort_Id" ColumnName="ConsoleSoort_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Condition" ColumnName="Condition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ConsoleSoortSet">
       <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.ConsoleSoort)">
-        <MappingFragment StoreEntitySet="ConsoleSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+        <MappingFragment StoreEntitySet="ConsoleSoortSet">
+          <ScalarProperty Name="Platform_Id" ColumnName="Platform_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ConsoleName" ColumnName="ConsoleName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -148,15 +305,42 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="ConsoleGame" TypeName="GameCollectionDB.ConsoleGame" StoreEntitySet="GameSet">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.Collection)">
+        <MappingFragment StoreEntitySet="CollectionSet">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="GameCollectionUIs">
+            <EntityTypeMapping TypeName="GameCollectionDB.GameCollectionUI">
+              <MappingFragment StoreEntitySet="GameCollectionUI">
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Collection_id" ColumnName="Collection_id" />
+                <ScalarProperty Name="Games_Id" ColumnName="Games_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+    <!--<AssociationSetMapping Name="ConsoleGame" TypeName="GameCollectionDB.ConsoleGame" StoreEntitySet="GameSet">
       <EndProperty Name="Console">
-        <ScalarProperty Name="Id" ColumnName="Console_Id" />
+        <ScalarProperty Name="Id" ColumnName="ConsoleSoort_Id" />
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PlatformConsole" TypeName="GameCollectionDB.PlatformConsole" StoreEntitySet="ConsoleSet">
+    <AssociationSetMapping Name="PlatformConsole" TypeName="GameCollectionDB.PlatformConsole" StoreEntitySet="ConsoleSoortSet">
       <EndProperty Name="Platform">
         <ScalarProperty Name="Id" ColumnName="Platform_Id" />
       </EndProperty>
@@ -164,6 +348,22 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="CollectionUser" TypeName="GameCollectionDB.CollectionUser" StoreEntitySet="CollectionSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Collection">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CollectionGame" TypeName="GameCollectionDB.CollectionGame" StoreEntitySet="GameSet">
+      <EndProperty Name="Collection">
+        <ScalarProperty Name="Id" ColumnName="Collection_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>-->
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -180,6 +380,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

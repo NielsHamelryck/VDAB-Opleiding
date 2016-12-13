@@ -119,13 +119,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthorizationFilter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Collection.cs">
+      <DependentUpon>GameCollectionDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ConsoleSoort.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Foto.cs" />
     <Compile Include="Models\Game.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
@@ -144,8 +149,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GameCollectionDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameCollectionUI.cs">
+      <DependentUpon>GameCollectionDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameDetails.cs" />
     <Compile Include="Models\GameInfo.cs" />
+    <Compile Include="Models\NewGame.cs" />
     <Compile Include="Models\Platform.cs">
+      <DependentUpon>GameCollectionDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Screenshot.cs" />
+    <Compile Include="Models\User.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +219,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\addNewGame.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\ZoekGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

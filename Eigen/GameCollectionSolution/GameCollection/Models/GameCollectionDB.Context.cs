@@ -28,5 +28,8 @@ namespace GameCollection.Models
         public virtual DbSet<Game> GameSet { get; set; }
         public virtual DbSet<ConsoleSoort> ConsoleSoortSet { get; set; }
         public virtual DbSet<Platform> PlatformSet { get; set; }
+        public virtual DbSet<User> UserSet { get; set; }
+        public virtual DbSet<Collection> CollectionSet { get; set; }
+        public virtual DbSet<GameCollectionUI> GameCollectionUIs { get; set; }
     }
 }

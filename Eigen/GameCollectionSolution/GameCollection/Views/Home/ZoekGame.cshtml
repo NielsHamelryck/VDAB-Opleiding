@@ -1,0 +1,44 @@
+﻿@model List<GameCollection.Models.GameDetails>
+@{
+    ViewBag.Title = "ZoekGame";
+}
+
+<div class="jumbotron">
+    <div class="achterElkaar">
+        <h2>Game Collection - Gevonden Games</h2>
+        <div>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Collection &raquo;</a>
+        </div>
+
+    </div>
+</div>
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Conditie</th>
+                <th>Console</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <td class="col-md-3">@game.Title </td>
+                    <td class="col-md-2">@game.Conditie</td>
+                    <td class="col-md-2">@game.ConsoleNaam</td>
+                    <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-info">Sorry, er zijn geen games gevonden!</p>
+}
+

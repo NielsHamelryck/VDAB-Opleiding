@@ -7,7 +7,7 @@ namespace GameCollection.Models
 {
     public class GameInfo
     {
-        public List<Game> Games { get; set; }
+        public List<GameDetails> Games { get; set; }
 
         public List<ConsoleSoort> ConsoleSoorten { get; set; }
 
