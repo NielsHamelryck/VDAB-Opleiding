@@ -172,6 +172,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\biertempel.png" />
+    <Content Include="Images\ConsoleIcons\3DS.png" />
+    <Content Include="Images\ConsoleIcons\DS.png" />
+    <Content Include="Images\ConsoleIcons\Game Boy Color.png" />
+    <Content Include="Images\ConsoleIcons\Game Boy.png" />
+    <Content Include="Images\ConsoleIcons\Game Cube.png" />
+    <Content Include="Images\ConsoleIcons\Game Boy Advance.png" />
+    <Content Include="Images\ConsoleIcons\NES.png" />
+    <Content Include="Images\ConsoleIcons\N64.png" />
+    <Content Include="Images\ConsoleIcons\Super NES.png" />
+    <Content Include="Images\ConsoleIcons\Wii.png" />
     <Content Include="Models\GameCollectionDB.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

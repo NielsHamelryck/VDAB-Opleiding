@@ -1,40 +1,47 @@
-﻿@model GameCollection.Models.GameInfo
+﻿@using GameCollection.Models
+@model GameCollection.Models.GameInfo
 @{
     ViewBag.Title = "Home Page";
 }
 @{
-    var hidden="";
+    var hidden = "";
     var show = "Display:none;";
     if (Session["user"] == null)
     {
         hidden = "Display:none;";
         show = "";
     }
-   
+    if (ViewBag.gekozenplatform != null)
+    {
+        var gekozenplatform = ViewBag.gekozenplatform.ToString();
+    }
+
+
 }
 @*<div class="zoekpertitel" style=@hidden>
-    @using (Html.BeginForm("zoekGame", "Home"))
-    {
-        <label>Search: </label>
-        <input type="text" name="zoekbox" class="text" title="Zoek een bepaald spel via keywords" />
-        <input type="submit" name="zoekGame" class="knop" value="Search" />
-    }
-</div>*@
+        @using (Html.BeginForm("zoekGame", "Home"))
+        {
+            <label>Search: </label>
+            <input type="text" name="zoekbox" class="text" title="Zoek een bepaald spel via keywords" />
+            <input type="submit" name="zoekGame" class="knop" value="Search" />
+        }
+    </div>*@
 
-<div class="jumbotron">
+<div class="jumbotron @ViewBag.gekozenplatform">
     <div class="achterElkaar">
         <h2>Game Collection</h2>
-       
+
 
     </div>
-  
-    <p style=@hidden><a href="@Url.Action("AddNewGame", "Home")" class="btn btn-primary">Nieuwe Game toevoegen  &raquo;</a>
+
+    <p style=@hidden>
+        <a href="@Url.Action("AddNewGame", "Home")" class="btn btn-primary">Nieuwe Game toevoegen  &raquo;</a>
     </p>
 
 
 
 </div>
-
+<br />
 
 <!--Insert hier op welke console of platform je wil gaan filteren-->
 <div class="dropdown" style=@hidden>
@@ -46,54 +53,79 @@
         @foreach (var platform in Model.Platformen)
         {
             <li><a href="@Url.Action("Index", "Home", new {id = platform.Id})">@platform.PlatformName</a></li>
+
         }
     </ul>
     <br />
 </div>
+@if (ViewBag.gekozenPlatform != null)
+{
+    <ul class="nav nav-pills clearfix " style=@hidden>
 
-<ul class="nav nav-pills ">
-    
-    @foreach (var console in Model.ConsoleSoorten)
-    {
-        var URL = Url.Action("Index", "Home", new {consoleId = console.Id});
-
-        if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
+        @foreach (var console in Model.ConsoleSoorten)
         {
-            <li class="active"><a href="@URL">@console.ConsoleName</a></li>
-            
-        }
-        else
-        {
-            <li><a href="@URL">@console.ConsoleName</a></li>
-            
-        }
+            var URL = Url.Action("Index", "Home", new { consoleId = console.Id });
+
+            if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
+            {
+
+                <li class="active">
+                    <a href="@URL">
+                        <div id="consoles" class="clearfix">
+                            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
+                            <p>@console.ConsoleName</p>
+
+                        </div>
+                    </a>
+                </li>
+
+            }
+            else
+            {
+                <li >
+                    <a href="@URL">
+                        <div id="consoles">
+                            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
+                            <p>@console.ConsoleName</p>
+                        </div>
+                    </a>
+                </li>
+
+            }
 
 
-    }
-</ul>
+        }
+    </ul>
+    <br />
+}
+
 @if (Model.ConsoleSoort != null)
 {
+
+
+
+
     if (Model.Games.Count > 0)
     {
         <table class="table">
             <thead>
-            <tr>
-                <th>Title</th>
-                <th>Conditie</th>
-                <th>Console</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>Title</th>
+                    <th>Conditie</th>
+                    <th>Console</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var game in Model.Games)
-            {
-                <tr>
-                    <td class="col-md-3">@game.Title </td>
-                    <td class="col-md-2">@game.Conditie</td>
-                    <td class="col-md-2">@game.ConsoleNaam</td>
-                    <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
-                </tr>
-            }
+                @foreach (var game in Model.Games)
+                {
+                    <tr>
+                        <td class="col-md-3">@game.Title </td>
+                        <td class="col-md-2">@game.Conditie</td>
+                        <td class="col-md-2">@game.ConsoleNaam</td>
+                        <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
+                    </tr>
+                }
             </tbody>
         </table>
 
@@ -104,24 +136,25 @@
     }
 }
 
-@using (Html.BeginForm("Login", "Home",FormMethod.Post))
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     <div class="form-horizontal" style=@show>
+        <h3>Login:</h3>
         <div class="form-group">
             <label class="col-md-2">Username:</label>
-            <input class="col-md-10" type="text" name="usernaam"/>
+            <input class="col-md-10" type="text" name="usernaam" />
         </div>
         <div class="form-group">
             <label class="col-md-2">Paswoord:</label>
-            <input class="col-md-10" type="password" name="passwoord"/>
+            <input class="col-md-10" type="password" name="passwoord" />
         </div>
         <div class="form-group">
-            <input class="col-md-offset-2 col-md-10" type="submit" value="login"/>
+            <input class="col-md-offset-2 col-md-10" type="submit" value="login" />
         </div>
         @if (Session["failed"] != null)
         {
             <p class="alert alert-warning">@Session["failed"].ToString()</p>
         }
-        
+
     </div>
 }

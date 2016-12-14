@@ -1,14 +1,88 @@
 ﻿body {
     padding-top: 0;
     padding-bottom: 20px;
+    background-color: #696969;
+    color :azure
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    color: azure;
+}
+/*change the image depending on chosen platform*/
+.btn.btn-primary {
+    text-shadow: none;
 }
 
+.nav.nav-pills {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white ;/*#d3d3d3*/
+    
+}
+.nav.nav-pills li{
+    color: azure;
+    
+}
+/*opmaak van de consoles*/
+#consoles {
+    width: 50px;
+    margin: auto;
+}
+#consoles img, p {
+    display:inline;
+   
+}
+
+/*clearfix*/
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+   
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: inline-block;
+    
+}
+/* close commented backslash hack */
+
+/*opmaak banner gekozen via het gekozen platform*/
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../Images/default.jpg);
+    background-position: 0% 45%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.jumbotron.Playstation {
+   background-image: url(../Images/Sony.jpg);
+    }
+.jumbotron.Nintendo {
+   background-image: url(../Images/Nintendo.jpg);
+    }
+.jumbotron.Microsoft {
+   background-image: url(../Images/Microsoft.jpg);
+    }
+.jumbotron.Sega {
+    background-size:80%;
+    background-color: #0B1241 ;
+    background-position: center;
+   background-image: url(../Images/sega.jpg);
+    }
+.jumbotron.PC {
+    background-image: url(../Images/PC.jpg);
+     background-position: 0% 15%;
+    }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -32,6 +106,7 @@ textarea {
 .zoekpertitel {
     padding-top: 0;
     text-align: right;
+    color: azure;
 }
 
 .zoekpertitel label {
@@ -44,6 +119,8 @@ textarea {
     width: 100px;
     height: 20px;
     font-size: 12px;
+    color: azure;
+    background-color: #808080
     
 
 }

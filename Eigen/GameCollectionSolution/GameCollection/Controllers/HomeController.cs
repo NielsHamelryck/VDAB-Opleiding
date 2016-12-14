@@ -27,8 +27,18 @@ namespace GameCollection.Controllers
             gameInfo.ConsoleSoort = service.GetConsole(consoleId);
             
             gameInfo.Platformen = service.GetAllPlatformen();
-            
+            if (id != null)
+            {
+                 foreach (var gp in gameInfo.Platformen)
+            {
+                if (id == gp.Id)
+                {
+                    ViewBag.gekozenplatform = gp.PlatformName;
+                }
+            }
              
+            }
+           
             return View(gameInfo);
         }
 
