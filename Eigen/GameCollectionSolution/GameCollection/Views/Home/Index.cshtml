@@ -60,6 +60,7 @@
 </div>
 @if (ViewBag.gekozenPlatform != null)
 {
+    <h2>@ViewBag.gekozenPlatform</h2>
     <ul class="nav nav-pills clearfix " style=@hidden>
 
         @foreach (var console in Model.ConsoleSoorten)
@@ -69,9 +70,9 @@
             if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
             {
 
-                <li class="active">
+                <li id="@console.ConsoleName" class="active clearfix">
                     <a href="@URL">
-                        <div id="consoles" class="clearfix">
+                        <div id="consoles" class="clearfix" >
                             <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
                             <p>@console.ConsoleName</p>
 
@@ -82,11 +83,11 @@
             }
             else
             {
-                <li >
+                <li id="@console.ConsoleName">
                     <a href="@URL">
-                        <div id="consoles">
+                        <div id="consoles" class="clearfix">
                             <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
-                            <p>@console.ConsoleName</p>
+                            <p class="caption">@console.ConsoleName</p>
                         </div>
                     </a>
                 </li>
@@ -138,23 +139,27 @@
 
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
-    <div class="form-horizontal" style=@show>
-        <h3>Login:</h3>
-        <div class="form-group">
-            <label class="col-md-2">Username:</label>
-            <input class="col-md-10" type="text" name="usernaam" />
-        </div>
-        <div class="form-group">
-            <label class="col-md-2">Paswoord:</label>
-            <input class="col-md-10" type="password" name="passwoord" />
-        </div>
-        <div class="form-group">
-            <input class="col-md-offset-2 col-md-10" type="submit" value="login" />
-        </div>
-        @if (Session["failed"] != null)
-        {
-            <p class="alert alert-warning">@Session["failed"].ToString()</p>
-        }
+    <div class="login" style=@show>
 
+
+        <div class="form-horizontal" style=@show>
+            <h3>Login:</h3>
+            <div class="form-group">
+                <label class="col-md-3">Username:</label>
+                <input class="col-md-10" type="text" name="usernaam" />
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Password:</label>
+                <input class="col-md-10" type="password" name="passwoord" />
+            </div>
+            <div class="form-group">
+                <input class="col-md-offset-3 col-md-10" type="submit" value="login" />
+            </div>
+            @if (Session["failed"] != null)
+            {
+                <p class="alert alert-warning">@Session["failed"].ToString()</p>
+            }
+
+        </div>
     </div>
 }
