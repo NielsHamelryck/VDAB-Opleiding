@@ -1,17 +1,18 @@
-﻿@model GameCollection.Models.NewGame
+﻿@using System.Web.UI.WebControls
+@model GameCollection.Models.NewGame
 @{
     ViewBag.Title = "addNewGame";
 }
 
 
 
-<div class="jumbotron">
+<div class="jumbotron glow">
     <div class="achterElkaar">
-        <h2>Game Collection -- Game toevoegen</h2>
+        <h2 >Game Collection -- Add Game </h2>
         <div>
             <a href="@Url.Action("Index","Home")" class="btn btn-primary">Collection  &raquo;</a>
         </div>
-        <p>Voeg een game toe aan de collectie</p>
+        <p>Add a game to your collection</p>
     </div>
 
 
@@ -25,41 +26,50 @@
 }
 @using (Html.BeginForm("addNewGame", "Home", FormMethod.Post))
 {
-    <div class="form-horizontal">
+    <div class="form-horizontal login glow">
         <div class="form-group">
-            <label class="col-md-2">@Html.LabelFor(m => m.GameTitle)</label>
-            <div class="col-md-10">
+            <label class="col-md-3">@Html.LabelFor(m => m.GameTitle):</label>
+            <div class="col-md-5">
                 @Html.TextBoxFor(m => m.GameTitle)
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2">@Html.LabelFor(m => m.Console)</label>
+            <label class="col-md-3">@Html.LabelFor(m => m.Console):</label>
             <div class="col-md-5">
              @Html.DropDownListFor(m => m.Console, new SelectList(Model.AlleConsoles, "Id", "ConsoleName"))
                 
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2">@Html.LabelFor(m => m.Conditie)</label>
-            <div class="col-md-10"> @Html.TextBoxFor(m => m.Conditie)</div>
+            <label class="col-md-3">@Html.LabelFor(m => m.Conditie):</label>
+            <div class="col-md-5"> @Html.TextBoxFor(m => m.Conditie)</div>
         </div>
-        
-          
-        
-        
-       <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit">Game Toevoegen</button>
+
+        <div class="form-group">
+            <label class="col-md-3">@Html.LabelFor(m => m.Version):</label>
+            <div class="col-md-5"> @Html.EnumDropDownListFor(m => m.Version)</div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-5">
+                <button type="submit" class="btn btn-primary">Game Toevoegen</button>
             </div>
         </div>
+        
+        <div class="validation-summary-errors glow">@Html.ValidationSummary()</div>
     </div>
 
 
-
+   
 
 }
-<div class="validation-summary-errors">@Html.ValidationSummary()</div>
+
+    
+   
+
+
 
 
 

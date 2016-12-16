@@ -14,5 +14,7 @@ namespace GameCollection.Models
         public ConsoleSoort ConsoleSoort { get; set; }
 
         public List<Platform> Platformen { get; set; }
+
+        public int TotalGames { get; set; }
     }
 }

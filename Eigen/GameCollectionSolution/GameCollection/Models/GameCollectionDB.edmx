@@ -28,6 +28,7 @@
           <Property Name="Games_Id" Type="int" Nullable="false" />
           <Property Name="Collection_id" Type="int" Nullable="false" />
           <Property Name="Condition" Type="nvarchar" MaxLength="50" />
+          <Property Name="Version" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="GameSet">
           <Key>
@@ -248,6 +249,7 @@
           <NavigationProperty Name="CollectionSet" Relationship="GameCollectionDB.FK_GameCollectionUI_CollectionSet" FromRole="GameCollectionUI" ToRole="Collection" />
           <NavigationProperty Name="GameSet" Relationship="GameCollectionDB.FK_GameCollectionUI_GameSet" FromRole="GameCollectionUI" ToRole="Game" />
           <Property Name="Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_GameCollectionUI_CollectionSet">
           <End Type="GameCollectionDB.Collection" Role="Collection" Multiplicity="1" />
@@ -325,6 +327,7 @@
           <EntitySetMapping Name="GameCollectionUIs">
             <EntityTypeMapping TypeName="GameCollectionDB.GameCollectionUI">
               <MappingFragment StoreEntitySet="GameCollectionUI">
+                <ScalarProperty Name="Version" ColumnName="Version" />
                 <ScalarProperty Name="Condition" ColumnName="Condition" />
                 <ScalarProperty Name="Collection_id" ColumnName="Collection_id" />
                 <ScalarProperty Name="Games_Id" ColumnName="Games_Id" />

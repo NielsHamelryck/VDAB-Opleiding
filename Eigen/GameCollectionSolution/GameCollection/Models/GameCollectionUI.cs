@@ -18,6 +18,7 @@ namespace GameCollection.Models
         public int Games_Id { get; set; }
         public int Collection_id { get; set; }
         public string Condition { get; set; }
+        public string Version { get; set; }
     
         public virtual Collection CollectionSet { get; set; }
         public virtual Game GameSet { get; set; }

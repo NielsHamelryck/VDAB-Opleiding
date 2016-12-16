@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using GameCollection.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,14 +31,23 @@
 <div class="container body-content">
     @{
         var hidden = "";
-        var show = "Display:none;";
+        var show = "Display:none;"; User user = new User();
+       
+            
         if (Session["user"] == null)
         {
             hidden = "Display:none;";
             show = "";
-        }
 
+        }
+        else
+        {
+          user=  (User)Session["user"];
+        } 
+       
+        
     }
+    <p style=@hidden>Welcome back, @user.UserName</p>
     <div class="zoekpertitel" style=@hidden>
         @using (Html.BeginForm("zoekGame", "Home"))
         {

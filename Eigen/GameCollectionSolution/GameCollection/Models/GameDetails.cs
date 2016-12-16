@@ -12,9 +12,11 @@ namespace GameCollection.Models
         public String Title { get; set; }
         [Display(Name = "Console")]
         public String ConsoleNaam { get; set; }
-
+        [Display(Name="Condition")]
         public string Conditie { get; set; }
 
+        [Display(Name="Type:")]
+        public string Version { get; set; }
 
     }
 }

@@ -69,6 +69,7 @@ namespace GameCollection.Services
                                 gameD.Title = game.Title;
                                 gameD.ConsoleNaam = game.ConsoleSoort.ConsoleName;
                                 gameD.Conditie = gamecollection.Condition;
+                                gameD.Version = gamecollection.Version;
                                 games.Add(gameD);
                             }
                         }
@@ -158,12 +159,12 @@ namespace GameCollection.Services
             }
         }
 
-        public Game GetGameDetails(String gameId)
+        public Game GetGameDetails(String gametitle,string consolenaam)
         {
             using (var db = new GameCollectionDBContainer())
             {
-                var query = (from game in db.GameSet
-                             where game.Title == gameId
+                var query = (from game in db.GameSet.Include("ConsoleSoort")
+                             where game.Title == gametitle && game.ConsoleSoort.ConsoleName==consolenaam
                              select game).FirstOrDefault();
                 return query;
             }
@@ -217,7 +218,7 @@ namespace GameCollection.Services
             }
         }
 
-        public bool BestaatGameInCollection(Game nieuw, int userId)
+        public GameCollectionUI BestaatGameInCollection(Game nieuw, int userId)
         {
             using (var db = new GameCollectionDBContainer())
             {
@@ -225,14 +226,7 @@ namespace GameCollection.Services
                     where gamecollection.Games_Id == nieuw.Id && gamecollection.CollectionSet.User_Id==userId
                     select gamecollection).FirstOrDefault();
 
-                if (query != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return query;
             }
         }
 
@@ -247,6 +241,25 @@ namespace GameCollection.Services
 
 
                 return query;
+            }
+        }
+
+        public int GetTotalAmountOfGamesOfUser(User user)
+        {
+            using (var db = new GameCollectionDBContainer())
+            {
+                if (user != null)
+                {
+                    var query = (from gc in db.GameCollectionUIs.Include("CollectionSet")
+                        where gc.CollectionSet.User_Id == user.Id
+                        select gc).ToList();
+
+                    return query.Count();
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
     }

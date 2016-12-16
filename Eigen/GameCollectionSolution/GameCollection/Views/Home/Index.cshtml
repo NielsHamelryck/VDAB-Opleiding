@@ -18,14 +18,7 @@
 
 
 }
-@*<div class="zoekpertitel" style=@hidden>
-        @using (Html.BeginForm("zoekGame", "Home"))
-        {
-            <label>Search: </label>
-            <input type="text" name="zoekbox" class="text" title="Zoek een bepaald spel via keywords" />
-            <input type="submit" name="zoekGame" class="knop" value="Search" />
-        }
-    </div>*@
+
 
 <div class="jumbotron @ViewBag.gekozenplatform">
     <div class="achterElkaar">
@@ -42,7 +35,7 @@
 
 </div>
 <br />
-
+<p style="@hidden">You now have a total of @Model.TotalGames games</p>
 <!--Insert hier op welke console of platform je wil gaan filteren-->
 <div class="dropdown" style=@hidden>
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -112,8 +105,8 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Conditie</th>
-                    <th>Console</th>
+                    <th>Condition</th>
+                    <th>Version</th>
                     <th></th>
                 </tr>
             </thead>
@@ -123,8 +116,8 @@
                     <tr>
                         <td class="col-md-3">@game.Title </td>
                         <td class="col-md-2">@game.Conditie</td>
-                        <td class="col-md-2">@game.ConsoleNaam</td>
-                        <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
+                        <td class="col-md-2">@game.Version</td>
+                        <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {title = game.Title, console = game.ConsoleNaam, version = game.Version})">Details</a></td>
                     </tr>
                 }
             </tbody>
@@ -146,20 +139,21 @@
             <h3>Login:</h3>
             <div class="form-group">
                 <label class="col-md-3">Username:</label>
-                <input class="col-md-10" type="text" name="usernaam" />
+                <input class="col-md-10" type="text" name="usernaam"/>
             </div>
             <div class="form-group">
                 <label class="col-md-3">Password:</label>
-                <input class="col-md-10" type="password" name="passwoord" />
+                <input class="col-md-10" type="password" name="passwoord"/>
             </div>
             <div class="form-group">
-                <input class="col-md-offset-3 col-md-10" type="submit" value="login" />
+                <input class="col-md-offset-3 col-md-10" type="submit" value="login"/>
             </div>
-            @if (Session["failed"] != null)
-            {
-                <p class="alert alert-warning">@Session["failed"].ToString()</p>
-            }
+
 
         </div>
     </div>
+    if (Session["failed"] != null)
+    {
+        <p class="alert alert-warning">@Session["failed"].ToString()</p>
+    }
 }

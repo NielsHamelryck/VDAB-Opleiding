@@ -31,7 +31,7 @@
                     <td class="col-md-3">@game.Title </td>
                     <td class="col-md-2">@game.Conditie</td>
                     <td class="col-md-2">@game.ConsoleNaam</td>
-                    <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {gameId = game.Title})">Details</a></td>
+                    <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {title = game.Title,console=game.ConsoleNaam})">Details</a></td>
                 </tr>
             }
         </tbody>

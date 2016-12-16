@@ -1,32 +1,41 @@
-﻿@model GameCollection.Models.GameDetails
+﻿@using GameCollection.Models
+@model GameCollection.Models.GameDetails
 @{
     ViewBag.Title = "Details";
+    
 }
 
 
+<div class="kader">
+    <div class="jumbotron">
+        <div class="achterElkaar">
+            <h2>Game Collection - Game Details</h2>
+            <div>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Collection &raquo;</a>
+                <a href="@Url.Action("AddNewGame", "Home")" class="btn btn-primary">Nieuwe Game toevoegen  &raquo;</a>
+                
+            </div>
 
-<div class="jumbotron">
-    <div class="achterElkaar">
-        <h2>Game Collection - Game Details</h2>
-        <div>
-            <a href="@Url.Action("Index","Home")" class="btn btn-primary">Collection &raquo;</a>
         </div>
-       
     </div>
-</div>
-<br/>
-<h2>Details: @Model.Title</h2>
-<div id="gameDetails" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-md-2">@Html.LabelFor(m => m.Title)</label>
-        <p class="col-md-10">@Model.Title</p>
-    </div>
-    <div class="form-group">
-        <label class="col-md-2">@Html.LabelFor(m => m.ConsoleNaam)</label>
-        <p class="col-md-10">@Model.ConsoleNaam</p>
-    </div>
-    <div class="form-group">
-        <label class="col-md-2">@Html.LabelFor(m => m.Conditie)</label>
-        <p class="col-md-10">@Model.Conditie</p>
+    <br />
+    <h2>Details: @Model.Title</h2>
+    <div id="gameDetails" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2">@Html.LabelFor(m => m.Title):</label>
+            <p class="col-md-10">@Model.Title</p>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">@Html.LabelFor(m => m.ConsoleNaam):</label>@**@
+            <p class="col-md-10"><img src="~/Images/ConsoleIcons/@(Model.ConsoleNaam).png" class="icon" /> @Model.ConsoleNaam</p>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">@Html.LabelFor(m => m.Conditie):</label>
+            <p class="col-md-10">@Model.Conditie</p>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">@Html.LabelFor(m => m.Version)</label>
+            <p class="col-md-10">@Model.Version</p>
+        </div>
     </div>
 </div>
