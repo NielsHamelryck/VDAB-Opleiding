@@ -30,7 +30,7 @@ namespace GameCollection.Services
             {
                 var query = from console in db.ConsoleSoortSet.Include("Platform")
                     where console.Platform.Id == platformId
-                    orderby console.ConsoleName
+                    orderby console.Id
                     select console;
                 return query.ToList() ;
             }

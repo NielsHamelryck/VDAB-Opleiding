@@ -92,5 +92,26 @@ namespace MVC_Voorbeeld3.Controllers
             return View(persoon);
         }
 
+       
+        
+        public ActionResult FilterPersonen(string gekozenGeslacht="Allebei")
+        {
+            
+            
+                return View((object)gekozenGeslacht);
+            
+            
+        }
+
+        public ActionResult GetGefilterdePersonen(string gekozengeslacht="Allebei")
+        {
+            IEnumerable<Persoon> personen = PersoonService.GetAll();
+            if (gekozengeslacht != "Allebei")
+            {
+                Geslacht gekozen = (Geslacht)Enum.Parse(typeof(Geslacht), gekozengeslacht);
+                personen = personen.Where(p => p.Geslacht == gekozen);
+            }
+            return PartialView(personen);
+        }
     }
 }

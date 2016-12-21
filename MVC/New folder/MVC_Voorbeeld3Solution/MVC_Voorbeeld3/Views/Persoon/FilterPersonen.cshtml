@@ -1,0 +1,43 @@
+﻿@using MVC_Voorbeeld3.Models
+@model string
+@{
+    ViewBag.Title = "FilterPersonen";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "tableBody",
+        Url=Url.Action("GetGeFilterdePersonen")
+    };
+}
+
+<h2>FilterPersonen</h2>
+
+<table class="table table-striped">
+    <thead><tr><th>Voornaam</th><th>Familienaam</th><th>Geslacht</th></tr></thead>
+    <tbody id ="tableBody">
+    
+        @Html.Action("GetGefilterdePersonen", new{gekozenGeslacht = Model})
+    
+    </tbody>
+</table>
+@*@using (Ajax.BeginForm( ajaxOpts))
+{
+    <h3>Filter op Geslacht</h3>
+    <div>
+        @Html.DropDownList("gekozenGeslacht", new SelectList(new[]{"Allebei"}.Concat(Enum.GetNames(typeof(Geslacht)))))
+        <br/>
+        <button type="submit">Kiezen</button>
+    </div>
+}*@
+<div>
+    @foreach (string geslacht in new[] {"Allebei"}.Concat(Enum.GetNames(typeof(Geslacht))))
+    {
+        <div class="btn btn-default" style="display: inline-block">
+            @Ajax.ActionLink(geslacht,"FilterPersonen",
+            new AjaxOptions {
+                UpdateTargetId="tableBody",
+                Url =Url.Action("GetGefilterdePersonen",
+                    new { gekozenGeslacht = geslacht})
+            })
+        </div>
+    }
+</div>

@@ -1,6 +1,6 @@
 ﻿
 @using MVC_Cultuurhuis2.Models
-@model MVC_Cultuurhuis2.Models.VoorstellingsInfo
+@model int?
 @{
     ViewBag.Title = "Home Page";
 }
@@ -16,62 +16,23 @@
         </p>
     }
 </div>
-@if (Model.Genre == null)
-{ <p class="Lead alert alert-info">Kies een voorstellingsgenre </p>}
-
-<ul class="nav nav-pills">
-    @foreach (var Genre in Model.Genres)
-    {
-        var url = Url.Action("Index", "Home", new {id = Genre.GenreNr});
-        if (Model.Genre != null && Model.Genre.GenreNaam == Genre.GenreNaam)
-        {
-            <li class="active"><a href="@url">@Genre.GenreNaam</a></li>
-        }
-        else
-        {<li><a href="@url">@Genre.GenreNaam</a></li>}
-    }
-</ul>
-@if ( Model.Genre !=null)
+@if (!Model.HasValue)
 {
-    if (Model.Voorstellingen.Count > 0)
-    {
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Datum</th>
-                <th>Titel</th>
-                <th>Uitvoerders</th>
-                <th>Prijs</th>
-                <th>Vrije plaatsen</th>
-                <th>Reserveren</th>
-            </tr>
-            </thead>
-            <tbody>
-                @foreach (var voorstelling in Model.Voorstellingen)
-                {
-                    <tr>
-                        <td class="col-dm-2">@Html.DisplayFor(m=>voorstelling.Datum)</td>
-                        <td class="col-dm-3">@voorstelling.Titel</td>
-                        <td class="col-dm-3">@voorstelling.Uitvoerders</td>
-                        <td class="col-dm-2">@Html.DisplayFor(m=>voorstelling.Prijs)</td>
-                        <td class="col-dm-1">@voorstelling.VrijePlaatsen</td>
-                        <td class="col-dm-2">
-                            @if (voorstelling.VrijePlaatsen != 0)
-                            {
-                                <a href="@Url.Action("Reserveren", "Home",new {id=voorstelling.VoorstellingsNr})">reserveren</a>
-                            }
-                            else
-                            {
-                                <p class="label label-danger">uitverkocht</p>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p class="Lead alert alert-warning">Er zijn geen voorstellingen van dit genre beschikbaar</p>
-    }
+    <div id="kiesgenre" class="Lead alert alert-info"><p>Kies een voorstellingsgenre </p></div>
+    
 }
+
+
+<div class="well">@Html.Action("GenreLijst", new{gekozenGenre = Model})</div>
+
+<div id="lijst">
+    @if (Model.HasValue)
+    {
+        @Html.Action("GetVoorstellingenVanGenre", new {gekozenGenre = Model})
+    }
+</div>
+
+
+
+
+

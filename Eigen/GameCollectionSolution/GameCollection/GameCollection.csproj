@@ -127,10 +127,10 @@
     <Compile Include="Models\Collection.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConsoleEnum.cs" />
     <Compile Include="Models\ConsoleSoort.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Foto.cs" />
     <Compile Include="Models\Game.cs">
       <DependentUpon>GameCollectionDB.tt</DependentUpon>
     </Compile>
@@ -173,8 +173,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\biertempel.png" />
-    <Content Include="Images\ConsoleIcons\3DS.png" />
-    <Content Include="Images\ConsoleIcons\DS.png" />
+    <Content Include="Images\ConsoleIcons\Nintendo 3DS.png" />
+    <Content Include="Images\ConsoleIcons\Nintendo DS.png" />
     <Content Include="Images\ConsoleIcons\Game Boy Color.png" />
     <Content Include="Images\ConsoleIcons\Game Boy.png" />
     <Content Include="Images\ConsoleIcons\Game Cube.png" />
@@ -200,7 +200,9 @@
     <Content Include="Images\ConsoleIcons\Xbox 360.png" />
     <Content Include="Images\ConsoleIcons\Xbox One.png" />
     <Content Include="Images\ConsoleIcons\Original Xbox.png" />
+    <Content Include="Images\GameCovers\ps1_crashbandicoot_thumb.jpg" />
     <Content Include="Models\GameCollectionDB.edmx.sql" />
+    <Content Include="Scripts\app\ConsoleScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\GameCollectionDB.edmx">
@@ -220,10 +222,16 @@
       <LastGenOutput>GameCollectionDB.cs</LastGenOutput>
       <DependentUpon>GameCollectionDB.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -246,10 +254,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\addNewGame.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\ZoekGame.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

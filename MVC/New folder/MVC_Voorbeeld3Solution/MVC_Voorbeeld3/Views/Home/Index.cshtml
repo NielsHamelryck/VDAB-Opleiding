@@ -1,5 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "update",
+        Url = Url.Action("GetTime"),
+        LoadingElementId = "checking",
+        LoadingElementDuration = 1000,
+        
+    };
 }
 
 <div class="jumbotron">
@@ -19,16 +27,42 @@
             enables a clean separation of concerns and gives you full control over markup
             for enjoyable, agile development.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a>
+        </p>
     </div>
+</div>
+<div class="well">
+    @using (Html.BeginForm())
+    {
+        <div>
+            <p class="lead">Het is nu @DateTime.Now</p>
+            <button type="submit" class="btn btn-primary">Bijwerken</button>
+        </div>
+    }
+</div>
+<div class="well">
+    <div id="checking" style="display: none; color: red">
+        <p>Checking the time...</p>
+    </div>
+    <div id="update">
+        @Html.Action("GetTime")
+    </div>
+    @using (Ajax.BeginForm(ajaxOpts))
+    {
+        <div>
+            <button type="submit" class="btn btn-primary">Bijwerken</button>
+        </div>
+    }
 </div>

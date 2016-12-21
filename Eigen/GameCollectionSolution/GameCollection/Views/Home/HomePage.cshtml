@@ -1,0 +1,47 @@
+﻿@using GameCollection.Models
+@model List<Platform>
+@{
+    ViewBag.Title = "HomePage";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "consoleLijst"
+    };
+}
+
+<div class="jumbotron">
+    <div class="achterElkaar">
+        <h2>Game Collection</h2>
+
+        
+            
+        
+    </div>
+
+    <a href="@Url.Action("AddNewGame", "Home")" class="btn btn-primary">Nieuwe Game toevoegen  &raquo;</a>
+
+
+
+</div>
+<br />
+
+<div class="dropdown">
+    <button id="dropDown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Platform
+        <span class="caret"></span>
+    </button>
+    <ul id="ddMenu" class="dropdown-menu">
+        @foreach (var platform in Model)
+        {
+            <li><a href="@Url.Action("Index", "Home", new {id = platform.Id})">@platform.PlatformName</a></li>
+
+        }
+    </ul>
+    <br />
+</div>
+
+
+
+
+
+
+    

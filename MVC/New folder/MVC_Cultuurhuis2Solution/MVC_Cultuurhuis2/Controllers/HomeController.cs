@@ -12,18 +12,15 @@ namespace MVC_Cultuurhuis2.Controllers
     public class HomeController : Controller
     {
         private CultuurhuisService service = new CultuurhuisService();
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? gekozenGenre = null)
         {
-            var voorstellingsInfo = new VoorstellingsInfo();
-            voorstellingsInfo.Genres= service.GetAllGenres();
-            voorstellingsInfo.Genre = service.GetGenre(id);
-            voorstellingsInfo.Voorstellingen = service.GetAllVoorstellingenPerGenre(id);
+           
             if (Session.Keys.Count != 0)
             {
                 ViewBag.winkelmandje = true;
             }
             else ViewBag.winkelmandje = false;
-            return View(voorstellingsInfo);
+            return View(gekozenGenre);
         }
 
         public ActionResult About()
@@ -205,6 +202,18 @@ namespace MVC_Cultuurhuis2.Controllers
             ViewBag.gelukt = gelukteReserveringen;
             ViewBag.mislukt = mislukteReserveringen;
             return View();
+        }
+
+        public PartialViewResult GenreLijst(int? gekozenGenre)
+        {
+            ViewBag.GekozenGenre = gekozenGenre;
+            return PartialView(service.GetAllGenres());
+        }
+
+        public PartialViewResult GetVoorstellingenVanGenre(int? gekozengenre)
+        {
+            List<Voorstelling> voorstellingen = service.GetAllVoorstellingenPerGenre(gekozengenre);
+            return PartialView(voorstellingen);
         }
     }
 }

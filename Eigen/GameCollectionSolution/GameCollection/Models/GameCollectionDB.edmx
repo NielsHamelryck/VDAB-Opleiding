@@ -37,6 +37,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ConsoleSoort_Id" Type="int" Nullable="false" />
+          <Property Name="BoxArtLocation" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PlatformSet">
           <Key>
@@ -166,6 +167,7 @@
           <NavigationProperty Name="ConsoleSoort" Relationship="GameCollectionDB.ConsoleGame" FromRole="Game" ToRole="Console" />
           <Property Name="ConsoleSoort_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GameCollectionUIs" Relationship="GameCollectionDB.FK_GameCollectionUI_GameSet" FromRole="Game" ToRole="GameCollectionUI" />
+          <Property Name="BoxArtLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ConsoleSoort">
           <Key>
@@ -284,6 +286,7 @@
     <EntitySetMapping Name="GameSet">
       <EntityTypeMapping TypeName="IsTypeOf(GameCollectionDB.Game)">
         <MappingFragment StoreEntitySet="GameSet">
+                <ScalarProperty Name="BoxArtLocation" ColumnName="BoxArtLocation" />
                 <ScalarProperty Name="ConsoleSoort_Id" ColumnName="ConsoleSoort_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />

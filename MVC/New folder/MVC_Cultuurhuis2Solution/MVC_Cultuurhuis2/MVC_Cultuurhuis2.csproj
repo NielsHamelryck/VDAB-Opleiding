@@ -179,6 +179,7 @@
     <Content Include="Images\nieuweklant.png" />
     <Content Include="Images\reserveren.png" />
     <Content Include="Images\voorstellingen.png" />
+    <Content Include="Scripts\app\Genrebuttons.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\CultuurhuisModel.edmx">
@@ -230,6 +231,8 @@
     <Content Include="Views\Home\Bevestiging.cshtml" />
     <Content Include="Views\Home\Nieuw.cshtml" />
     <Content Include="Views\Home\Overzicht.cshtml" />
+    <Content Include="Views\Home\GenreLijst.cshtml" />
+    <Content Include="Views\Home\GetVoorstellingenVanGenre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

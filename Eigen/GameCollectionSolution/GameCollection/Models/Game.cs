@@ -22,6 +22,7 @@ namespace GameCollection.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public int ConsoleSoort_Id { get; set; }
+        public string BoxArtLocation { get; set; }
     
         public virtual ConsoleSoort ConsoleSoort { get; set; }
         public virtual ICollection<GameCollectionUI> GameCollectionUIs { get; set; }

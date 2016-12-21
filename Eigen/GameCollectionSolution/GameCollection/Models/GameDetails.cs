@@ -10,13 +10,16 @@ namespace GameCollection.Models
     {
         public int Game_Id { get; set; }
         public String Title { get; set; }
-        [Display(Name = "Console")]
+        [Display(Name = "Console:")]
         public String ConsoleNaam { get; set; }
-        [Display(Name="Condition")]
+        [Display(Name="Condition:")]
         public string Conditie { get; set; }
 
         [Display(Name="Type:")]
         public string Version { get; set; }
 
+        [Display(Name="BoxArt:")]
+        public string BoxArtLocation { get; set; }
+        
     }
 }

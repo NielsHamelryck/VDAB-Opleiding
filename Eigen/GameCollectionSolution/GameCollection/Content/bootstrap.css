@@ -3921,11 +3921,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav-pills > li > a {
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .nav-pills > li + li {
   margin-left: 2px;
+
+   
 }
 
 .nav-pills > li.active > a,

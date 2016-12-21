@@ -38,11 +38,11 @@
 <p style="@hidden">You now have a total of @Model.TotalGames games</p>
 <!--Insert hier op welke console of platform je wil gaan filteren-->
 <div class="dropdown" style=@hidden>
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    <button id="dropDown" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
         Platform
         <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu">
+    <ul id="ddMenu" class="dropdown-menu">
         @foreach (var platform in Model.Platformen)
         {
             <li><a href="@Url.Action("Index", "Home", new {id = platform.Id})">@platform.PlatformName</a></li>
@@ -58,28 +58,28 @@
 
         @foreach (var console in Model.ConsoleSoorten)
         {
-            var URL = Url.Action("Index", "Home", new { consoleId = console.Id });
+            var URL = Url.Action("Index", "Home", new {consoleId = console.Id});
 
             if (Model.ConsoleSoort != null && Model.ConsoleSoort.ConsoleName == console.ConsoleName)
             {
 
                 <li id="@console.ConsoleName" class="active clearfix">
                     <a href="@URL">
-                        <div id="consoles" class="clearfix" >
-                            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
+                        <div id="consoles" class="clearfix">
+                            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px"/>
                             <p>@console.ConsoleName</p>
-
+                           
                         </div>
                     </a>
                 </li>
-
+                
             }
             else
             {
                 <li id="@console.ConsoleName">
                     <a href="@URL">
-                        <div id="consoles" class="clearfix">
-                            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
+                        <div id="consoles" class="inactive clearfix">
+                            <img id="inactive" src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px"/>
                             <p class="caption">@console.ConsoleName</p>
                         </div>
                     </a>
@@ -90,6 +90,8 @@
 
         }
     </ul>
+@section Scripts { 
+<script src="~/Scripts/app/ConsoleScript.js"></script>}
     <br />
 }
 

@@ -4,6 +4,7 @@
     background-color: gray;
     color :azure
 }
+
 /*border line toevoegen voor een kader*/
 .kader {
     padding: 25px;
@@ -38,13 +39,13 @@
 
 .nav.nav-pills li{
     color: azure;
-    
+    display: inline;
 }
 /*opmaak van de consoles*/
 a#consoles {
-    width: 100px;
+    
     height: 110px;
-    margin: auto;
+    margin:0 auto;
     
 }
 #consoles img {
@@ -58,21 +59,27 @@ a#consoles {
 }
 .nav.nav-pills.clearfix > ul {
     width: 100%;
+    height:100%;
     text-align: center;
-}
-
-.nav.nav-pills.clearfix > li.active > a {
-    width: 100%;
-    height: 100px;
-   display: inline-block;
     
 }
+
+
+.nav.nav-pills.clearfix > li.active > a {
+    
+    height: 100%;
+    float: left;
+   display: block;
+    clear: both;
+    
+}
+
+
 .nav.nav-pills > li.active.clearfix > a > div,
 .nav.nav-pills > li.active.clearfix > a:hover > div,
 .nav.nav-pills > li.active.clearfix > a:focus > div {
     
    width: 100%;
-    height: 100px;
     margin: auto;
     text-align: center;
     
@@ -80,6 +87,8 @@ a#consoles {
 
 .nav.nav-pills.clearfix > li.active > a > div > img {
     display:block;
+    width: 75px;
+    height: 75px;
     margin: 0 auto;
     
 }
@@ -88,12 +97,18 @@ a#consoles {
     text-align: center;
     color: #ff0000;
 }
+.nav-pills > li + li {
+  margin-left: 2px;
+    height: 130px;
+   
+}
 
 /*opmaak bij details toevoegen icon*/
 
 img.icon {
     width: 50px;
     height: 50px;
+    
 }
 
 /*centreren van de gamedetails*/
@@ -106,6 +121,7 @@ img.icon {
 .clearfix:before, .clearFix:after {
 content:" ";
 display:table;
+   
 }
 .clearfix:after {
 clear:both

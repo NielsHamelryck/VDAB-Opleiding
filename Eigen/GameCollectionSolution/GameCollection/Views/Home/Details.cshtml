@@ -26,16 +26,20 @@
             <p class="col-md-10">@Model.Title</p>
         </div>
         <div class="form-group">
-            <label class="col-md-2">@Html.LabelFor(m => m.ConsoleNaam):</label>@**@
+            <label class="col-md-2">@Html.LabelFor(m => m.ConsoleNaam)</label>@**@
             <p class="col-md-10"><img src="~/Images/ConsoleIcons/@(Model.ConsoleNaam).png" class="icon" /> @Model.ConsoleNaam</p>
         </div>
         <div class="form-group">
-            <label class="col-md-2">@Html.LabelFor(m => m.Conditie):</label>
+            <label class="col-md-2">@Html.LabelFor(m => m.Conditie)</label>
             <p class="col-md-10">@Model.Conditie</p>
         </div>
         <div class="form-group">
             <label class="col-md-2">@Html.LabelFor(m => m.Version)</label>
             <p class="col-md-10">@Model.Version</p>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2">@Html.LabelFor(m => m.BoxArtLocation)</label>
+            <p class="col-md-10"><img src="~/Images/GameCovers/@Model.BoxArtLocation"/></p>
         </div>
     </div>
 </div>

@@ -13,9 +13,11 @@ namespace GameCollection.Controllers
     public class HomeController : Controller
     {
         private GameCollectionService service = new GameCollectionService();
-        
+
+       
         public ActionResult Index(int? id,int? consoleId)
-        {   Collection col = new Collection();
+        {   
+            Collection col = new Collection();
             User user = (User) Session["user"];
             if (user != null) { col = service.GetCollectionFromUser(user);}
             
@@ -289,6 +291,7 @@ namespace GameCollection.Controllers
             details.ConsoleNaam = console.ConsoleName;
             details.Conditie = gc.Condition;
             details.Version = gc.Version;
+            details.BoxArtLocation = game.BoxArtLocation;
             if(Session["toegevoegd"]!=null)
             Session.Remove("toegevoegd");
             return details;
