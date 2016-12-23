@@ -1,0 +1,55 @@
+﻿@using GameCollection.Models
+@model List<ConsoleSoort>
+@{
+    ViewBag.Title = "LijstConsoles";
+
+}
+
+    
+
+<ul class="nav nav-pills clearfix ">
+
+    @foreach (var console in Model)
+    {
+       
+        
+            <li id="@console.ConsoleName" class="clearfix">
+                
+        <div id="consoles" class="clearfix">
+            <img src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px"/>
+            <p></p>
+                @Ajax.ActionLink(console.ConsoleName, "LijstGamesPerConsole",
+            new { gekozenconsole = console.Id }, new AjaxOptions
+                {
+                    UpdateTargetId = "gameDetails",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET"
+                });
+            
+           
+        </div>
+ 
+            </li>
+   
+        //else
+        //{
+        //    <li id="@console.ConsoleName">
+        //        <a href="@URL">
+        //            <div id="consoles" class="inactive clearfix">
+        //                <img id="inactive" src="~/Images/ConsoleIcons/@(console.ConsoleName).png" alt="@console.ConsoleName" width="50px" height="50px" />
+        //                <p class="caption">@console.ConsoleName</p>
+        //            </div>
+        //        </a>
+        //    </li>
+
+        //}
+
+
+    }
+</ul>
+
+
+
+
+
+

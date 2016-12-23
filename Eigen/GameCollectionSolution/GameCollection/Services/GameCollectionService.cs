@@ -262,5 +262,13 @@ namespace GameCollection.Services
                 }
             }
         }
+
+        public Platform GetPlatformById(int? gekozenPlatform)
+        {
+            using (var db = new GameCollectionDBContainer())
+            {
+                return db.PlatformSet.Find(gekozenPlatform);
+            }
+        }
     }
 }

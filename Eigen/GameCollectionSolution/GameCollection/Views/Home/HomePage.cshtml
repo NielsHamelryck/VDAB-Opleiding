@@ -1,14 +1,19 @@
-﻿@using GameCollection.Models
-@model List<Platform>
+﻿@using System.Net.WebSockets
+@using GameCollection.Models
+@model int?
 @{
     ViewBag.Title = "HomePage";
     AjaxOptions ajaxOpts = new AjaxOptions
     {
         UpdateTargetId = "consoleLijst"
     };
+    if (ViewBag.Gekozenplatform != null)
+    {
+        var gekozenplatform = ViewBag.Gekozenplatform.ToString();
+    }
 }
 
-<div class="jumbotron">
+<div id="jumbotron" class="jumbotron @ViewBag.Gekozenplatform">
     <div class="achterElkaar">
         <h2>Game Collection</h2>
 
@@ -29,10 +34,20 @@
         Platform
         <span class="caret"></span>
     </button>
+    <br />
     <ul id="ddMenu" class="dropdown-menu">
-        @foreach (var platform in Model)
+        @foreach (var platform in (List<Platform>)ViewBag.Platformen)
         {
-            <li><a href="@Url.Action("Index", "Home", new {id = platform.Id})">@platform.PlatformName</a></li>
+            <li>@Ajax.ActionLink(platform.PlatformName,"LijstConsoles",
+            new{gekozenPlatform = platform.Id},
+            new AjaxOptions()
+            {
+                UpdateTargetId = "consoleLijst",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod ="GET"
+               // Url = Url.Action("LijstGamesPerConsole", new { gekozenConsole = platform.Id  })
+                
+            })</li>
 
         }
     </ul>
@@ -40,8 +55,17 @@
 </div>
 
 
+    <div id="consoleLijst"></div>
+    <br />
+
+    <div id="gameDetails"></div>
 
 
 
 
-    
+
+@section Scripts {
+    <script src="~/Scripts/app/ConsoleScript.js"></script>
+    <script src="~/Scripts/app/ResetViewHomepage.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

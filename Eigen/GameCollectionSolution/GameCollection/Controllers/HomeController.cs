@@ -238,7 +238,7 @@ namespace GameCollection.Controllers
                 Session["failed"]= "Gebruiker niet terug gevonden probeer opnieuw!";
             }
             
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("HomePage","Home");
         }
         [AuthorizationFilter]
         public ActionResult Details(string title,string console,string version)
@@ -295,6 +295,36 @@ namespace GameCollection.Controllers
             if(Session["toegevoegd"]!=null)
             Session.Remove("toegevoegd");
             return details;
+        }
+         [AuthorizationFilter]
+        public ActionResult HomePage(int? gekozenPlatform=null)
+        {
+            List<Platform> platformen = service.GetAllPlatformen();
+            ViewBag.Platformen = platformen;
+            return View(gekozenPlatform);
+        }
+         [AuthorizationFilter]
+        public PartialViewResult LijstConsoles(int? gekozenPlatform)
+        {
+            if (gekozenPlatform != null)
+            {
+              Platform platform = service.GetPlatformById(gekozenPlatform);
+            ViewBag.GekozenPlatform = platform.PlatformName;  
+            }
+            
+            return PartialView(service.GetAllConsolesFromPlatform(gekozenPlatform));
+        }
+         [AuthorizationFilter]
+        public PartialViewResult LijstGamesPerConsole(int? gekozenconsole)
+        {
+            ViewBag.GekozenConsole = service.GetConsole(gekozenconsole);
+            Collection col = new Collection();
+            User user = (User)Session["user"];
+            if (user != null) { col = service.GetCollectionFromUser(user); }
+            
+            
+            List<GameDetails> Games = service.GetGamesPerConsole(gekozenconsole, col.Id);
+            return PartialView(Games);
         }
     }
 }

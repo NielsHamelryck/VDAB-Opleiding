@@ -1,0 +1,36 @@
+﻿@using GameCollection.Models
+@model List<GameDetails>
+@{
+    ViewBag.Title = "LijstGamesPerConsole";
+    var console = (ConsoleSoort)ViewBag.GekozenConsole;
+}
+
+@if (Model.Count > 0)
+    {
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Condition</th>
+            <th>Version</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td class="col-md-3">@game.Title </td>
+                <td class="col-md-2">@game.Conditie</td>
+                <td class="col-md-2">@game.Version</td>
+                <td class="col-md-3"><a href="@Url.Action("Details", "Home", new {title = game.Title, console = game.ConsoleNaam, version = game.Version})">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    }
+    else
+    {
+<p class="alert-warning alert">Er zijn geen games gevonden voor de soort "@console.ConsoleName"</p>
+    }

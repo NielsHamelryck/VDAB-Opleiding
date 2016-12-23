@@ -57,7 +57,7 @@ a#consoles {
     text-align: center;
 
 }
-.nav.nav-pills.clearfix > ul {
+#consoleLijst >.nav.nav-pills.clearfix > ul {
     width: 100%;
     height:100%;
     text-align: center;
@@ -65,7 +65,7 @@ a#consoles {
 }
 
 
-.nav.nav-pills.clearfix > li.active > a {
+#consoleLijst >.nav.nav-pills.clearfix > li.active > a {
     
     height: 100%;
     float: left;
@@ -75,9 +75,9 @@ a#consoles {
 }
 
 
-.nav.nav-pills > li.active.clearfix > a > div,
-.nav.nav-pills > li.active.clearfix > a:hover > div,
-.nav.nav-pills > li.active.clearfix > a:focus > div {
+#consoleLijst>.nav.nav-pills > li.active.clearfix > a > div,
+#consoleLijst>.nav.nav-pills > li.active.clearfix > a:hover > div,
+#consoleLijst>.nav.nav-pills > li.active.clearfix > a:focus > div {
     
    width: 100%;
     margin: auto;
@@ -85,7 +85,7 @@ a#consoles {
     
 }
 
-.nav.nav-pills.clearfix > li.active > a > div > img {
+#consoleLijst> .nav.nav-pills.clearfix > li.active > a > div > img {
     display:block;
     width: 75px;
     height: 75px;
@@ -93,11 +93,11 @@ a#consoles {
     
 }
 
-.nav.nav-pills.clearfix > li.active > a > div > p.caption {
+#consoleLijst> .nav.nav-pills.clearfix > li.active > a > div > p.caption {
     text-align: center;
     color: #ff0000;
 }
-.nav-pills > li + li {
+#consoleLijst> .nav-pills > li + li {
   margin-left: 2px;
     height: 130px;
    
@@ -248,7 +248,7 @@ textarea {
 
 /*opmaak informatie voor de details*/
 
-#gameDetails {
+#GameDetails {
    
     background-color: white;
     color: #428bca;
